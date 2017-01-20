@@ -1,0 +1,19 @@
+//START TYPOGRAPHY STYLE
+.btn{
+  @include respond-to(tablet-landscape-desktop){
+    padding: 15px 15px;
+    font-size: 14px;
+  }
+  @include respond-to(tablet-portrait){
+    padding: 15px 15px;
+    font-size: 14px;
+  }
+}
+.btn-long{
+  padding-left: 55px;
+  padding-right: 55px;
+}
+
+.btn-md{
+  padding: 8px 15px;
+}

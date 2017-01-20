@@ -1,0 +1,55 @@
+/*------------------------------------------------------------------
+[Styles]
+
+Project:	Houzez html5 Template
+Version:	1.1
+Last change:
+Primary use:	Real estate
+-------------------------------------------------------------------*/
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Body
+2. Header
+3. Navigation
+4. Content
+5. Widgets
+6. Modules
+7. Typography
+8. Alerts
+9. Buttons
+10. Footer
+-------------------------------------------------------------------*/
+
+@import 'bootstrap';
+
+// Components
+@import 'plugins/bootstrap-select';
+@import 'plugins/font-awesome';
+@import 'plugins/owl.carousel';
+@import 'plugins/jquery-ui';
+@import 'plugins/bootstrap-datetimepicker';
+//@import 'plugins/bootstrap-theme';
+@import 'plugins/bootstrapValidator.min';
+@import 'plugins/owl.theme';
+@import 'plugins/prettyPhoto';
+@import 'plugins/slick-theme';
+@import 'plugins/slick';
+@import 'plugins/vegas';
+
+@import 'compass';
+@import 'variables';
+@import 'mixings';
+@import 'fonts';
+@import 'global';
+@import 'header';
+@import 'content';
+@import 'widgets';
+@import 'modules';
+@import 'typography';
+@import 'alerts';
+@import 'buttons';
+@import 'footer';
+@import 'keyframs';
+
+@import 'options';

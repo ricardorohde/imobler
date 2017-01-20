@@ -1,0 +1,1265 @@
+/*START TYPOGRAPHY STYLE*/
+body{
+  font-family: $font-primary ;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale ;
+  @include respond-to(tablet-portrait){
+    font-size: 12px;
+  }
+}
+strong, b {
+  font-weight: 500;
+}
+
+.breadcrumb{
+  line-height: 12px;
+  li{
+    @include typography(12px, 12px, 0, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      line-height: 18px;
+    }
+  }
+}
+
+/*START PAGE TITLE AND BREADCRUMBS TYPO*/
+.page-title{
+  .title-head{
+    @include typography(30px, 38px, 0, 500, capitalize, inherit);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 24px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 20px;
+      line-height: 28px;
+    }
+    @include respond-to(phone){
+      font-size: 18px !important;
+      line-height: 24px !important;
+    }
+  }
+  h1{
+    @include typography(30px, 38px, 0, 500, capitalize, inherit);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 24px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 20px;
+      line-height: 28px;
+    }
+    @include respond-to(phone){
+      font-size: 18px !important;
+      line-height: 24px !important;
+    }
+  }
+}
+
+h1{
+  @include typography(26px, 32px, 0 0 20px 0, 500, inherit, inherit);
+  @include respond-to(tablet-landscape-desktop){
+    font-size: 24px;
+    line-height: 30;
+    margin-bottom: 15px;
+  }
+  @include respond-to(tablet-portrait){
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 10px;
+  }
+}
+h2{
+  @include typography(24px, 20px, 0 0 20px 0, 500, inherit, inherit);
+  @include respond-to(tablet-landscape-desktop){
+    font-size: 22px;
+    line-height: 28px;
+    margin-bottom: 15px;
+  }
+  @include respond-to(tablet-portrait){
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+}
+h3{
+  @include typography(20px, 26px, 0 0 20px 0, 500, inherit, inherit);
+  @include respond-to(tablet-landscape-desktop){
+    font-size: 18px;
+    line-height: 24;
+    margin-bottom: 15px;
+  }
+  @include respond-to(tablet-portrait){
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 10px;
+  }
+}
+h4{
+  @include typography(18px, 26px, 0 0 20px 0, 500, inherit, inherit);
+  @include respond-to(tablet-landscape-desktop){
+    font-size: 16px;
+    line-height: 22;
+    margin-bottom: 15px;
+  }
+  @include respond-to(tablet-portrait){
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 10px;
+  }
+}
+h5{
+  @include typography(16px, 24px, 0 0 20px 0, 500, inherit, inherit);
+  @include respond-to(tablet-landscape-desktop){
+    font-size: 14px;
+    line-height: 20;
+    margin-bottom: 15px;
+  }
+  @include respond-to(tablet-portrait){
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+}
+h6{
+  @include typography(14px, 20px, 0 0 20px 0, 500, inherit, inherit);
+  @include respond-to(tablet-landscape-desktop){
+    margin-bottom: 15px;
+  }
+  @include respond-to(tablet-portrait){
+    margin-bottom: 10px;
+  }
+
+}
+p{
+  @include typography(16px, 24px, 0 0 20px 0, 300, inherit, inherit);
+  @include respond-to(tablet-landscape-desktop){
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 15px;
+  }
+  @include respond-to(tablet-portrait){
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+}
+.form-control{
+  @include typography(14px, 1.42857143, 0, 300, inherit, inherit);
+}
+.dropdown-menu {
+  > li{
+    > a {
+      @include typography(14px, 1.42857143, 0, 400, inherit, inherit);
+    }
+  }
+}
+.rating{
+  @include typography(13px, 13px, 0, 400, inherit, inherit);
+}
+.top-bar{
+  .top-nav {
+    > ul {
+      > li {
+        > a {
+          @include typography(13px, 31px, 0, 400, capitalize, inherit);
+        }
+      }
+    }
+  }
+}
+
+
+.splash-search {
+  h1{
+    @include typography(43px, 43px, 0 0 10px, 500, inherit, center);
+    @include respond-to(tablet-landscape-desktop) {
+      font-size: 30px;
+      line-height: 36px;
+    }
+    @include respond-to(tablet-portrait) {
+      font-size: 24px;
+      line-height: 28px;
+    }
+    @include respond-to(phone) {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+  .banner-sub-title{
+    color: $white;
+    @include typography(24px, 26px, 0 0 35px 0, 300, inherit, center);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 20px;
+      margin: 0 0 25px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 18px;
+      margin: 0 0 15px;
+    }
+  }
+}
+.banner-caption{
+  h1{
+    @include typography(43px, 43px, 0 0 10px, 400, inherit, center);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 36px;
+      line-height: 38px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 22px;
+      line-height: 26px;
+      margin: 0 0 5px;
+    }
+    @include respond-to(phone){
+      font-size: 18px;
+      line-height: 24px;
+      margin: 0 0 5px;
+    }
+  }
+  h2{
+    @include typography(24px, 24px,  0 0 10px, 300, inherit, center);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}
+.header-right {
+  a {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: right;
+  }
+}
+.navi{
+  ul{
+    @include typography(0, inherit, 0, 400, inherit, inherit);
+    li{
+      @include typography(14px, 14px, 0, 500, capitalize, inherit);
+    }
+    ul{
+      li{
+        @include typography(14px, 18px, 0, 500, inherit, inherit);
+      }
+    }
+  }
+}
+//.form-group {
+  //.dropdown-toggle {
+    //@include typography(14px, 14px !important, 0, 400, inherit, left);
+  //}
+//}
+
+
+/*START LIST GRID AREA STYLE*/
+.list-tabs {
+  .tabs {
+    a{
+      @include typography(14px, 14px, 0, 500, uppercase, center);
+      @include respond-to(tablet-portrait){
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+.sort-tab{
+  .btn {
+    @include typography(14px, 1, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+    }
+  }
+}
+.item-body{
+  .property-title{
+    @include typography(16px, 20px, 0 0 7px 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+  .property-location{
+    @include typography(13px, 13px, 0, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  .date{
+    p{
+      @include typography(12px, 12px, 0, 300, inherit, inherit);
+    }
+  }
+  .phone{
+    p{
+      @include typography(12px, 12px, 8px 0 0 0, 400, inherit, inherit);
+    }
+  }
+}
+.price{
+  .price-start{
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 7px;
+  }
+  h3{
+    @include typography(18px, 18px, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+  .rant{
+    @include typography(12px, 12px, 7px 0 0, 500, inherit, inherit);
+  }
+  .item-price{
+    @include typography(18px, 18px, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+  .item-sub-price{
+    @include typography(12px, 12px, 7px 0 0, 500, inherit, inherit);
+  }
+}
+.item-thumb{
+  .label-featured{
+    @include typography(10px, 11px, 0, 500, uppercase, inherit);
+  }
+  .thumb-caption{
+    .cap-price{
+      @include typography(16px, 16px, 0, 500, uppercase, inherit);
+    }
+    .cap-social{
+      @include typography(12px, 12px, 0, 400, uppercase, inherit);
+    }
+    /*.actions{
+      @include typography(0, 14px, 0, 400, inherit, inherit);
+    }*/
+  }
+  /*.cap-actions{
+    @include typography(12px, 16px, 0, 400, inherit, inherit);
+  }*/
+}
+.item-foot{
+  p {
+    @include typography(12px, 20px, 0, 300, inherit, inherit);
+  }
+}
+.detail{
+  h3{
+    @include typography(14px, 26px, 0, 500, inherit, inherit);
+  }
+  ul{
+    @include typography(14px, 18px, 0, 400, inherit, inherit);
+    @include respond-to(tablet-portrait) {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+  .cap-price{
+    @include typography(16px, 16px, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait) {
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+}
+
+.item-body{
+  .amenities {
+    p {
+      @include typography(13px, 16px, 0 0 5px 0, 500, inherit, inherit);
+    }
+  }
+}
+/*START ADVANCED SEARCH SECTION*/
+#advanced-search{
+  .dropdown-toggle{
+    @include typography(16px, 1.42857, 0, 400, inherit, center);
+    @include respond-to(phone){
+      font-weight: 400;
+      text-transform: inherit;
+    }
+  }
+  .form-control{
+    @include typography(16px, 1.42857, 0, 400, inherit, inherit);
+    @include respond-to(phone){
+      font-weight: 400;
+      text-transform: inherit;
+    }
+  }
+  .advance-btn{
+    @include typography(16px, 19px, 0, 400, capitalize, inherit);
+    background: transparent;
+    font-weight: 400;
+    &:hover{
+      color: $hover;
+      box-shadow: none;
+    }
+  }
+  .features-list{
+    label.title{
+      @include typography(14px, 14px, 7px 0 14px 0, 700, uppercase, inherit);
+    }
+  }
+}
+
+/*START MODULES STYLE*/
+.module-title {
+  h1 {
+    @include typography(32px, 38px, 0 0 20px 0, 500, inherit, inherit);
+
+    @include respond-to(tablet-portrait) {
+      @include typography(28px, 34px, 0 0 10px 0, 500, inherit, inherit);
+    }
+    @include respond-to(phone) {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+  h2 {
+    @include typography(24px, 30px, 0 0 10px 0, 500, inherit, inherit);
+
+    @include respond-to(tablet-portrait) {
+      font-size: 18px;
+      line-height: 22px;
+    }
+    @include respond-to(phone) {
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+  .sub-heading {
+    @include typography(18px, 24px, 0, 400, inherit, inherit);
+    @include respond-to(tablet-portrait) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+.sub-heading {
+  @include typography(16px, 24px, 0, 300, inherit, inherit);
+  @include respond-to(tablet-portrait) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+.houzez-module {
+  .module-title-nav {
+    h2 {
+      @include typography(24px, 32px, 0, 500, inherit, inherit);
+      @include respond-to(tablet-portrait){
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+    .sub-title{
+      @include typography(18px, 18px, 5px 0 0 0, 300, inherit, inherit);
+    }
+    .module-nav{
+      .btn{
+        @include typography(10px, 10px, 0, 400, inherit, inherit);
+      }
+    }
+  }
+}
+.services-module{
+  .service-block{
+    h3{
+      @include typography(20px, 24px, 0 0 8px 0, 400, inherit, inherit);
+      @include respond-to(medium-desktop) {
+        font-size: 18px;
+        line-height: 22px;
+      }
+      @include respond-to(tablet-portrait) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+    p{
+      @include typography(16px, 22px, 0 0 10px 0, 300, inherit, inherit);
+      @include respond-to(tablet-portrait) {
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+    .find{
+      @include typography(16px, 16px, 0, 400, inherit, inherit);
+      @include respond-to(tablet-portrait) {
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+  }
+}
+.services-module.style2{
+  h3{
+    @include typography(18px, 22px, 0 0 8px 0, 700, inherit, inherit);
+    @include respond-to(tablet-portrait) {
+      @include typography(16px, 22px, 0 0 8px 0, 700, inherit, inherit);
+    }
+  }
+}
+
+/*START POST CARD MODULES STYLE*/
+.post-card-item{
+  .thumb-caption{
+    h3{
+      @include typography(16px, 20px, 0, 700, inherit, inherit);
+      @include respond-to(tablet-portrait){
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+}
+
+.post-card-description{
+  h3{
+    @include typography(16px, 24px, 0 0 10px, 400, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+  .read{
+    @include typography(14px, 14px, 0, 400, inherit, inherit);
+  }
+}
+
+/*START AGENTS MODULE STYLE*/
+.agents-block{
+  .block-body {
+    .description{
+      @include typography(16px, 20px, 0 0 20px 0, 300, inherit, inherit);
+      @include respond-to(tablet-portrait){
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+    .auther-info {
+      @include typography(14px, 18px, 0 0 10px 0, 400, inherit, inherit);
+      @include respond-to(tablet-portrait){
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+    .view{
+      @include typography(16px, 16px, 0, 500, inherit, inherit);
+      @include respond-to(tablet-portrait){
+        font-size: 14px;
+        line-height: 14px;
+      }
+    }
+  }
+}
+
+.block-body{
+  .description{
+    @include typography(16px, 22px, 0 0 15px 0, 500, inherit, inherit);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 14px;
+      line-height: 24px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+  h3.description{
+    @include typography(18px, 30px, 0 0 15px 0, 400, inherit, inherit);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 14px;
+      line-height: 24px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+  .auther-info{
+    @include typography(14px, 20px, 0, 400, inherit, inherit);
+  }
+}
+
+/*START CALL TO ACTION MODULES STYLE*/
+.callto-action{
+  div{
+    h3{
+      @include typography(24px, 28px, 0 0 10px 0, 700, inherit, inherit);
+      @include respond-to(tablet-landscape-desktop){
+        @include typography(20px, 24px, 0 0 10px 0, 700, inherit, inherit);
+      }
+      @include respond-to(tablet-portrait){
+        @include typography(18px, 22px, 0 0 10px 0, 700, inherit, inherit);
+      }
+    }
+    p{
+      @include typography(16px, 20px, 0, 400, inherit, inherit);
+    }
+  }
+}
+
+/*START LOCATION MODULE STYLE*/
+.location-block{
+  .heading{
+    font-size: 24px;
+    line-height: 24px;
+    margin: 0 0 5px;
+    font-weight: 700;
+    text-align: center;
+    @include respond-to(tablet-portrait){
+      font-size: 20px;
+      line-height: 20px;
+      margin: 0 0 5px;
+      font-weight: 700;
+    }
+    @include respond-to(phone){
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+  .sub-heading{
+    @include typography(14px, 14px, 0, 400, uppercase, center);
+  }
+}
+
+/*START BANNER MODULE STYLE*/
+.banner-module{
+  .caption{}
+}
+
+/*START MY ACCOUNT STYLE*/
+.my-menu{
+  li{
+    a{
+      @include typography(13px, 13px, 0, 400, inherit, inherit);
+    }
+  }
+}
+
+/*START DETAIL TOP SECTION STYLE*/
+.header-detail{
+  h1{
+    @include typography(30px, 30px, 0 0 9px 0, 500, inherit, inherit);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 24px;
+      line-height: 28px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 18px;
+      line-height: 20px;
+      margin-bottom: 5px;
+    }
+  }
+  .property-address{
+    @include typography(14px, 14px, 0 !important, 400, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+  .item-price{
+    @include typography(30px, 30px, 0 0 8px 0, 500, inherit, inherit);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 24px;
+      line-height: 28px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 0;
+    }
+  }
+  .item-sub-price{
+    @include typography(18px, 18px, 0, 400, inherit, inherit);
+    @include respond-to(tablet-landscape-desktop){
+      font-size: 16px;
+    }
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+    }
+  }
+  .label-wrap{
+    .label{
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: uppercase;
+      font-weight: 500;
+      @include respond-to(tablet-portrait){
+        font-size: 10px;
+        line-height: 11px;
+      }
+    }
+  }
+}
+.detail-top-full{
+  .header-detail{
+    h4{
+      @include typography(18px, 18px, 0, 400, inherit, inherit);
+      @include respond-to(tablet-landscape-desktop){
+        font-size: 16px;
+      }
+      @include respond-to(tablet-portrait){
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+
+/*START AGENT MEDIA STYLE*/
+.form-small{
+  .head-left{
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+  .head-right{
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+  .form-small-title{
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+}
+.agent-media{
+  dt{
+    @include typography(14px, 20px, 0 0 4px, 500, uppercase, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+  dd{
+    @include typography(14px, 20px, 0, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+  .view{
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .media-heading{
+    @include typography(14px, 20px, 0 0 4px, 500, uppercase, inherit);
+  }
+}
+
+/*START DETAIL PAGE STYLE*/
+.detail-bar{
+  h1{
+    @include typography(24px, 28px, 0 0 20px 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 20px;
+      line-height: 24px;
+      margin-bottom: 15px;
+    }
+  }
+  h2{
+    @include typography(20px, 24px, 0 0 20px 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 15px;
+    }
+  }
+  h3{
+    @include typography(18px, 22px, 0 0 20px 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 15px;
+    }
+  }
+  h4{
+    @include typography(16px, 20px, 0 0 20px 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 15px;
+    }
+  }
+  p{
+    @include typography(16px, 24px, 0 0 20px 0, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 22px;
+      margin-bottom: 15px;
+    }
+  }
+  ul{
+    li{
+      @include typography(16px, 30px, 0, 300, inherit, inherit);
+      @include respond-to(tablet-portrait) {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+  ol{
+    li{
+      @include typography(16px, 30px, 0, 300, inherit, inherit);
+      @include respond-to(tablet-portrait) {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+  .detail-tabs{
+    li{
+      @include typography(14px, 14px, 0, 500, uppercase, center);
+      @include respond-to(tablet-portrait){
+        font-size: 12px;
+      }
+      @include respond-to(phone){
+        line-height: 26px;
+      }
+    }
+  }
+  .agent-media{
+    li{
+      @include typography(14px, 20px, 0 0 2px, 300, inherit, inherit);
+    }
+  }
+}
+
+.detail-title{
+  .title-left{
+    @include typography(18px, 18px, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+    }
+  }
+  p{
+    @include typography(12px, 18px, 0, 300, inherit, inherit);
+    /*@include respond-to(tablet-portrait){
+      line-height: 18px;
+    }*/
+  }
+}
+.detail-title-inner{
+  .title-inner{
+    @include typography(16px, 16px, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+    }
+  }
+}
+
+.next-prev-block{
+  h3{
+    @include typography(16px, 16px, 0 0 10px 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      @include typography(12px, 12px, 0 0 10px 0, 400, inherit, inherit);
+    }
+  }
+  h4{
+    @include typography(16px, 16px, 0, 400, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      @include typography(12px, 12px, 0 0 10px 0, 300, inherit, inherit);
+    }
+  }
+  i{
+    font-size: 18px;
+    @include respond-to(tablet-portrait){
+      font-size: 15px;
+    }
+  }
+}
+
+/*START ARTICLE DETAIL STYLE*/
+.article-detail{
+  h1{
+    @include typography(30px, 38px, 0 0 24px 0, 500, inherit, inherit);
+  }
+  h2{
+    @include typography(24px, 32px, 0 0 18px 0, 500, inherit, inherit);
+  }
+  h3{
+    @include typography(20px, 28px, 0 0 18px 0, 500, inherit, inherit);
+  }
+  h4{
+    @include typography(18px, 26px, 0 0 18px 0, 500, inherit, inherit);
+  }
+  h5{
+    @include typography(16px, 24px, 0 0 18px 0, 500, inherit, inherit);
+  }
+  h6{
+    @include typography(14px, 20px, 0 0 18px 0, 500, inherit, inherit);
+  }
+  p{
+    @include typography(16px, 24px, 0 0 20px 0, 300, inherit, inherit);
+    &:last-child{
+      margin: 0;
+    }
+  }
+  ul{
+    li{
+      @include typography(16px, 30px, 0, 300, inherit, inherit);
+    }
+  }
+  ol{
+    li{
+      @include typography(16px, 30px, 0, 300, inherit, inherit);
+    }
+  }
+  dt, dd{
+    line-height: 24px;
+  }
+  dd{
+    font-size: 16px;
+  }
+
+  @include respond-to(tablet-landscape-desktop){
+    h1{
+      @include typography(28px, 36px, 0 0 24px 0, 500, inherit, inherit);
+    }
+    h2{
+      @include typography(22px, 30px, 0 0 18px 0, 500, inherit, inherit);
+    }
+    h3{
+      @include typography(18px, 26px, 0 0 18px 0, 500, inherit, inherit);
+    }
+    h4{
+      @include typography(16px, 24px, 0 0 18px 0, 500, inherit, inherit);
+    }
+    h5{
+      @include typography(14px, 22px, 0 0 18px 0, 500, inherit, inherit);
+    }
+    h6{
+      @include typography(12px, 18px, 0 0 18px 0, 500, inherit, inherit);
+    }
+    p{
+      @include typography(14px, 20px, 0 0 18px 0, 300, inherit, inherit);
+    }
+    ul{
+      li{
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+    ol{
+      li{
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+
+    dt, dd{
+      line-height: 22px;
+    }
+    dd{
+      font-size: 14px;
+    }
+  }
+
+  @include respond-to(tablet-portrait){
+    h1{
+      @include typography(22px, 28px, 0 0 20px 0, 500, inherit, inherit);
+    }
+    h2{
+      @include typography(20px, 26px, 0 0 16px 0, 500, inherit, inherit);
+    }
+    h3{
+      @include typography(18px, 24px, 0 0 16px 0, 500, inherit, inherit);
+    }
+    h4{
+      @include typography(16px, 22px, 0 0 16px 0, 500, inherit, inherit);
+    }
+    h5{
+      @include typography(14px, 20px, 0 0 16px 0, 500, inherit, inherit);
+    }
+    h6{
+      @include typography(12px, 18px, 0 0 16px 0, 500, inherit, inherit);
+    }
+    p{
+      @include typography(12px, 18px, 0 0 16px 0, 300, inherit, inherit);
+    }
+    ul{
+      li{
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+    ol{
+      li{
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+
+    dt, dd{
+      line-height: 20px;
+    }
+    dd{
+      font-size: 12px;
+    }
+  }
+  @include respond-to(phone){
+    h1{
+      @include typography(18px, 20px, 0 0 18px 0, 500, inherit, inherit);
+    }
+    h2{
+      @include typography(16px, 18px, 0 0 15px 0, 500, inherit, inherit);
+    }
+    h3{
+      @include typography(14px, 16px, 0 0 15px 0, 500, inherit, inherit);
+    }
+    h4{
+      @include typography(12px, 14px, 0 0 15px 0, 500, inherit, inherit);
+    }
+    h5{
+      @include typography(12px, 14px, 0 0 15px 0, 500, inherit, inherit);
+    }
+  }
+}
+
+.list-three-col{
+  li{
+    @include typography(14px, 28px, 0, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 25px;
+    }
+  }
+}
+
+.accord-block{
+  h3{
+    @include typography(16px, 22px, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+    }
+  }
+  li {
+    @include typography(14px, 16px, 0, 300, inherit, inherit);
+    @include respond-to(tablet-portrait) {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  .expand-icon{
+    @include typography(18px, 50px, 0, 500, inherit, center);
+  }
+}
+
+/*START PAGINATION STYLE*/
+.pagination-main{
+  .pagination{
+    a{
+      @include typography(15px, 28px, 0, 500, inherit, center);
+    }
+  }
+}
+
+/*START PROFILE DETAIL PAGE STYLE*/
+.profile-detail-block{
+  .form-small{
+    h3{
+      @include typography(14px, 14px, 0 0 15px 0, 500, uppercase, inherit);
+      @include respond-to(tablet-portrait){
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+  }
+}
+.profile-description{
+  .agent-title{
+    @include typography(18px, 24px, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  h3{
+    @include typography(18px, 24px, 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  p{
+    @include typography(14px, 22px, 0 0 35px, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      margin-bottom: 20px;
+    }
+  }
+  .position{
+    @include typography(14px, 20px, 0 0 23px, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 12px;
+    }
+  }
+}
+.profile-contact{
+  li {
+    @include typography(14px, 14px, 0, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+}
+.profile-rating{
+  li{
+    @include typography(14px, 21px, 0, 300, inherit, inherit);
+  }
+}
+.profile-tabs{
+  li{
+    @include typography(14px, 3.4, 0, 500, uppercase, center);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+    }
+  }
+}
+.profile-tab-content{
+  .title{
+    @include typography(18px, 22px, 0 0 30px, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 16px;
+      line-height: 20px;
+      margin: 0 0 15px;
+    }
+  }
+}
+.profile-overview{
+  p{
+    @include typography(16px, 23px, 0 0 24px, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 20px;
+      margin: 0 0 15px;
+    }
+  }
+}
+.reviews-list{
+  .media-heading{
+    @include typography(16px, 18px, 0 16px 0 0 !important, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+    }
+  }
+  .review-date{
+    @include typography(14px, 14px, 0 0 14px, 400, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 12px;
+      margin: 0 0 8px;
+    }
+  }
+}
+.add-review-block{
+  .review-title{
+    @include typography(18px, 22px, 0 0 20px, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 18px;
+      margin: 0 0 15px;
+    }
+  }
+}
+.add-rating{
+  label{
+    @include typography(16px, 20px, 0 10px 0 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+}
+
+/*START WIDGETS TYPO STYLE*/
+.widget{
+  .media-heading{
+    @include typography(14px, 18px, 0 0 5px, 500, inherit, inherit);
+  }
+  h4{
+    @include typography(14px, 18px, 0 0 8px, 500, inherit, inherit);
+  }
+  .amenities{
+    p{
+      @include typography(12px, 15px, 0, 400, inherit, inherit);
+    }
+  }
+  .rating{
+    .star-text-left{
+      @include typography(14px, 14px, 0 5px 0 0, 500, inherit, inherit);
+    }
+  }
+  p{
+    @include typography(14px, 1.42857143, 0, 400, inherit, inherit);
+  }
+}
+.widget-download{
+  .widget-title{
+    @include typography(20px, 20px, 0 0 20px 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 16px;
+      line-height: 14px;
+    }
+  }
+  li{
+    @include typography(14px, 14px, 0 0 15px 0, 300, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+}
+.widget-categories{
+  li{
+    @include typography(14px, 18px, 0 0 10px 0, 500, inherit, inherit);
+    @include respond-to(tablet-portrait){
+      @include typography(12px, 14px, 0 0 10px 0, 500, inherit, inherit);
+    }
+  }
+}
+.widget-title{
+  @include typography(16px, 24px, 0 0 20px 0, 500, inherit, inherit);
+}
+.widget-range{
+  h4{
+    @include typography(12px, 12px, 0 0 10px 0, 400, inherit, inherit);
+  }
+  .range-input{
+    @include typography(12px, 12px, 0, 400, inherit, inherit);
+  }
+}
+
+/*START FOOTER WIDGETS STYLE*/
+.footer{
+  p{
+    @include typography(14px, 20px, 0 0 12px 0, 300, inherit, inherit);
+  }
+  .widget-pages{
+    li{
+      @include typography(14px, 14px, 0 0 10px 0, 700, inherit, inherit);
+    }
+  }
+  .widget-news{
+    .media-heading{
+      @include typography(15px, 15px, 0 0 4px 0, 700, inherit, inherit);
+    }
+    p{
+      @include typography(13px, 17px, 0 0 4px 0, 400, inherit, inherit);
+    }
+  }
+}
