@@ -8,20 +8,29 @@
     <h1>Welcome To Miami Beach</h1>
     <h2 class="banner-sub-title">Parallax banner with search and image</h2>
     <div class="banner-search-main">
-      <form class="form-inline">
+      <form method="post" action="<?php echo base_url('sp/sao-paulo/pirituba/apartamento/'); ?>" class="form-inline">
         <div class="form-group">
-          <select class="selectpicker" data-live-search="false" title="Location">
-            <option>Location 1</option>
-            <option>Location 2</option>
-            <option>Location 3</option>
-            <option>Location 4</option>
-            <option>Location 5</option>
+          <select class="selectpicker" data-live-search="false" title="Tipo de im">
+            <option value="">Mostrar todos</option>
+
+            <optgroup label="Residencial">
+              <option value="1" selected="selected">Apartamento</option>
+              <option value="2">Casa</option>
+              <option value="3">Chácara</option>
+              <option value="4">Casa de Condomínio</option>
+            </optgroup>
+
+            <optgroup label="Comercial">
+              <option value="5">Consultório</option>
+              <option value="6">Edifício residencial</option>
+              <option value="7">Sala comercial</option>
+            </optgroup>
           </select>
           <div class="search input-search input-icon">
             <input class="form-control" type="text" placeholder="Enter Keyword">
           </div>
           <div class="search-btn">
-            <button class="btn btn-secondary"><i class="fa fa-search"></i> Search</button>
+            <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i> Buscar</button>
           </div>
         </div>
       </form>
