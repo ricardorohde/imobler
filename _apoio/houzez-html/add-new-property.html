@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Houzez HTML5 Template</title>
+    <!--Meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Houzez HTML5 Template">
+    <meta name="description" content="Houzez HTML5 Template">
+    <meta name="author" content="Favethemes">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="images/favicons/manifest.json">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" >
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="css/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<button class="btn scrolltop-btn back-top"><i class="fa fa-angle-up"></i></button>
+<div class="modal fade" id="pop-login" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="login-tabs">
+                    <li class="active">Login</li>
+                    <li>Register</li>
+                </ul>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
+
+            </div>
+            <div class="modal-body login-block">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active">
+                        <div class="message">
+                            <p class="error text-danger"><i class="fa fa-close"></i> You are not Logedin</p>
+                            <p class="success text-success"><i class="fa fa-check"></i> You are not Logedin</p>
+                        </div>
+                        <form>
+                            <div class="form-group field-group">
+                                <div class="input-user input-icon">
+                                    <input type="text" placeholder="Username">
+                                </div>
+                                <div class="input-pass input-icon">
+                                    <input type="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="forget-block clearfix">
+                                <div class="form-group pull-left">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group pull-right">
+                                    <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#pop-reset-pass">I forgot username and password</a>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </form>
+                        <hr>
+                        <a href="#" class="btn btn-social btn-bg-facebook btn-block"><i class="fa fa-facebook"></i> login with facebook</a>
+                        <a href="#" class="btn btn-social btn-bg-linkedin btn-block"><i class="fa fa-linkedin"></i> login with linkedin</a>
+                        <a href="#" class="btn btn-social btn-bg-google-plus btn-block"><i class="fa fa-google-plus"></i> login with Google</a>
+                    </div>
+                    <div class="tab-pane fade">
+                        <form>
+                            <div class="form-group field-group">
+                                <div class="input-user input-icon">
+                                    <input type="text" placeholder="Username">
+                                </div>
+                                <div class="input-email input-icon">
+                                    <input type="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                        I agree with your <a href="#">Terms & Conditions</a>.
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </form>
+                        <hr>
+
+                        <a href="#" class="btn btn-social btn-bg-facebook btn-block"><i class="fa fa-facebook"></i> login with facebook</a>
+                        <a href="#" class="btn btn-social btn-bg-linkedin btn-block"><i class="fa fa-linkedin"></i> login with linkedin</a>
+                        <a href="#" class="btn btn-social btn-bg-google-plus btn-block"><i class="fa fa-google-plus"></i> login with Google</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="pop-reset-pass" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="login-tabs">
+                    <li class="active">Reset Password</li>
+                </ul>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Please enter your username or email address. You will receive a link to create a new password via email.</p>
+                <form>
+                    <div class="form-group">
+                        <div class="input-user input-icon">
+                            <input placeholder="Enter your username or email" class="form-control">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block">Get new password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--start header section header v1-->
+<header id="header-section" class="header-section-4 header-main  nav-left hidden-sm hidden-xs" data-sticky="1">
+    <div class="container">
+        <div class="header-left">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/houzez-logo-color.png" alt="logo">
+                </a>
+            </div>
+            <nav class="navi main-nav">
+                <ul>
+                    <li><a href="#">Home</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="#">Map</a>
+                                <ul class="sub-menu">
+                                    <li><a href="home-map.html">Map Standard</a></li>
+                                    <li><a href="home-map-fullscreen.html">Map Fullscreen</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Parallax</a>
+                                <ul class="sub-menu">
+                                    <li><a href="home-parallax.html">Parallax Standard</a></li>
+                                    <li><a href="home-parallax-fullscreen.html">Parallax Fullscreen</a></li>
+                                    <li><a href="home-parallax-autofix.html">Parallax Auto Fix</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Video</a>
+                                <ul class="sub-menu">
+                                    <li><a href="home-video.html">Video Standard</a></li>
+                                    <li><a href="home-video-fullscreen.html">Video Fullscreen</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Sliders</a>
+                                <ul class="sub-menu">
+                                    <li><a href="home-property-slider.html">Property Slider</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Splash</a>
+                                <ul class="sub-menu">
+                                    <li><a href="splash-video.html">Video Fullscreen</a></li>
+                                    <li><a href="splash-slider.html">Slider Fullscreen</a></li>
+                                    <li><a href="splash-image.html">Image Fullscreen</a></li>
+                                    <li><a href="home-splash.html">Home With Splash</a></li>
+                                    <li><a href="splash-half.html">Half</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Listing</a>
+                        <ul class="sub-menu">
+                            <li><a href="properties-list.html">List View</a>
+                                <ul class="sub-menu">
+                                    <li><a href="properties-list.html">List View Standard</a></li>
+                                    <li><a href="properties-list-fullwidth.html">List View Fullwidth</a></li>
+                                    <li><a href="properties-list-compare.html">List View Compare Panel</a></li>
+                                    <li><a href="properties-list-save-search.html">List View Save Search</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="properties-list-style-2.html">List View Style 2</a>
+                                <ul class="sub-menu">
+                                    <li><a href="properties-list-style-2.html">List View Standard Style 2</a></li>
+                                    <li><a href="properties-list-style-2-fullwidth.html">List View Fullwidth Style 2</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="properties-grid.html">Grid View</a>
+                                <ul class="sub-menu">
+                                    <li><a href="properties-grid.html">Grid View Standard</a></li>
+                                    <li><a href="properties-grid-fullwidth.html">Grid View Fullwidth</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="properties-grid-style-2.html">Grid View Style 2</a>
+                                <ul class="sub-menu">
+                                    <li><a href="properties-grid-style-2.html">Grid View Standard Style 2</a></li>
+                                    <li><a href="properties-grid-style-2-fullwidth.html">Grid View Fullwidth Style 2</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Map</a>
+                                <ul class="sub-menu">
+                                    <li><a href="map-listing.html">Half Map</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Property</a>
+                        <ul class="sub-menu">
+                            <li><a href="property-detail.html">Single Property v1</a></li>
+                            <li><a href="property-detail-v2.html">Single Property v2</a></li>
+                            <li><a href="property-detail-v3.html">Single Property v3</a></li>
+                            <li><a href="property-detail-landing-page.html">Property Landing Page</a></li>
+                            <li><a href="property-detail-full-width-gallery.html">Property Full Width Gallery</a></li>
+                            <li><a href="property-detail-tabs.html">Single Property Tabs v1</a></li>
+                            <li><a href="property-detail-tabs-vertical.html">Single Property Tabs v2</a></li>
+                            <li><a href="property-detail-multi-properties.html">Multi Units / Sub listing</a></li>
+                            <li><a href="property-nav-on-scroll.html">Property Nav On Scroll</a></li>
+                        </ul>
+                    </li>
+                    <li class="houzez-megamenu"><a href="#">Pages</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="#">Column 1</a>
+                                <ul class="sub-menu">
+                                    <li><a href="agent-list.html">All Agents</a></li>
+                                    <li><a href="agent-detail.html">Agent Profile</a></li>
+                                    <li><a href="agency-list.html">All Agencies</a></li>
+                                    <li><a href="company-profile.html">Company Profile</a></li>
+                                    <li><a href="compare-properties.html">Compare Properties</a></li>
+                                    <li><a href="landing-page.html">Landing Page</a></li>
+                                    <li><a href="map-full-search.html">Map Full Screen</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Column 2</a>
+                                <ul class="sub-menu">
+                                    <li><a href="about-us.html">About Houzez</a></li>
+                                    <li><a href="contact-us.html">Contact us</a></li>
+                                    <li><a href="login.html">Login Page</a></li>
+                                    <li><a href="register.html">Register Page</a></li>
+                                    <li><a href="forget-password.html">Forget Password Page</a></li>
+                                    <li><a href="typography.html">Typography</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Column 3</a>
+                                <ul class="sub-menu">
+                                    <li><a href="faqs.html">FAQs</a></li>
+                                    <li><a href="simple-page.html">Simple Page</a></li>
+                                    <li><a href="404.html">404 Page</a></li>
+                                    <li><a href="headers.html">Houzez Headers</a></li>
+                                    <li><a href="footer.html">Houzez Footers</a></li>
+                                    <li><a href="widgets.html">Houzez Widgets</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Column 4</a>
+                                <ul class="sub-menu">
+                                    <li><a href="search-bars.html">Houzez Search Bars</a></li>
+                                    <li><a href="add-new-property.html">Create Listing Page</a></li>
+                                    <li><a href="listing-select-package.html">Select Packages Page</a></li>
+                                    <li><a href="listing-payment.html">Payment Page</a></li>
+                                    <li><a href="listing-done.html">Listing Done Page</a></li>
+                                    <li><a href="blog.html">Blog</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Column 5</a>
+                                <ul class="sub-menu">
+                                    <li><a href="blog-detail.html">Blog detail</a></li>
+                                    <li><a href="my-account.html">My Account</a></li>
+                                    <li><a href="my-properties.html">My Properties</a></li>
+                                    <li><a href="my-favourite-properties.html">My Favourite Properties</a></li>
+                                    <li><a href="my-saved-search.html">My Saved Searches</a></li>
+                                    <li><a href="my-invoices.html">My Invoices</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="houzez-megamenu"><a href="#">Modules</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="#"> Column 1 </a>
+                                <ul class="sub-menu">
+                                    <li><a href="module-advanced-search.html">Advanced Search</a></li>
+                                    <li><a href="module-property-grids.html">Property Grids</a></li>
+                                    <li><a href="module-property-carousel-v1.html">Property Carousel v1</a></li>
+                                    <li><a href="module-property-carousel-v2.html">Property Carousel v2</a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"> Column 2 </a>
+                                <ul class="sub-menu">
+                                    <li><a href="module-property-cards.html">Property Cards Module</a></li>
+                                    <li><a href="module-property-by-id.html">Property by ID</a></li>
+                                    <li><a href="module-taxonomy-grids.html">Taxonomy Grids</a></li>
+                                    <li><a href="module-taxonomy-tabs.html">Taxonomy Tabs</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"> Column 3 </a>
+                                <ul class="sub-menu">
+                                    <li><a href="module-testimonials.html">Testimonials</a></li>
+                                    <li><a href="module-membership-packages.html">Membership Packages</a></li>
+                                    <li><a href="module-agents.html">Agents</a></li>
+                                    <li><a href="module-team.html">Team</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"> Column 4 </a>
+                                <ul class="sub-menu">
+                                    <li><a href="module-partners.html">Partners</a></li>
+                                    <li><a href="module-text-with-icons.html">Text with icons</a></li>
+                                    <li><a href="module-blog-post-carousels.html">Blog Post Carousels</a></li>
+                                    <li><a href="module-blog-post-grids.html">Blog Post Grids</a></li>
+                                    <li><a href="blog-masonry.html">Blog Post Masonry</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="user">
+                <a href="#" data-toggle="modal" data-target="#pop-login">Sign In / Register</a>
+                <a href="add-new-property.html" class="btn btn-default">Create Listing</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="header-mobile visible-sm visible-xs">
+    <div class="container">
+        <!--start mobile nav-->
+        <div class="mobile-nav">
+            <span class="nav-trigger"><i class="fa fa-navicon"></i></span>
+            <div class="nav-dropdown main-nav-dropdown"></div>
+        </div>
+        <!--end mobile nav-->
+        <div class="header-logo">
+            <a href="index.html"><img src="images/logo-houzez-white.png" alt="logo"></a>
+        </div>
+        <div class="header-user">
+            <ul class="account-action">
+                <li>
+                    <span class="user-icon"><i class="fa fa-user"></i></span>
+                    <div class="account-dropdown">
+                        <ul>
+                            <li> <a href="add-new-property.html"> <i class="fa fa-plus-circle"></i>Creat Listing</a></li>
+                            <li> <a href="#" data-toggle="modal" data-target="#pop-login"> <i class="fa fa-user"></i> Log in / Register </a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--end header section header v1-->
+
+
+
+    <!--start section page body-->
+    <section id="section-body">
+        <div class="container">
+            <div class="membership-page-top">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="membership-page-title">
+                            <h1 class="page-title"> Complete your order </h1>
+                            <p class="page-subtitle"> Please enter your Account and Billing information to complete your membership! </p>
+                        </div>
+                        <ol class="pay-step-bar">
+                            <li class="pay-step-block active"><span>1. Listing</span></li>
+                            <li class="pay-step-block"><span>2. <span class="hidden-xs">Select</span> Package</span></li>
+                            <li class="pay-step-block"><span>3. Payment</span></li>
+                            <li class="pay-step-block"><span>4. Done</span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="membership-content-area">
+                <form>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Property description and price</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row push-padding-bottom">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="property-title">Title</label>
+                                            <input class="form-control" id="property-title" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="description">Description</label>
+                                            <textarea class="form-control" id="description" rows="6" placeholder="Enter your property title"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-tab-row push-padding-bottom">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-type">Type</label>
+                                            <select class="selectpicker" id="property-type" data-live-search="false" data-live-search-style="begins" title="Select">
+                                                <option>Type 1</option>
+                                                <option>Type 2</option>
+                                                <option>Type 3</option>
+                                                <option>Type 4</option>
+                                                <option>Type 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-status">Status</label>
+                                            <select class="selectpicker" id="property-status" data-live-search="false" data-live-search-style="begins" title="Select">
+                                                <option>Type 1</option>
+                                                <option>Type 2</option>
+                                                <option>Type 3</option>
+                                                <option>Type 4</option>
+                                                <option>Type 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-tab-row push-padding-bottom">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-price">Property price</label>
+                                            <input class="form-control" id="property-price" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-price-before">Before price label</label>
+                                            <input class="form-control" id="property-price-before" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-price-after">After price label</label>
+                                            <input class="form-control" id="property-price-after" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Property media</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row">
+                                <div class="property-media">
+                                    <div class="media-gallery">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <figure class="gallery-thumb">
+                                                    <img src="http://placehold.it/127x127" alt="thumb">
+                                                    <span class="icon icon-fav"><i class="fa fa-star-o"></i></span>
+                                                    <span class="icon icon-delete"><i class="fa fa-trash"></i></span>
+                                                    <span class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span>
+                                                </figure>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <figure class="gallery-thumb">
+                                                    <img src="http://placehold.it/127x127" alt="thumb">
+                                                    <span class="icon icon-fav"><i class="fa fa-star-o"></i></span>
+                                                    <span class="icon icon-delete"><i class="fa fa-trash"></i></span>
+                                                </figure>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <figure class="gallery-thumb">
+                                                    <img src="http://placehold.it/127x127" alt="thumb">
+                                                    <span class="icon icon-fav"><i class="fa fa-star-o"></i></span>
+                                                    <span class="icon icon-delete"><i class="fa fa-trash"></i></span>
+                                                </figure>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <figure class="gallery-thumb">
+                                                    <img src="http://placehold.it/127x127" alt="thumb">
+                                                    <span class="icon icon-fav"><i class="fa fa-star-o"></i></span>
+                                                    <span class="icon icon-delete"><i class="fa fa-trash"></i></span>
+                                                </figure>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <figure class="gallery-thumb">
+                                                    <img src="http://placehold.it/127x127" alt="thumb">
+                                                    <span class="icon icon-fav"><i class="fa fa-star-o"></i></span>
+                                                    <span class="icon icon-delete"><i class="fa fa-trash"></i></span>
+                                                </figure>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <figure class="gallery-thumb">
+                                                    <img src="http://placehold.it/127x127" alt="thumb">
+                                                    <span class="icon icon-fav"><i class="fa fa-star-o"></i></span>
+                                                    <span class="icon icon-delete"><i class="fa fa-trash"></i></span>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-drag-drop">
+                                        <h4><i class="fa fa-cloud-upload"></i> Drag and drop images here</h4>
+                                        <h4>or</h4>
+                                        <button class="btn btn-primary">Select Images</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Property location</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row  push-padding-bottom">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input class="form-control" id="address" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="neighborhood">Neighborhood</label>
+                                            <input class="form-control" id="neighborhood" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <input class="form-control" id="city" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="zip">Zip</label>
+                                            <input class="form-control" id="zip" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="countryState">Country / State</label>
+                                            <input class="form-control" id="countryState" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="country">Country</label>
+                                            <select class="selectpicker" id="country" data-live-search="false" data-live-search-style="begins" title="Select">
+                                                <option>Country 1</option>
+                                                <option>Country 2</option>
+                                                <option>Country 3</option>
+                                                <option>Country 4</option>
+                                                <option>Country 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-tab-row">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div id="map">
+                                            <img src="images/add-map-image.png" alt="img">
+                                        </div>
+                                        <button class="btn btn-primary btn-block">Place the pin using the property address above</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="property-map">Google Maps latitude</label>
+                                            <input class="form-control" id="property-map" placeholder="Enter your property title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="property-map-long">Google Maps longitude</label>
+                                            <input class="form-control" id="property-map-long" placeholder="Enter your property title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="property-map-street">Google Street View - Camera Angle</label>
+                                            <input class="form-control" id="property-map-street" placeholder="Enter your property title">
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Enable Google street view
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Property location</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row push-padding-bottom">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-id">Property ID</label>
+                                            <input class="form-control" id="property-id" placeholder="Enter property ID">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-area">Area Size</label>
+                                            <input class="form-control" id="property-area" placeholder="Enter property area size">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-size-prefix">Size Prefix</label>
+                                            <input class="form-control" id="property-size-prefix" placeholder="Sq Ft">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-bedrooms">Bedrooms</label>
+                                            <input class="form-control" id="property-bedrooms" placeholder="Enter number of bedrooms">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-bathrooms">Bathrooms</label>
+                                            <input class="form-control" id="property-bathrooms" placeholder="Enter number of bathrooms">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-garage">Garage</label>
+                                            <input class="form-control" id="property-garage" placeholder="Enter number of garages">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-garage-size">Garages Size</label>
+                                            <input class="form-control" id="property-garage-size" placeholder="Enter garage size">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-year-built">Year Built</label>
+                                            <div class="input-group input_date">
+                                                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                <input class="form-control" id="property-year-built">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="property-video">Virtual Tour Video URL</label>
+                                            <input class="form-control" id="property-video" placeholder="YouTube, Vimeo, SWF File and MOV File are supported">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-tab-row">
+                                <h4>Additional  details</h4>
+                                <table class="additional-block">
+                                    <thead>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><label>Title</label></td>
+                                        <td><label>Value</label></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="ui-sortable">
+                                    <tr>
+                                        <td class="action-field">
+                                            <span class="sort-additional-row ui-sortable-handle"><i class="fa fa-navicon"></i></span>
+                                        </td>
+                                        <td class="field-title">
+                                            <input class="form-control" type="text">
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text">
+                                        </td>
+                                        <td class="action-field">
+                                            <span class="remove-additional-row"><i class="fa fa-remove"></i></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="action-field">
+                                            <span class="sort-additional-row ui-sortable-handle"><i class="fa fa-navicon"></i></span>
+                                        </td>
+                                        <td class="field-title">
+                                            <input class="form-control" type="text">
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text">
+                                        </td>
+                                        <td class="action-field">
+                                            <span class="remove-additional-row"><i class="fa fa-remove"></i></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td><button class="add-additional-row"><i class="fa fa-plus"></i> Add New</button></td>
+                                        <td></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Property Features</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row push-padding-bottom">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                                Feature
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Property Video</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row push-padding-bottom">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="videoUrl">Video URL</label>
+                                            <input class="form-control" id="videoUrl" placeholder="Enter your property title">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="table-list">
+                                            <div class="form-group table-cell full-width" style="padding-right: 8px;">
+                                                <label for="videoImageUrl">Video image URL</label>
+                                                <input class="form-control" id="videoImageUrl" placeholder="Enter your property title">
+                                            </div>
+                                            <div class="table-cell v-align-bottom">
+                                                <button class="btn btn-primary">Upload</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Floor Plans</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row">
+                                <table class="add-sort-table">
+                                    <thead>
+                                    <tr>
+                                        <td class="row-sort"></td>
+                                        <td class="sort-middle">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <label for="floorPlans">Floor Plans</label>
+                                                    <select class="selectpicker" id="floorPlans" data-live-search="false" data-live-search-style="begins" title="Disable">
+                                                        <option>Disable</option>
+                                                        <option>Enable</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="row-remove"></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="row-sort">
+                                            <span class="sort"><i class="fa fa-navicon"></i></span>
+                                        </td>
+                                        <td class="sort-middle">
+                                            <div class="sort-inner-block">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="planTitle">Plan Title</label>
+                                                            <input name="plan-title" type="text" id="planTitle" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="planSize">Plan Size</label>
+                                                            <input name="plan-size" type="text" id="planSize" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="planBedrooms">Plan Bedrooms</label>
+                                                            <input name="plan-bedrooms" type="text" id="planBedrooms" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="planBathrooms">Plan Bathrooms</label>
+                                                            <input name="plan-bathrooms" type="text" id="planBathrooms" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="planPrice">Plan Price</label>
+                                                            <input name="plan-price" type="text" id="planPrice" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="planImage">Plan Image</label>
+                                                            <div class="file-upload-block">
+                                                                <input name="plan-image" type="text" id="planImage" class="form-control">
+                                                                <button class="btn btn-primary">Select</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-xs-12">
+                                                        <label for="planDescription">Plan Description</label>
+                                                        <textarea name="plan-description" rows="4" id="planDescription" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="row-remove">
+                                            <span class="remove"><i class="fa fa-remove"></i></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td class="row-sort"></td>
+                                        <td class="sort-middle">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <button class="btn btn-primary"><i class="fa fa-plus"></i> Add more</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="row-remove"></td>
+                                    </tr>
+                                    </tfoot>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Multi Units / Sub Properties</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row">
+                                <table class="add-sort-table">
+                                    <thead>
+                                    <tr>
+                                        <td class="row-sort"></td>
+                                        <td class="sort-middle">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <label for="multuUnits">Multi Units / Sub Properties</label>
+                                                    <select class="selectpicker" id="multuUnits" data-live-search="false" data-live-search-style="begins" title="Disable">
+                                                        <option>Disable</option>
+                                                        <option>Enable</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="row-remove"></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="row-sort">
+                                            <span class="sort"><i class="fa fa-navicon"></i></span>
+                                        </td>
+                                        <td class="sort-middle">
+                                            <div class="sort-inner-block">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="propertyTitle">Property Title</label>
+                                                            <input name="plan-title" type="text" id="propertyTitle" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="propertyType">Property Type</label>
+                                                            <input name="plan-size" type="text" id="propertyType" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="propertyBedrooms">Bedrooms</label>
+                                                            <input name="plan-bedrooms" type="text" id="propertyBedrooms" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="propertyBathrooms">Bathrooms</label>
+                                                            <input name="plan-bathrooms" type="text" id="propertyBathrooms" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="propertySize">Property Size</label>
+                                                            <input name="plan-price" type="text" id="propertySize" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="sizePostfix">Size Postfix</label>
+                                                            <input name="plan-image" type="text" id="sizePostfix" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="propertyPrice">Property Price</label>
+                                                            <input name="plan-image" type="text" id="propertyPrice" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <label for="availabilityDate">Availabitity Date</label>
+                                                        <input name="plan-image" type="text" id="availabilityDate" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="row-remove">
+                                            <span class="remove"><i class="fa fa-remove"></i></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td class="row-sort"></td>
+                                        <td class="sort-middle">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <button class="btn btn-primary"><i class="fa fa-plus"></i> Add more</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="row-remove"></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Attachments</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row push-padding-bottom">
+                                <div class="add-attachment">
+                                    <p>Attachments</p>
+                                    <div class="attach-list">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div class="attach-icon"><i class="fa fa-file-o"></i></div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="#">filename.pdf</a></h4>
+                                                <ul class="attach-actions">
+                                                    <li><a href=""><i class="fa fa-edit"></i> edit</a></li>
+                                                    <li><a href=""><i class="fa fa-remove"></i> remove</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div class="attach-icon"><i class="fa fa-file-o"></i></div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="#">filename.pdf</a></h4>
+                                                <ul class="attach-actions">
+                                                    <li><a href=""><i class="fa fa-edit"></i> edit</a></li>
+                                                    <li><a href=""><i class="fa fa-remove"></i> remove</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary">Add media</button>
+                                    <p>You can attach PDF files, Map images OR other documents to provide further details related to property.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block">
+                        <div class="add-title-tab">
+                            <h3>Agent Information</h3>
+                            <div class="add-expand"></div>
+                        </div>
+                        <div class="add-tab-content">
+                            <div class="add-tab-row push-padding-bottom">
+                                <p>What to display in agent information box?</p>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio">
+                                        None <small>(Agent information box will not displayed)</small>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio">
+                                        My profile information <small>(You can add your information <a href="#">here</a>)</small>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio">
+                                        Display an agent’s information
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <select class="selectpicker" id="status" data-live-search="false" data-live-search-style="begins" title="John Deo">
+                                                <option>John Deo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-block text-right">
+                        <button type="submit" class="btn btn-primary">Submit Property</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!--end section page body-->
+
+
+    <!--start footer section-->
+    <footer class="footer-v2">
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="footer-widget widget-about">
+                            <div class="widget-top">
+                                <h3 class="widget-title">About Site</h3>
+                            </div>
+                            <div class="widget-body">
+                                <p>Houzez is a premium WordPress theme for real estate where modern aesthetics are combined with tasteful simplicity.</p>
+                                <p class="read"><a href="about-us.html">Read more <i class="fa fa-caret-right"></i></a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="footer-widget widget-contact">
+                            <div class="widget-top">
+                                <h3 class="widget-title">Contact Us</h3>
+                            </div>
+                            <div class="widget-body">
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-location-arrow"></i> 121 King Street, Melbourne VIC 3000</li>
+                                    <li><i class="fa fa-phone"></i> +1 (877) 987 3487</li>
+                                    <li><i class="fa fa-envelope-o"></i> <a href="#">info@housez.com</a></li>
+                                </ul>
+                                <p class="read"><a href="contact-us.html">Contact us <i class="fa fa-caret-right"></i></a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="footer-widget widget-newsletter">
+                            <div class="widget-top">
+                                <h3 class="widget-title">Newsletter Subscribe</h3>
+                            </div>
+                            <div class="widget-body">
+                                <form>
+                                    <div class="table-list">
+                                        <div class="form-group table-cell">
+                                            <div class="input-email input-icon">
+                                                <input class="form-control" placeholder="Enter your email">
+                                            </div>
+                                        </div>
+                                        <div class="table-cell">
+                                            <button class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <p>Houzez is a premium WordPress theme for real estate agents.<br>Don’t forget to fullow us on:</p>
+                                <ul class="social">
+                                    <li>
+                                        <a href="#" class="btn-facebook"><i class="fa fa-facebook-square"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn-twitter"><i class="fa fa-twitter-square"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn-google-plus"><i class="fa fa-google-plus-square"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn-linkedin"><i class="fa fa-linkedin-square"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="footer-col">
+                            <p>Houzez - All rights reserved</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="footer-col">
+                            <div class="navi">
+                                <ul id="footer-menu" class="">
+                                    <li><a href="privacy.html">Privacy</a></li>
+                                    <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+                                    <li><a href="contact-us.html">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="footer-col foot-social">
+                            <p>
+                                Follow us
+                                <a target="_blank" class="btn-facebook" href="https://facebook.com/Favethemes"><i class="fa fa-facebook-square"></i></a>
+
+                                <a target="_blank" class="btn-twitter" href="https://twitter.com/favethemes"><i class="fa fa-twitter-square"></i></a>
+
+                                <a target="_blank" class="btn-linkedin" href="http://linkedin.com"><i class="fa fa-linkedin-square"></i></a>
+
+                                <a target="_blank" class="btn-google-plus" href="http://google.com"><i class="fa fa-google-plus-square"></i></a>
+
+                                <a target="_blank" class="btn-instagram" href="http://instagram.com"><i class="fa fa-instagram"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--end footer section-->
+
+    <!--Start Scripts-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+
+    <script type="text/javascript" src="js/custom.js"></script>
+</body>
+</html>

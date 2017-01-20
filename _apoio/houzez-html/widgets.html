@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Houzez HTML5 Template</title>
+    <!--Meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Houzez HTML5 Template">
+    <meta name="description" content="Houzez HTML5 Template">
+    <meta name="author" content="Favethemes">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="images/favicons/manifest.json">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" >
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="css/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<button class="btn scrolltop-btn back-top"><i class="fa fa-angle-up"></i></button>
+<div class="modal fade" id="pop-login" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="login-tabs">
+                    <li class="active">Login</li>
+                    <li>Register</li>
+                </ul>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
+
+            </div>
+            <div class="modal-body login-block">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active">
+                        <div class="message">
+                            <p class="error text-danger"><i class="fa fa-close"></i> You are not Logedin</p>
+                            <p class="success text-success"><i class="fa fa-check"></i> You are not Logedin</p>
+                        </div>
+                        <form>
+                            <div class="form-group field-group">
+                                <div class="input-user input-icon">
+                                    <input type="text" placeholder="Username">
+                                </div>
+                                <div class="input-pass input-icon">
+                                    <input type="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="forget-block clearfix">
+                                <div class="form-group pull-left">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group pull-right">
+                                    <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#pop-reset-pass">I forgot username and password</a>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </form>
+                        <hr>
+                        <a href="#" class="btn btn-social btn-bg-facebook btn-block"><i class="fa fa-facebook"></i> login with facebook</a>
+                        <a href="#" class="btn btn-social btn-bg-linkedin btn-block"><i class="fa fa-linkedin"></i> login with linkedin</a>
+                        <a href="#" class="btn btn-social btn-bg-google-plus btn-block"><i class="fa fa-google-plus"></i> login with Google</a>
+                    </div>
+                    <div class="tab-pane fade">
+                        <form>
+                            <div class="form-group field-group">
+                                <div class="input-user input-icon">
+                                    <input type="text" placeholder="Username">
+                                </div>
+                                <div class="input-email input-icon">
+                                    <input type="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                        I agree with your <a href="#">Terms & Conditions</a>.
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </form>
+                        <hr>
+
+                        <a href="#" class="btn btn-social btn-bg-facebook btn-block"><i class="fa fa-facebook"></i> login with facebook</a>
+                        <a href="#" class="btn btn-social btn-bg-linkedin btn-block"><i class="fa fa-linkedin"></i> login with linkedin</a>
+                        <a href="#" class="btn btn-social btn-bg-google-plus btn-block"><i class="fa fa-google-plus"></i> login with Google</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="pop-reset-pass" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="login-tabs">
+                    <li class="active">Reset Password</li>
+                </ul>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Please enter your username or email address. You will receive a link to create a new password via email.</p>
+                <form>
+                    <div class="form-group">
+                        <div class="input-user input-icon">
+                            <input placeholder="Enter your username or email" class="form-control">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block">Get new password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--start header section header v1-->
+<header id="header-section" class="header-section-4 header-main  nav-left hidden-sm hidden-xs" data-sticky="1">
+    <div class="container">
+        <div class="header-left">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/houzez-logo-color.png" alt="logo">
+                </a>
+            </div>
+            <nav class="navi main-nav">
+                <ul>
+                    <li><a href="#">Home</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="#">Map</a>
+                                <ul class="sub-menu">
+                                    <li><a href="home-map.html">Map Standard</a></li>
+                                    <li><a href="home-map-fullscreen.html">Map Fullscreen</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Parallax</a>
+                                <ul class="sub-menu">
+                                    <li><a href="home-parallax.html">Parallax Standard</a></li>
+                                    <li><a href="home-parallax-fullscreen.html">Parallax Fullscreen</a></li>
+                                    <li><a href="home-parallax-autofix.html">Parallax Auto Fix</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Video</a>
+                                <ul class="sub-menu">
+                                    <li><a href="home-video.html">Video Standard</a></li>
+                                    <li><a href="home-video-fullscreen.html">Video Fullscreen</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Sliders</a>
+                                <ul class="sub-menu">
+                                    <li><a href="home-property-slider.html">Property Slider</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Splash</a>
+                                <ul class="sub-menu">
+                                    <li><a href="splash-video.html">Video Fullscreen</a></li>
+                                    <li><a href="splash-slider.html">Slider Fullscreen</a></li>
+                                    <li><a href="splash-image.html">Image Fullscreen</a></li>
+                                    <li><a href="home-splash.html">Home With Splash</a></li>
+                                    <li><a href="splash-half.html">Half</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Listing</a>
+                        <ul class="sub-menu">
+                            <li><a href="properties-list.html">List View</a>
+                                <ul class="sub-menu">
+                                    <li><a href="properties-list.html">List View Standard</a></li>
+                                    <li><a href="properties-list-fullwidth.html">List View Fullwidth</a></li>
+                                    <li><a href="properties-list-compare.html">List View Compare Panel</a></li>
+                                    <li><a href="properties-list-save-search.html">List View Save Search</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="properties-list-style-2.html">List View Style 2</a>
+                                <ul class="sub-menu">
+                                    <li><a href="properties-list-style-2.html">List View Standard Style 2</a></li>
+                                    <li><a href="properties-list-style-2-fullwidth.html">List View Fullwidth Style 2</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="properties-grid.html">Grid View</a>
+                                <ul class="sub-menu">
+                                    <li><a href="properties-grid.html">Grid View Standard</a></li>
+                                    <li><a href="properties-grid-fullwidth.html">Grid View Fullwidth</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="properties-grid-style-2.html">Grid View Style 2</a>
+                                <ul class="sub-menu">
+                                    <li><a href="properties-grid-style-2.html">Grid View Standard Style 2</a></li>
+                                    <li><a href="properties-grid-style-2-fullwidth.html">Grid View Fullwidth Style 2</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Map</a>
+                                <ul class="sub-menu">
+                                    <li><a href="map-listing.html">Half Map</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Property</a>
+                        <ul class="sub-menu">
+                            <li><a href="property-detail.html">Single Property v1</a></li>
+                            <li><a href="property-detail-v2.html">Single Property v2</a></li>
+                            <li><a href="property-detail-v3.html">Single Property v3</a></li>
+                            <li><a href="property-detail-landing-page.html">Property Landing Page</a></li>
+                            <li><a href="property-detail-full-width-gallery.html">Property Full Width Gallery</a></li>
+                            <li><a href="property-detail-tabs.html">Single Property Tabs v1</a></li>
+                            <li><a href="property-detail-tabs-vertical.html">Single Property Tabs v2</a></li>
+                            <li><a href="property-detail-multi-properties.html">Multi Units / Sub listing</a></li>
+                            <li><a href="property-nav-on-scroll.html">Property Nav On Scroll</a></li>
+                        </ul>
+                    </li>
+                    <li class="houzez-megamenu"><a href="#">Pages</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="#">Column 1</a>
+                                <ul class="sub-menu">
+                                    <li><a href="agent-list.html">All Agents</a></li>
+                                    <li><a href="agent-detail.html">Agent Profile</a></li>
+                                    <li><a href="agency-list.html">All Agencies</a></li>
+                                    <li><a href="company-profile.html">Company Profile</a></li>
+                                    <li><a href="compare-properties.html">Compare Properties</a></li>
+                                    <li><a href="landing-page.html">Landing Page</a></li>
+                                    <li><a href="map-full-search.html">Map Full Screen</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Column 2</a>
+                                <ul class="sub-menu">
+                                    <li><a href="about-us.html">About Houzez</a></li>
+                                    <li><a href="contact-us.html">Contact us</a></li>
+                                    <li><a href="login.html">Login Page</a></li>
+                                    <li><a href="register.html">Register Page</a></li>
+                                    <li><a href="forget-password.html">Forget Password Page</a></li>
+                                    <li><a href="typography.html">Typography</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Column 3</a>
+                                <ul class="sub-menu">
+                                    <li><a href="faqs.html">FAQs</a></li>
+                                    <li><a href="simple-page.html">Simple Page</a></li>
+                                    <li><a href="404.html">404 Page</a></li>
+                                    <li><a href="headers.html">Houzez Headers</a></li>
+                                    <li><a href="footer.html">Houzez Footers</a></li>
+                                    <li><a href="widgets.html">Houzez Widgets</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Column 4</a>
+                                <ul class="sub-menu">
+                                    <li><a href="search-bars.html">Houzez Search Bars</a></li>
+                                    <li><a href="add-new-property.html">Create Listing Page</a></li>
+                                    <li><a href="listing-select-package.html">Select Packages Page</a></li>
+                                    <li><a href="listing-payment.html">Payment Page</a></li>
+                                    <li><a href="listing-done.html">Listing Done Page</a></li>
+                                    <li><a href="blog.html">Blog</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Column 5</a>
+                                <ul class="sub-menu">
+                                    <li><a href="blog-detail.html">Blog detail</a></li>
+                                    <li><a href="my-account.html">My Account</a></li>
+                                    <li><a href="my-properties.html">My Properties</a></li>
+                                    <li><a href="my-favourite-properties.html">My Favourite Properties</a></li>
+                                    <li><a href="my-saved-search.html">My Saved Searches</a></li>
+                                    <li><a href="my-invoices.html">My Invoices</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="houzez-megamenu"><a href="#">Modules</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="#"> Column 1 </a>
+                                <ul class="sub-menu">
+                                    <li><a href="module-advanced-search.html">Advanced Search</a></li>
+                                    <li><a href="module-property-grids.html">Property Grids</a></li>
+                                    <li><a href="module-property-carousel-v1.html">Property Carousel v1</a></li>
+                                    <li><a href="module-property-carousel-v2.html">Property Carousel v2</a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"> Column 2 </a>
+                                <ul class="sub-menu">
+                                    <li><a href="module-property-cards.html">Property Cards Module</a></li>
+                                    <li><a href="module-property-by-id.html">Property by ID</a></li>
+                                    <li><a href="module-taxonomy-grids.html">Taxonomy Grids</a></li>
+                                    <li><a href="module-taxonomy-tabs.html">Taxonomy Tabs</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"> Column 3 </a>
+                                <ul class="sub-menu">
+                                    <li><a href="module-testimonials.html">Testimonials</a></li>
+                                    <li><a href="module-membership-packages.html">Membership Packages</a></li>
+                                    <li><a href="module-agents.html">Agents</a></li>
+                                    <li><a href="module-team.html">Team</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"> Column 4 </a>
+                                <ul class="sub-menu">
+                                    <li><a href="module-partners.html">Partners</a></li>
+                                    <li><a href="module-text-with-icons.html">Text with icons</a></li>
+                                    <li><a href="module-blog-post-carousels.html">Blog Post Carousels</a></li>
+                                    <li><a href="module-blog-post-grids.html">Blog Post Grids</a></li>
+                                    <li><a href="blog-masonry.html">Blog Post Masonry</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="user">
+                <a href="#" data-toggle="modal" data-target="#pop-login">Sign In / Register</a>
+                <a href="add-new-property.html" class="btn btn-default">Create Listing</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="header-mobile visible-sm visible-xs">
+    <div class="container">
+        <!--start mobile nav-->
+        <div class="mobile-nav">
+            <span class="nav-trigger"><i class="fa fa-navicon"></i></span>
+            <div class="nav-dropdown main-nav-dropdown"></div>
+        </div>
+        <!--end mobile nav-->
+        <div class="header-logo">
+            <a href="index.html"><img src="images/logo-houzez-white.png" alt="logo"></a>
+        </div>
+        <div class="header-user">
+            <ul class="account-action">
+                <li>
+                    <span class="user-icon"><i class="fa fa-user"></i></span>
+                    <div class="account-dropdown">
+                        <ul>
+                            <li> <a href="add-new-property.html"> <i class="fa fa-plus-circle"></i>Creat Listing</a></li>
+                            <li> <a href="#" data-toggle="modal" data-target="#pop-login"> <i class="fa fa-user"></i> Log in / Register </a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--end header section header v1-->
+
+    <section id="section-body-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget widget-rated">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Most Rated Properties</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="item-thumb">
+                                        <a class="hover-effect" href="#">
+                                            <img alt="thumb" src="http://placehold.it/101x75" width="101" height="75">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                                    <div class="rating">
+                                        <span class="star-text-left">$350,000</span><span class="bottom-ratings tip"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
+                                    </div>
+                                    <div class="amenities">
+                                        <p>3 beds • 2 baths • 1,238 sqft</p>
+                                        <p>Single Family Home</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="item-thumb">
+                                        <a class="hover-effect" href="#">
+                                            <img alt="thumb" src="http://placehold.it/101x75" width="101" height="75">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                                    <div class="rating">
+                                        <span class="star-text-left">$350,000</span><span class="bottom-ratings tip"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
+                                    </div>
+                                    <div class="amenities">
+                                        <p>3 beds • 2 baths • 1,238 sqft</p>
+                                        <p>Single Family Home</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="item-thumb">
+                                        <a class="hover-effect" href="#">
+                                            <img alt="thumb" src="http://placehold.it/101x75" width="101" height="75">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                                    <div class="rating">
+                                        <span class="star-text-left">$350,000</span><span class="bottom-ratings tip"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
+                                    </div>
+                                    <div class="amenities">
+                                        <p>3 beds • 2 baths • 1,238 sqft</p>
+                                        <p>Single Family Home</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget-recommend">
+                        <div class="widget-top">
+                            <h3 class="widget-title">We recommend</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="item-thumb">
+                                        <a class="hover-effect" href="#">
+                                            <img alt="thumb" src="http://placehold.it/101x75" width="101" height="75">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                                    <h4>$350,000</h4>
+                                    <div class="amenities">
+                                        <p>3 beds • 2 baths • 1,238 sqft</p>
+                                        <p>Single Family Home</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="item-thumb">
+                                        <a class="hover-effect" href="#">
+                                            <img alt="thumb" src="http://placehold.it/101x75" width="101" height="75">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                                    <h4>$350,000</h4>
+                                    <div class="amenities">
+                                        <p>3 beds • 2 baths • 1,238 sqft</p>
+                                        <p>Single Family Home</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="item-thumb">
+                                        <a class="hover-effect" href="#">
+                                            <img alt="thumb" src="http://placehold.it/101x75" width="101" height="75">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                                    <h4>$350,000</h4>
+                                    <div class="amenities">
+                                        <p>3 beds • 2 baths • 1,238 sqft</p>
+                                        <p>Single Family Home</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget-slider">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Featured Properties Slider</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="property-widget-slider">
+                                <div class="item">
+                                    <div class="figure-block">
+                                        <figure class="item-thumb">
+                                            <span class="label-featured label label-success">Featured</span>
+                                            <a href="#" class="hover-effect">
+                                                <img src="http://placehold.it/370x202" alt="thumb">
+                                            </a>
+                                            <div class="thumb-caption">
+                                                <div class="cap-price pull-left">$350,000</div>
+                                                <ul class="list-unstyled actions pull-right">
+                                                    <li>
+                                                    <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Favorite">
+                                                        <i class="fa fa-heart-o"></i>
+                                                    </span>
+                                                    </li>
+                                                    <li class="share-btn">
+                                                        <div class="share_tooltip fade">
+                                                            <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                            <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                            <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                            <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                                        </div>
+                                                        <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="figure-block">
+                                        <figure class="item-thumb">
+                                            <span class="label-featured label label-success">Featured</span>
+                                            <a href="#" class="hover-effect">
+                                                <img src="http://placehold.it/370x202" alt="thumb">
+                                            </a>
+                                            <div class="thumb-caption">
+                                                <div class="cap-price pull-left">$350,000</div>
+                                                <ul class="list-unstyled actions pull-right">
+                                                    <li>
+                                                    <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Favorite">
+                                                        <i class="fa fa-heart-o"></i>
+                                                    </span>
+                                                    </li>
+                                                    <li class="share-btn">
+                                                        <div class="share_tooltip fade">
+                                                            <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                            <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                            <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                            <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                                        </div>
+                                                        <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget widget-categories">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Property Categories</h3>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                <li><a href="">Apartment</a> <span class="cat-count">(30)</span></li>
+                                <li><a href="">Condo</a> <span class="cat-count">(30)</span></li>
+                                <li><a href="">Single Family Home</a> <span class="cat-count">(30)</span></li>
+                                <li><a href="">Villa</a> <span class="cat-count">(30)</span></li>
+                                <li><a href="">Studio</a> <span class="cat-count">(30)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget-reviews">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Latest Reviews</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object img-circle" src="http://placehold.it/50x50" alt="Thumb" width="50" height="50">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Property title</a></h3>
+                                    <div class="rating">
+                                        <span class="bottom-ratings tip"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit. Etiam
+                                        risus tortor, accumsan at nisi et,
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object img-circle" src="http://placehold.it/50x50" alt="Thumb" width="50" height="50">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading"><a href="#">Property title</a></h3>
+                                    <div class="rating">
+                                        <span class="bottom-ratings tip"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit. Etiam
+                                        risus tortor, accumsan at nisi et,
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget-logout">
+                        <div class="widget-body">
+                            <div class="media">
+                                <div class="media-left">
+                                    <div class="thumb">
+                                        <img src="http://placehold.it/64x64" alt="Image" width="64" height="64">
+                                    </div>
+                                </div>
+                                <div class="media-body v-align-middle">
+                                    <p>Martin Moore</p>
+                                    <a href="#">Log out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget widget_text">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Text Widgets</h3>
+                        </div>
+                        <div class="textwidget">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis et sem sed sollicitudin. Donec non odio neque. Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque bibendum orci ac nibh facilisis, at malesuada orci congue. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget_archive">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Archives</h3></div>
+                        <ul>
+                            <li><a href="#">March 2016</a>&nbsp;(10)</li>
+                            <li><a href="#">January 2016</a>&nbsp;(1)</li>
+                            <li><a href="#">January 2013</a>&nbsp;(5)</li>
+                            <li><a href="#">March 2012</a>&nbsp;(5)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget_meta">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Meta</h3>
+                        </div>
+                        <ul>
+                            <li><a href="#">Site Admin</a></li>
+                            <li><a href="#">Log out</a></li>
+                            <li><a href="#">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+                            <li><a href="#">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div id="recent-posts-2" class="widget widget_recent_entries">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Recent Posts</h3>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#">Skills That You Can Learn In The Real Estate Market</a>
+                                <span class="post-date">March 9, 2016</span>
+                            </li>
+                            <li>
+                                <a href="#">Learn The Truth About Real Estate Industry</a>
+                                <span class="post-date">March 9, 2016</span>
+                            </li>
+                            <li>
+                                <a href="#">10 Quick Tips About Business Development</a>
+                                <span class="post-date">March 9, 2016</span>
+                            </li>
+                            <li>
+                                <a href="#">14 Common Misconceptions About Business Development</a>
+                                <span class="post-date">March 9, 2016</span>
+                            </li>
+                            <li>
+                                <a href="#">10 Things Your Competitors Can Teach You About Real Estate</a>
+                                <span class="post-date">March 9, 2016</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget-pages">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Pages</h3>
+                        </div>
+                        <ul>
+                            <li><a href="#">Home</a>
+                                <ul class="children">
+                                    <li><a href="#">Clearing Floats</a></li>
+                                    <li><a href="#">Page Image Alignment</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">About Houzez</a></li>
+                            <li><a href="#">Our Agents</a></li>
+                            <li><a href="#">Create Listing</a></li>
+                            <li><a href="#">Faq</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget_recent_comments">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Recent Comments</h3>
+                        </div>
+                        <ul>
+                            <li class="recentcomments"><span class="comment-author-link">admin</span> on <a href="#">Skills That You Can Learn In The Real Estate Market</a></li>
+                            <li class="recentcomments"><span class="comment-author-link">admin</span> on <a href="#">Skills That You Can Learn In The Real Estate Market</a></li>
+                            <li class="recentcomments"><span class="comment-author-link">admin</span> on <a href="#">10 Quick Tips About Business Development</a></li>
+                            <li class="recentcomments"><span class="comment-author-link">Henry Tran</span> on <a href="#">14 Common Misconceptions About Business Development</a></li>
+                            <li class="recentcomments"><span class="comment-author-link">George Ross</span> on <a href="#">15 Best Blogs To Follow About Real Estate</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget widget-download">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Documents</h3>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                <li>
+                                    <div class="pull-left">
+                                        Property plan PDF
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#">DOWNLOAD</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="pull-left">
+                                        Brochure PDF
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#">DOWNLOAD</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget_search">
+                        <form method="get" class="searchform" action="#">
+                            <div>
+                                <input value="" name="s" id="s" placeholder="Search" type="text">
+                                <button type="submit"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget_tag_cloud">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Tags</h3>
+                        </div>
+                        <div class="tagcloud">
+                            <a href="#">8BIT</a>
+                            <a href="#">alignment</a>
+                            <a href="#">Apartment</a>
+                            <a href="#">Articles</a>
+                            <a href="#">aside</a>
+                            <a href="#">audio</a>
+                            <a href="#">Business Development</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget widget-contact">
+                        <div class="widget-body">
+                            <div class="form-small">
+                                <div class="media agent-media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="http://placehold.it/74x74" class="media-object" alt="image" width="74" height="74">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">CONTACT AGENT</h4>
+                                        <ul>
+                                            <li><i class="fa fa-user"></i> Kenneth Phllips</li>
+                                            <li><i class="fa fa-phone"></i> (987) 654 3210</li>
+                                        </ul>
+                                        <a href="#" class="view">View my listing</a>
+                                    </div>
+                                </div>
+                                <form>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Your Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="email" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" placeholder="Location"></textarea>
+                                    </div>
+                                    <button class="btn btn-secondary btn-block">Request info</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget-calculate">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Mortgage Calculator</h3>
+                        </div>
+                        <div class="widget-body">
+                            <form>
+                                <div class="form-group icon-holder">
+                                    <input class="form-control" placeholder="Purchase price" type="text">
+                                    <span class="field-icon"><i class="fa fa-dollar"></i></span>
+                                </div>
+                                <div class="form-group icon-holder">
+                                    <input class="form-control" placeholder="Down payment" type="text">
+                                    <span class="field-icon"><i class="fa fa-dollar"></i></span>
+                                </div>
+                                <div class="form-group icon-holder">
+                                    <input class="form-control" placeholder="Annual interest rate" type="text">
+                                    <span class="field-icon">%</span>
+                                </div>
+                                <div class="form-group icon-holder">
+                                    <input class="form-control" placeholder="Loan term (Years)" type="text">
+                                    <span class="field-icon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                <div class="form-group icon-holder">
+                                    <input class="form-control" placeholder="Principal" type="text">
+                                    <span class="field-icon"><i class="fa fa-dollar"></i></span>
+                                </div>
+                                <div class="form-group icon-holder">
+                                    <input class="form-control" placeholder="Total payments" type="text">
+                                    <span class="field-icon">n.</span>
+                                </div>
+                                <div class="form-group icon-holder">
+                                    <input class="form-control" placeholder="Monthly payment" type="text">
+                                    <span class="field-icon"><i class="fa fa-dollar"></i></span>
+                                </div>
+                                <button class="btn btn-secondary btn-block">Calculate</button>
+                                <div class="morg-detail">
+                                    <div class="morg-result">
+                                        <h3>Monthly Payment: <span>$0.90</span></h3>
+                                        <img src="images/icon_inspector.png" alt="icon inspector" class="show-morg">
+                                    </div>
+                                    <div class="morg-summery">
+                                        <div class="result-title">
+                                            Amount Financed:
+                                        </div>
+                                        <div class="result-value">
+                                            90000
+                                        </div>
+                                        <div class="result-title">
+                                            Mortgage Payments:
+                                        </div>
+                                        <div class="result-value">
+                                            90000
+                                        </div>
+                                        <div class="result-title">
+                                            Annual cost of Loan:
+                                        </div>
+                                        <div class="result-value">
+                                            90000
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="widget widget-range">
+                        <div class="widget-body">
+                            <form>
+                                <div class="range-block">
+                                    <h4>Price range</h4>
+                                    <div id="slider-price"></div>
+                                    <div class="clearfix range-text">
+                                        <input type="text" class="pull-left range-input text-left" id="min-price" readonly >
+                                        <input type="text" class="pull-right range-input text-right" id="max-price" readonly >
+                                    </div>
+                                </div>
+                                <div class="range-block">
+                                    <h4>Area Size</h4>
+                                    <div id="slider-size"></div>
+                                    <div class="clearfix range-text">
+                                        <input type="text" class="pull-left range-input text-left" id="min-size" readonly >
+                                        <input type="text" class="pull-right range-input text-right" id="max-size" readonly >
+                                    </div>
+                                </div>
+                                <div class="range-block rang-form-block">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <input class="form-control" name="keyword" placeholder="Search" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Property Type">
+                                                    <option>Property Type 1</option>
+                                                    <option>Property Type 2</option>
+                                                    <option>Property Type 3</option>
+                                                    <option>Property Type 4</option>
+                                                    <option>Property Type 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Beds">
+                                                    <option>Beds 1</option>
+                                                    <option>Beds 2</option>
+                                                    <option>Beds 3</option>
+                                                    <option>Beds 4</option>
+                                                    <option>Beds 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Baths">
+                                                    <option>Baths 1</option>
+                                                    <option>Baths 2</option>
+                                                    <option>Baths 3</option>
+                                                    <option>Baths 4</option>
+                                                    <option>Baths 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Property type">
+                                                    <option>Type 1</option>
+                                                    <option>Type 2</option>
+                                                    <option>Type 3</option>
+                                                    <option>Type 4</option>
+                                                    <option>Type 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Status">
+                                                    <option>Status 1</option>
+                                                    <option>Status 2</option>
+                                                    <option>Status 3</option>
+                                                    <option>Status 4</option>
+                                                    <option>Status 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <label class="advance-trigger"><i class="fa fa-plus-square"></i> Other Features </label>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="features-list field-expand">
+                                                <label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-air-conditioning" value="air-conditioning" type="checkbox">Air Conditioning</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-barbeque" value="barbeque" type="checkbox">Barbeque</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-dryer" value="dryer" type="checkbox">Dryer</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-gym" value="gym" type="checkbox">Gym</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-laundry" value="laundry" type="checkbox">Laundry</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-lawn" value="lawn" type="checkbox">Lawn</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-microwave" value="microwave" type="checkbox">Microwave</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-outdoor-shower" value="outdoor-shower" type="checkbox">Outdoor Shower</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-refrigerator" value="refrigerator" type="checkbox">Refrigerator</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-sauna" value="sauna" type="checkbox">Sauna</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-swimming-pool" value="swimming-pool" type="checkbox">Swimming Pool</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-tv-cable" value="tv-cable" type="checkbox">TV Cable</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-washer" value="washer" type="checkbox">Washer</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-wifi" value="wifi" type="checkbox">WiFi</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-window-coverings" value="window-coverings" type="checkbox">Window Coverings</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <button type="submit" class="btn btn-secondary btn-block"> Search</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget widget-featured">
+                        <div class="widget-top">
+                            <h3 class="widget-title">Featured Properties</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="figure-block">
+                                <figure class="item-thumb">
+                                    <span class="label-featured label label-success">Featured</span>
+                                    <a class="hover-effect" href="#">
+                                        <img alt="thumb" src="http://placehold.it/370x247" width="370" height="247">
+                                    </a>
+                                    <div class="thumb-caption clearfix">
+                                        <div class="cap-price pull-left">$350,000</div>
+                                        <ul class="list-unstyled actions pull-right">
+                                            <li>
+                                                <span title="" data-placement="top" data-toggle="tooltip" data-original-title="12 Photos">
+                                                    <i class="fa fa-camera"></i>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </figure>
+                            </div>
+                            <div class="figure-block">
+                                <figure class="item-thumb">
+                                    <span class="label-featured label label-success">Featured</span>
+                                    <a class="hover-effect" href="#">
+                                        <img alt="thumb" src="http://placehold.it/370x247" width="370" height="247">
+                                    </a>
+                                    <div class="thumb-caption clearfix">
+                                        <div class="cap-price pull-left">$350,000</div>
+                                        <ul class="list-unstyled actions pull-right">
+                                            <li>
+                                                <span title="" data-placement="top" data-toggle="tooltip" data-original-title="12 Photos">
+                                                    <i class="fa fa-camera"></i>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget-login">
+                        <div class="widget-body">
+                            <ul class="login-tabs">
+                                <li class="active">Login</li>
+                                <li>Register</li>
+                            </ul>
+                            <div class="login-block">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active">
+                                        <form>
+                                            <div class="form-group field-group">
+                                                <div class="input-user input-icon">
+                                                    <input placeholder="Username">
+                                                </div>
+                                                <div class="input-email input-icon">
+                                                    <input placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="forget-block clearfix">
+                                                <div class="form-group pull-left">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            Remember me
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group pull-right">
+                                                    <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#pop-reset-pass">Lost your password.</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="btn btn-primary btn-block">Login</div>
+                                        </form>
+                                        <hr>
+                                        <a href="#" class="btn btn-social btn-bg-facebook btn-block"><i class="fa fa-facebook"></i> login with facebook</a>
+                                        <a href="#" class="btn btn-social btn-bg-linkedin btn-block"><i class="fa fa-linkedin"></i> login with linkedin</a>
+                                        <a href="#" class="btn btn-social btn-bg-google-plus btn-block"><i class="fa fa-google-plus"></i> login with Google</a>
+                                    </div>
+                                    <div class="tab-pane fade">
+                                        <form>
+                                            <div class="form-group field-group">
+                                                <div class="input-user input-icon">
+                                                    <input placeholder="Username">
+                                                </div>
+                                                <div class="input-email input-icon">
+                                                    <input placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="forget-block clearfix">
+                                                <div class="form-group pull-left">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            I agree with your
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group pull-right">
+                                                    <a href="#">Terms & Conditions</a>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary btn-block">Login</button>
+                                        </form>
+                                        <hr>
+                                        <a href="#" class="btn btn-social btn-bg-facebook btn-block"><i class="fa fa-facebook"></i> login with facebook</a>
+                                        <a href="#" class="btn btn-social btn-bg-linkedin btn-block"><i class="fa fa-linkedin"></i> login with linkedin</a>
+                                        <a href="#" class="btn btn-social btn-bg-google-plus btn-block"><i class="fa fa-google-plus"></i> login with Google</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget widget_calendar">
+                        <div class="calendar_wrap">
+                            <table>
+                                <caption>June 2016</caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col" title="Monday">M</th>
+                                    <th scope="col" title="Tuesday">T</th>
+                                    <th scope="col" title="Wednesday">W</th>
+                                    <th scope="col" title="Thursday">T</th>
+                                    <th scope="col" title="Friday">F</th>
+                                    <th scope="col" title="Saturday">S</th>
+                                    <th scope="col" title="Sunday">S</th>
+                                </tr>
+                                </thead>
+
+                                <tfoot>
+                                <tr>
+                                    <td colspan="3" id="prev"><a href="#">« Mar</a></td>
+                                    <td class="pad">&nbsp;</td>
+                                    <td colspan="3" id="next" class="pad">&nbsp;</td>
+                                </tr>
+                                </tfoot>
+
+                                <tbody>
+                                <tr>
+                                    <td colspan="2" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+                                </tr>
+                                <tr>
+                                    <td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td>
+                                </tr>
+                                <tr>
+                                    <td>27</td><td>28</td><td>29</td><td id="today">30</td>
+                                    <td class="pad" colspan="3">&nbsp;</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!--Start Scripts-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>
