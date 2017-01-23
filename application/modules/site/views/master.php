@@ -69,7 +69,7 @@
         .script("<?php echo base_url('assets/site/js/jquery.matchHeight-min.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/bootstrap-select.js'); ?>").wait()
         //.script("<?php echo base_url('assets/site/js/jquery-ui.js'); ?>").wait()
-        .script("https://code.jquery.com/ui/1.12.1/jquery-ui.js").wait()
+        .script("https://code.jquery.com/ui/1.9.1/jquery-ui.js").wait()
         .script("<?php echo base_url('assets/site/js/isotope.pkgd.min.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/jquery.nicescroll.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/jquery.parallax-1.1.3.js'); ?>").wait()
