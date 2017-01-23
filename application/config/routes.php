@@ -3,6 +3,9 @@
 // == HOME  == \\
 $route['default_controller'] = 'site/home'; //Home
 
+// == TOOLS  == \\
+$route['configjs'] = 'site/tools/configjs';
+$route['api/(:any)'] = 'site/tools/$1';
 
 // == PÁGINAS ESTÁTICAS  == \\
 foreach(array(
@@ -93,7 +96,6 @@ $route['(:any)/(:any)'] = function ($state, $city){
 
 // $route['mapa'] = '' //Busca por mapa
 // $route['nome-da-campanha-definido-pelo-admin'] = '' //Campanhas
-
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

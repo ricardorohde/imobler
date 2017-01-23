@@ -16,6 +16,7 @@ class Contacts extends Site_Controller {
         'styles' => array(
         ),
         'scripts' => array(
+          array('assets/site/js/bootstrapValidator.min.js', true)
         )
       )
     );

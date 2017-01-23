@@ -5,29 +5,40 @@
     </div>
   </div>
   <div class="banner-caption">
-    <h1>Welcome To Miami Beach</h1>
-    <h2 class="banner-sub-title">Parallax banner with search and image</h2>
+    <h1>Seu novo imóvel está aqui</h1>
+    <h2 class="banner-sub-title">Informe o tipo e o local do imóvel que está procurando.</h2>
     <div class="banner-search-main">
       <form method="post" action="<?php echo base_url('sp/sao-paulo/pirituba/apartamento/'); ?>" class="form-inline">
         <div class="form-group">
-          <select class="selectpicker" data-live-search="false" title="Tipo de im">
-            <option value="">Mostrar todos</option>
+          <select class="selectpicker" data-live-search="false" title="Tipo de imóvel">
 
-            <optgroup label="Residencial">
-              <option value="1" selected="selected">Apartamento</option>
-              <option value="2">Casa</option>
-              <option value="3">Chácara</option>
-              <option value="4">Casa de Condomínio</option>
+            <optgroup label="Todos">
+              <option value="todos-os-tipos">Todos os tipos</option>
             </optgroup>
 
-            <optgroup label="Comercial">
-              <option value="5">Consultório</option>
-              <option value="6">Edifício residencial</option>
-              <option value="7">Sala comercial</option>
-            </optgroup>
+            <?php
+            if(isset($imoveis_tipos)){
+              foreach($imoveis_tipos as $tipo_segmento){
+                ?>
+                <optgroup label="<?php echo $tipo_segmento['segmento']; ?>">
+                  <?php
+                  if(isset($tipo_segmento['tipos'])){
+                    foreach ($tipo_segmento['tipos'] as $tipo) {
+                      ?>
+                      <option value="<?php echo $tipo['slug']; ?>"><?php echo $tipo['nome']; ?></option>
+                      <?php
+                    }
+                  }
+                  ?>
+                </optgroup>
+                <?php
+              }
+            }
+            ?>
           </select>
+
           <div class="search input-search input-icon">
-            <input class="form-control" type="text" placeholder="Enter Keyword">
+            <input type="text" class="form-control input-search-local" placeholder="Bairro, cidade ou referência do imóvel" autocomplete="off" />
           </div>
           <div class="search-btn">
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i> Buscar</button>
@@ -46,12 +57,12 @@
           <div class="col-sm-12">
             <div class="module-title-nav clearfix">
               <div>
-                <h2>Latest for Sale</h2>
+                <h2>Imóveis em destaque</h2>
               </div>
               <div class="module-nav">
-                <button class="btn btn-sm btn-crl-pprt-1-prev">Prev</button>
-                <button class="btn btn-sm btn-crl-pprt-1-next">Next</button>
-                <a href="#" class="btn btn-carousel btn-sm">All</a>
+                <button class="btn btn-sm btn-crl-pprt-1-prev">Anterior</button>
+                <button class="btn btn-sm btn-crl-pprt-1-next">Próximo</button>
+                <a href="#" class="btn btn-carousel btn-sm">Ver+</a>
               </div>
             </div>
           </div>
@@ -74,8 +85,8 @@
                               <h3>$350,000</h3>
                               <p class="rant">$21,000/mo</p>
                             </div>
-                            <a href="#" class="hover-effect">
-                              <img src="http://placehold.it/385x258" alt="thumb">
+                            <a href="<?php echo $this->site->get_property_url(0); ?>" class="hover-effect">
+                              <img src="https://unsplash.it/385/260/?image=<?php echo rand(1,500); ?>" alt="thumb">
                             </a>
                             <ul class="actions">
                               <li class="share-btn">
@@ -108,7 +119,7 @@
                                 <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
                                 <span class="star-text-right">15 Ratings</span>
                               </div>
-                              <h2 class="property-title"><a href="#">Apartment Oceanview</a></h2>
+                              <h2 class="property-title"><a href="<?php echo $this->site->get_property_url(0); ?>">Apartment Oceanview</a></h2>
                               <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
                             </div>
                             <div class="table-list full-width info-row">
@@ -124,7 +135,7 @@
                               </div>
                               <div class="cell">
                                 <div class="phone">
-                                  <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
+                                  <a href="<?php echo $this->site->get_property_url(0); ?>" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
                                   <p><a href="#">+1 (786) 225-0199</a></p>
                                 </div>
                               </div>
@@ -172,7 +183,7 @@
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="http://placehold.it/370x370" width="370" height="370" alt="Apartment">
+                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Apartment">
                 </a>
                 <figcaption class="location-fig-caption">
                   <h3 class="heading">Apartment</h3>
@@ -181,11 +192,11 @@
               </figure>
             </div>
           </div>
-          <div class="col-sm-8">
+          <div class="col-sm-4">
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="http://placehold.it/770x370" width="770" height="370" alt="Loft">
+                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Loft">
                 </a>
                 <div class="location-fig-caption">
                   <h3 class="heading">Loft</h3>
@@ -194,11 +205,11 @@
               </figure>
             </div>
           </div>
-          <div class="col-sm-8">
+          <div class="col-sm-4">
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="http://placehold.it/770x370" width="770" height="370" alt="Single Family Home">
+                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Single Family Home">
                 </a>
                 <div class="location-fig-caption">
                   <h3 class="heading">Single Family Home</h3>
@@ -211,7 +222,33 @@
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="http://placehold.it/370x370" width="370" height="370" alt="Villa">
+                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Single Family Home">
+                </a>
+                <div class="location-fig-caption">
+                  <h3 class="heading">Single Family Home</h3>
+                  <p class="sub-heading">11 Properties</p>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="location-block">
+              <figure>
+                <a href="#">
+                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Single Family Home">
+                </a>
+                <div class="location-fig-caption">
+                  <h3 class="heading">Single Family Home</h3>
+                  <p class="sub-heading">11 Properties</p>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="location-block">
+              <figure>
+                <a href="#">
+                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Villa">
                 </a>
                 <div class="location-fig-caption">
                   <h3 class="heading">Villa</h3>
@@ -241,269 +278,89 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="row grid-row">
-              <div class="col-sm-6">
-                <div class="item-wrap">
-                  <div class="property-item item-grid">
-                    <div class="figure-block">
-                      <figure class="item-thumb">
-                        <div class="label-wrap hide-on-list">
-                          <div class="label-status label label-default">For Rent</div>
-                        </div>
-                        <span class="label-featured label label-success">Featured</span>
-                        <div class="price hide-on-list">
-                          <h3>$350,000</h3>
-                          <p class="rant">$21,000/mo</p>
-                        </div>
-                        <a href="#" class="hover-effect">
-                          <img src="http://placehold.it/434x290" alt="thumb">
-                        </a>
-                        <ul class="actions">
-                          <li class="share-btn">
-                            <div class="share_tooltip fade">
-                              <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                              <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                              <a href="#"  target="_blank"><i class="fa fa-google-plus"></i></a>
-                              <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                            <span data-toggle="tooltip" data-placement="top" title="share"><i class="fa fa-share-alt"></i></span>
-                          </li>
-                          <li>
-                            <span data-toggle="tooltip" data-placement="top" title="Favorite">
-                              <i class="fa fa-heart-o"></i>
-                            </span>
-                          </li>
-                          <li>
-                            <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
-                              <i class="fa fa-camera"></i>
-                            </span>
-                          </li>
-                        </ul>
-                      </figure>
-                    </div>
-                    <div class="item-body">
-
-                      <div class="body-left">
-                        <div class="info-row">
-                          <div class="rating">
-                            <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                            <span class="star-text-right">15 Ratings</span>
+              <?php
+              for($loop = 1 ; $loop <= 2 ; $loop++){
+                ?>
+                <div class="col-sm-6">
+                  <div class="item-wrap">
+                    <div class="property-item item-grid">
+                      <div class="figure-block">
+                        <figure class="item-thumb">
+                          <div class="label-wrap hide-on-list">
+                            <div class="label-status label label-default">For Rent</div>
                           </div>
-                          <h2 class="property-title"><a href="#">Apartment Oceanview</a></h2>
-                          <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
-                        </div>
-                        <div class="table-list full-width info-row">
-                          <div class="cell">
-                            <div class="info-row amenities">
-                              <p>
-                                <span>Beds: 3</span>
-                                <span>Baths: 2</span>
-                                <span>Sqft: 1,965</span>
-                              </p>
-                              <p>Single Family Home</p>
-                            </div>
+                          <span class="label-featured label label-success">Featured</span>
+                          <div class="price hide-on-list">
+                            <h3>$350,000</h3>
+                            <p class="rant">$21,000/mo</p>
                           </div>
-                          <div class="cell">
-                            <div class="phone">
-                              <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
-                              <p><a href="#">+1 (786) 225-0199</a></p>
-                            </div>
-                          </div>
-                        </div>
+                          <a href="<?php echo $this->site->get_property_url(0); ?>" class="hover-effect">
+                            <img src="https://unsplash.it/434/290/?image=<?php echo rand(1,500); ?>" alt="thumb">
+                          </a>
+                          <ul class="actions">
+                            <li class="share-btn">
+                              <div class="share_tooltip fade">
+                                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="#"  target="_blank"><i class="fa fa-google-plus"></i></a>
+                                <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
+                              </div>
+                              <span data-toggle="tooltip" data-placement="top" title="share"><i class="fa fa-share-alt"></i></span>
+                            </li>
+                            <li>
+                              <span data-toggle="tooltip" data-placement="top" title="Favorite">
+                                <i class="fa fa-heart-o"></i>
+                              </span>
+                            </li>
+                            <li>
+                              <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
+                                <i class="fa fa-camera"></i>
+                              </span>
+                            </li>
+                          </ul>
+                        </figure>
                       </div>
+                      <div class="item-body">
 
-                    </div>
-                  </div>
-                  <div class="item-foot date hide-on-list">
-                    <div class="item-foot-left">
-                      <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
-                    </div>
-                    <div class="item-foot-right">
-                      <p><i class="fa fa-calendar"></i> 12 Days ago </p>
+                        <div class="body-left">
+                          <div class="info-row">
+                            <div class="rating">
+                              <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
+                              <span class="star-text-right">15 Ratings</span>
+                            </div>
+                            <h2 class="property-title"><a href="<?php echo $this->site->get_property_url(0); ?>">Apartment Oceanview</a></h2>
+                            <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
+                          </div>
+                          <div class="table-list full-width info-row">
+                            <div class="cell">
+                              <div class="info-row amenities">
+                                <p>
+                                  <span>Beds: 3</span>
+                                  <span>Baths: 2</span>
+                                  <span>Sqft: 1,965</span>
+                                </p>
+                                <p>Single Family Home</p>
+                              </div>
+                            </div>
+                            <div class="cell">
+                              <div class="phone">
+                                <a href="<?php echo $this->site->get_property_url(0); ?>" class="btn btn-primary">Detalhes <i class="fa fa-angle-right fa-right"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="item-wrap">
-                  <div class="property-item item-grid">
-                    <div class="figure-block">
-                      <figure class="item-thumb">
-                        <div class="label-wrap hide-on-list">
-                          <div class="label-status label label-default">For Rent</div>
-                        </div>
-                        <span class="label-featured label label-success">Featured</span>
-                        <div class="price hide-on-list">
-                          <h3>$350,000</h3>
-                          <p class="rant">$21,000/mo</p>
-                        </div>
-                        <a href="#" class="hover-effect">
-                          <img src="http://placehold.it/434x290" alt="thumb">
-                        </a>
-                        <ul class="actions">
-                          <li class="share-btn">
-                            <div class="share_tooltip fade">
-                              <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                              <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                              <a href="#"  target="_blank"><i class="fa fa-google-plus"></i></a>
-                              <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                            <span data-toggle="tooltip" data-placement="top" title="share"><i class="fa fa-share-alt"></i></span>
-                          </li>
-                          <li>
-                            <span data-toggle="tooltip" data-placement="top" title="Favorite">
-                              <i class="fa fa-heart-o"></i>
-                            </span>
-                          </li>
-                          <li>
-                            <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
-                              <i class="fa fa-camera"></i>
-                            </span>
-                          </li>
-                        </ul>
-                      </figure>
-                    </div>
-                    <div class="item-body">
-
-                      <div class="body-left">
-                        <div class="info-row">
-                          <div class="rating">
-                            <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                            <span class="star-text-right">15 Ratings</span>
-                          </div>
-                          <h2 class="property-title"><a href="#">Apartment Oceanview</a></h2>
-                          <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
-                        </div>
-                        <div class="table-list full-width info-row">
-                          <div class="cell">
-                            <div class="info-row amenities">
-                              <p>
-                                <span>Beds: 3</span>
-                                <span>Baths: 2</span>
-                                <span>Sqft: 1,965</span>
-                              </p>
-                              <p>Single Family Home</p>
-                            </div>
-                          </div>
-                          <div class="cell">
-                            <div class="phone">
-                              <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
-                              <p><a href="#">+1 (786) 225-0199</a></p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="item-foot date hide-on-list">
-                    <div class="item-foot-left">
-                      <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
-                    </div>
-                    <div class="item-foot-right">
-                      <p><i class="fa fa-calendar"></i> 12 Days ago </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div><!--/.houzez-module-main-->
-
-  <div class="houzez-module module-title text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-xs-12">
-          <h2>Agents</h2>
-          <h3 class="sub-heading">Here could be a nice sub title</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="agents-module" class="houzez-module agents-module">
-    <div class="container">
-      <div class="agents-blocks-main">
-        <div class="row no-margin">
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="agents-block">
-              <figure class="auther-thumb">
-                <img src="http://placehold.it/150x150" alt="thumb" width="150" height="150" class="img-circle">
-              </figure>
-              <div class="web-logo text-center">
-                <img src="/assets/site/images/houzez-logo-grey.png" alt="logo">
-              </div>
-              <div class="block-body">
-                <p class="auther-info">
-                  <span class="text-primary">Samuel Palmer</span>
-                  <span>Founder &amp; CEO, Realty Properties Inc.</span>
-                </p>
-
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. luctus ligula ac faucibus faucibus. Cras in nisi in turpis eleifend vehicula at at massa. Vivamus aliquet porttitor odio.</p>
-                <a href="#" class="view">View Profile</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="agents-block">
-              <figure class="auther-thumb">
-                <img src="http://placehold.it/150x150" alt="thumb" width="150" height="150" class="img-circle">
-              </figure>
-              <div class="web-logo text-center">
-                <img src="/assets/site/images/houzez-logo-grey.png" alt="logo">
-              </div>
-              <div class="block-body">
-                <p class="auther-info">
-                  <span class="text-primary">Vincent Fuller</span>
-                  <span>Company Agent, Cool Houses Inc.</span>
-                </p>
-
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. luctus ligula ac faucibus faucibus. Cras in nisi in turpis eleifend vehicula at at massa. Vivamus aliquet porttitor odio.</p>
-                <a href="http://houzez01.favethemes.com/agent/vincent-fuller/" class="view">View Profile</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="agents-block">
-              <figure class="auther-thumb">
-                <img src="http://placehold.it/150x150" alt="thumb" width="150" height="150" class="img-circle">
-              </figure>
-              <div class="web-logo text-center">
-                <img src="/assets/site/images/houzez-logo-grey.png" alt="logo">
-              </div>
-              <div class="block-body">
-                <p class="auther-info">
-                  <span class="text-primary">Michelle Ramirez</span>
-                  <span>Company Agent, Realtory Inc.</span>
-                </p>
-
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. luctus ligula ac faucibus faucibus. Cras in nisi in turpis eleifend vehicula at at massa. Vivamus aliquet porttito.</p>
-                <a href="http://houzez01.favethemes.com/agent/michelle-ramirez/" class="view">View Profile</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="agents-block">
-              <figure class="auther-thumb">
-                <img src="http://placehold.it/150x150" alt="thumb" width="150" height="150" class="img-circle">
-              </figure>
-              <div class="web-logo text-center">
-                <img src="/assets/site/images/houzez-logo-grey.png" alt="logo">
-              </div>
-              <div class="block-body">
-                <p class="auther-info">
-                  <span class="blue">Brittany Watkins</span>
-                  <span>Company Agent, Smart Houses Inc.</span>
-                </p>
-
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. luctus ligula ac faucibus faucibus. Cras in nisi in turpis eleifend vehicula at at massa. Vivamus aliquet porttitor odio.</p>
-                <a href="http://houzez01.favethemes.com/agent/brittany-watkins/" class="view">View Profile</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!--/.houzez-module-->
 </section><!--/#section-body-->

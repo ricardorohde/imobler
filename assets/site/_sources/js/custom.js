@@ -612,10 +612,14 @@ var nice = false;
             if( admin_nav === 'nullpx' ) { admin_nav = '0px'; }
 
             if (scroll >= sr_sticky_top ) {
+                //console.log(search.nextUntil(':visible').next().attr(''));
+                console.log('aaa');
                 search.addClass("advanced-search-sticky");
                 search.css('top', admin_nav);
                 section_body.css('padding-top',thisHeight);
+
             } else {
+                console.log('bbb');
                 search.removeClass("advanced-search-sticky");
                 search.removeAttr("style");
                 section_body.css('padding-top',0);

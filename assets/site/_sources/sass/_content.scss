@@ -23,12 +23,24 @@
   margin: 0;
   cursor: pointer;
   font-size: 12px;
-  padding: 8px 10px;
+  padding: 0;
   line-height: 17px;
   border-bottom: 1px solid #e4f1c6;
   &:hover{
     color: $white;
   }
+
+  .ui-menu-item-wrapper {
+    padding: 8px 10px;
+  }
+}
+.ui-menu .ui-menu-group {
+  margin: 0;
+  font-size: 14px;
+  padding: 8px 10px;
+  line-height: 17px;
+  border-bottom: 1px solid #e4f1c6;
+  font-weight: bold;
 }
 .ui-widget.ui-widget-content {
   border: 1px solid #f5f5f5;
@@ -70,7 +82,20 @@
   height:1px;
   background-color: #00bff3;
 }
-.ui-state-default,
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 1px solid transparent;
+  background: #{$blue};
+  font-weight: normal;
+  color: #ffffff;
+}
+
+.ui-state-default, .ui-state-active,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
   border: 1px solid #c5c5c5;
@@ -1896,7 +1921,7 @@ figure{
   min-height: 700px;
 }
 #section-body-inner{
-  padding: 40px 0;
+  //padding: 40px 0;
   position: relative;
   min-height: 700px;
 }
@@ -6339,7 +6364,24 @@ figure{
     .slick-next{
       left: inherit;
       right: 0;
-      @extend .slick-prev;
+      width: 40px;
+      height: 40px;
+      border-radius: 0;
+      background-color: $blue-trans-dark;
+      &:before{
+        font-size: 28px;
+      }
+      &:hover{
+        background-color: $blue-trans;
+      }
+      &:focus{
+        background-color: $blue-trans;
+      }
+      @include respond-to(tablet-portrait){
+        width: 30px;
+        height: 30px;
+      }
+      //@extend .slick-prev;
     }
   }
   .slideshow-nav{

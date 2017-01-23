@@ -27,8 +27,8 @@ gulp.task('js', function(){
 	.pipe(gulp.dest('./assets/site'));
 });
 
-gulp.task('default', ['compass','js'], function(){
-	gulp.watch('./assets/site/_sources/**/*.scss', ['compass']);
+gulp.task('default', ['js'], function(){
+	//gulp.watch('./assets/site/_sources/**/*.scss', ['compass']);
 	gulp.watch('./assets/site/_sources/**/*.js', ['js']);
 });
 

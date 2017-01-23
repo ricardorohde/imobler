@@ -1020,7 +1020,7 @@ div[class*="col-"]{
   position: absolute;
   left: 0;
   top: 50%;
-  @include translate(0,-50%);
+  @include translate(0,-55%);
   z-index: 2;
   width: 100%;
   h1{

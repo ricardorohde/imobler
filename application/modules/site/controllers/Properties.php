@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Properties extends Site_Controller {
   public function list($route_params = null) {
-    echo 'Lista de imóveis: ' . print_r($route_params, true);
+    //echo 'Lista de imóveis: ' . print_r($route_params, true);
 
     $data = array(
       'page' => array(
@@ -26,7 +26,7 @@ class Properties extends Site_Controller {
   }
 
   public function property_details($route_params = null) {
-    echo 'Ficha do imóvel: ' . print_r($route_params, true);
+    //echo 'Ficha do imóvel: ' . print_r($route_params, true);
 
     $data = array(
       'page' => array(
@@ -41,6 +41,10 @@ class Properties extends Site_Controller {
         'styles' => array(
         ),
         'scripts' => array(
+          array('assets/site/js/slick.min.js', true),
+          array('assets/site/js/jquery.prettyPhoto.js', true),
+          array('assets/site/js/pages/property_details.js', true),
+          array('https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMOF9dMlKAtS7un_C8yrd9i3ppeOuE3Y&libraries=places&callback=initMapa', true)
         )
       )
     );
@@ -93,6 +97,6 @@ class Properties extends Site_Controller {
 
 
   public function property_details_redirect($property_term, $field){
-    echo 'Redirect para Ficha do imóvel: ' . $property_term . ' - (' . $field . ')';
+    redirect($this->site->get_property_url($property_term), 'location');
   }
 }
