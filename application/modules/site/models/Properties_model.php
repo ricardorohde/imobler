@@ -5,6 +5,116 @@ class Properties_model extends CI_Model {
     parent::__construct();
   }
 
+  public function get_properties($request = array()){
+    $where = array();
+
+    // SELECT
+    $this->db->select((isset($request['select']) ? $request['select'] : "
+      imoveis.*,
+      imoveis_tipos.nome as tipo_nome,
+      imoveis_negociacoes.valor as negociacao_valor,
+      UCASE(estados.sigla) as estado_sigla,
+
+      enderecos.cep as endereco_cep,
+      enderecos.logradouro as endereco_logradouro,
+      enderecos.numero as endereco_numero,
+      enderecos.latitude as endereco_latitude,
+      enderecos.longitude as endereco_longitude,
+      enderecos.latitude_site as endereco_latitude_site,
+      enderecos.longitude_site as endereco_longitude_site,
+      cidades.nome as cidade_nome,
+      bairros.nome as bairro_nome,
+      transacoes.nome as transacao_nome,
+      periodos.nome as periodo_nome
+    "));
+
+    // FROM
+    $this->db->from('imoveis');
+
+    // JOINS
+    $this->db->join("imoveis_tipos", "imoveis.tipo = imoveis_tipos.id", "inner"); // Negociações
+    $this->db->join("imoveis_negociacoes", "imoveis_negociacoes.imovel = imoveis.id", "inner"); // Negociações
+    $this->db->join("periodos", "imoveis_negociacoes.periodo = periodos.id", "inner"); // Períodos
+    $this->db->join("transacoes", "imoveis_negociacoes.transacao = transacoes.id", "inner"); // Transações
+    $this->db->join("imoveis_enderecos", "imoveis_enderecos.imovel = imoveis.id", "inner"); // Endereços (Relação)
+    $this->db->join("enderecos", "imoveis_enderecos.endereco = enderecos.id", "inner"); // Endereços
+    $this->db->join("estados", "enderecos.estado = estados.id", "inner"); // Estados
+    $this->db->join("cidades", "enderecos.cidade = cidades.id", "inner"); // Cidades
+    $this->db->join("bairros", "enderecos.bairro = bairros.id", "inner"); // Bairros
+
+    // Tipo de imóvel
+    if(isset($request['params']['property_type']) && !empty($request['params']['property_type'])){
+      $where['imoveis_tipos.slug'] = $request['params']['property_type'];
+    }
+
+    // Estado
+    if(isset($request['params']['state']) && !empty($request['params']['state'])){
+      $where['estados.sigla'] = $request['params']['state'];
+    }
+
+    // Cidade
+    if(isset($request['params']['city']) && !empty($request['params']['city'])){
+      $where['cidades.slug'] = $request['params']['city'];
+    }
+
+    // Bairro
+    if(isset($request['params']['district']) && !empty($request['params']['district'])){
+      $where['bairros.slug'] = $request['params']['district'];
+    }
+
+    // Transação
+    if(isset($request['params']['transaction']) && !empty($request['params']['transaction'])){
+      $where['transacoes.slug'] = $request['params']['transaction'];
+    }
+
+    // Visibilidade no site
+    if(isset($request['params']['visibility']) && !empty($request['params']['visibility'])){
+      $where['imoveis.status'] = $request['params']['visibility'];
+    }
+
+    // WHERE
+    $where = (isset($request['select']['where']) && !empty($request['select']['where']) ? array_merge($where, $request['select']['where']) : $where);
+    $this->db->where($where);
+
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      print_l($query->result_array());
+    }
+
+
+    // // WHERE
+    // if(isset($request['params'])){
+    //   $params = array();
+
+
+
+    //   foreach($params as $key => $value){
+    //     if(is_array($value)){
+    //       foreach($value as $value_item){
+    //         $this->db->where($key, $value_item);
+    //       }
+    //     }else{
+    //       $this->db->where($key, $value);
+    //     }
+    //   }
+    // }
+    // $this->db->where('imoveis.status', 1);
+
+
+
+ // public function get_properties($params = array(), $limit = false, $offset = false, $select = '', $join = array(), $order = false, $row = false){
+  //   // SELECT
+  //   $select = !empty($select) ? $select : "
+  //     imoveis.*,
+  //     tipos_de_imoveis.nome as tipo_nome,
+  //     imoveis_imagens.arquivo as imovel_imagem
+  //   ";
+  //   $this->db->select($select);
+
+
+    print_l($request);
+  }
+
   public function get_property_types() {
     $this->db->select("imoveis_tipos.*, imoveis_tipos_segmentos.id as segmento_id, imoveis_tipos_segmentos.nome as segmento_nome, imoveis_tipos_segmentos.slug as segmento_slug");
 

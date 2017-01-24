@@ -5,7 +5,7 @@ class Default_Controller extends MX_Controller {
 	function __construct() {
         parent::__construct();
 		header('Content-Type: text/html; charset=utf-8');
-        $this->output->enable_profiler(FALSE);
+        $this->output->enable_profiler(TRUE);
     }
 }
 

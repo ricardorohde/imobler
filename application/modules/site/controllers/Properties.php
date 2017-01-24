@@ -2,8 +2,20 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Properties extends Site_Controller {
+  public function __construct() {
+    parent::__construct();
+    $this->load->model('properties_model');
+  }
+
   public function list($route_params = null) {
     //echo 'Lista de imóveis: ' . print_r($route_params, true);
+
+    $properties = $this->properties_model->get_properties(array(
+      'params' => array_merge(array('visibility' => true), json_decode($route_params, true))
+    ));
+
+    print_l($properties);
+    //exit;
 
     $data = array(
       'page' => array(
@@ -22,7 +34,7 @@ class Properties extends Site_Controller {
       )
     );
 
-    $this->template->view('site/master', 'site/properties/properties_list', $data);
+    //$this->template->view('site/master', 'site/properties/properties_list', $data);
   }
 
   public function property_details($route_params = null) {
