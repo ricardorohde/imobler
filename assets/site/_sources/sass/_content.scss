@@ -25,21 +25,21 @@
   font-size: 12px;
   padding: 0;
   line-height: 17px;
-  border-bottom: 1px solid #e4f1c6;
+  border-top: 1px solid #e4f1c6;
   &:hover{
     color: $white;
   }
 
-  .ui-corner-all {
+  .ui-menu-item-wrapper {
     padding: 8px 10px;
   }
 }
-.ui-menu .ui-menu-group {
+.ui-menu .ui-autocomplete-category {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   padding: 8px 10px;
   line-height: 17px;
-  border-bottom: 1px solid #e4f1c6;
+  border-top: 1px solid #e4f1c6;
   font-weight: bold;
 }
 .ui-widget.ui-widget-content {
@@ -83,21 +83,27 @@
   background-color: #00bff3;
 }
 
-.ui-state-focus {
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
   border: 1px solid transparent;
   background: #{$blue};
   font-weight: normal;
   color: #ffffff;
 }
 
-.ui-state-default, .ui-state-active,
-.ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default {
-  border: 1px solid #c5c5c5;
-  background: #fff;
-  font-weight: normal;
-  color: #454545;
-}
+// .ui-state-default,
+// .ui-state-active,
+// .ui-widget-content .ui-state-default,
+// .ui-widget-header .ui-state-default {
+//   border: 1px solid #c5c5c5;
+//   background: #fff;
+//   font-weight: normal;
+//   color: #454545;
+// }
 
 /*START FULL MAP AREA STYLE*/
 .houzez-map-full{
@@ -1308,8 +1314,15 @@
   font-weight: 300;
   color: #959595;
 }
-.range-input{
-  display: none;
+
+.properties-search-double-left {
+  padding-right: 5px;
+}
+.properties-search-double-right {
+  padding-left: 5px;
+}
+.properties-search-hr {
+  margin: 10px 0;
 }
 
 

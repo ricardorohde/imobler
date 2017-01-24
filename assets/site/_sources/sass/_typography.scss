@@ -1237,7 +1237,7 @@ p{
 }
 .widget-range{
   h4{
-    @include typography(12px, 12px, 0 0 10px 0, 400, inherit, inherit);
+    @include typography(12px, 12px, 0 0 5px 0, 400, inherit, inherit);
   }
   .range-input{
     @include typography(12px, 12px, 0, 400, inherit, inherit);

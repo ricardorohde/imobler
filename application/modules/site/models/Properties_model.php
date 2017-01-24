@@ -38,6 +38,20 @@ class Properties_model extends CI_Model {
     return false;
   }
 
+  public function get_properties_types() {
+    $this->db->select("*");
+
+    $this->db->where('imoveis_imagens.imovel', $property_id);
+
+    $query = $this->db->get("imoveis_imagens");
+
+    if ($query->num_rows() > 0) {
+      return $query->result_array();
+    }
+
+    return false;
+  }
+
   // public function get_rows_count($sql){
   //   $query = $this->db->query($sql);
   //   return $query->num_rows();

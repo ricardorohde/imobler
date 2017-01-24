@@ -2,6 +2,7 @@
 
 .sass-cache
 .editorconfig
+_database/database.mwb.bak
 
 application/cache/*
 !application/cache/index.html

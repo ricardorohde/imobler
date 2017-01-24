@@ -184,6 +184,86 @@
           <div class="widget widget-range">
             <div class="widget-body">
               <form>
+
+                <dir class="row">
+                  <div class="col-xs-12">
+                    <h4>Localização</h4>
+                    <div class="form-group">
+                      <input class="form-control" name="keyword" placeholder="Adicione um bairro ou uma cidade" type="text">
+                    </div>
+                  </div>
+                </dir>
+
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h4>Tipo de imóvel</h4>
+                    <div class="form-group">
+                      <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Property Type">
+                        <option>Property Type 1</option>
+                        <option>Property Type 2</option>
+                        <option>Property Type 3</option>
+                        <option>Property Type 4</option>
+                        <option>Property Type 5</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="no-margin">
+
+                <dir class="row">
+                  <div class="properties-search-double-left col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <h4>Preço Mínimo</h4>
+                    <div class="form-group">
+                      <input class="form-control" name="keyword" placeholder="R$ 200.000" type="text">
+                    </div>
+                  </div>
+                  <div class="properties-search-double-right col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <h4>Preço Máximo</h4>
+                    <div class="form-group">
+                      <input class="form-control" name="keyword" placeholder="R$ 2.000.000" type="text">
+                    </div>
+                  </div>
+                </dir>
+
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h4>Dormitórios</h4>
+                    <a href="" class="btn btn-rounded btn-default">1+</a>
+                    <a href="" class="btn btn-rounded btn-default">2+</a>
+                    <a href="" class="btn btn-rounded btn-default">3+</a>
+                    <a href="" class="btn btn-rounded btn-default">4+</a>
+                    <a href="" class="btn btn-rounded btn-default">5+</a>
+                  </div>
+                </div>
+
+                <hr class="properties-search-hr">
+
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h4>Vagas de garagem</h4>
+                    <a href="" class="btn btn-rounded btn-default">1+</a>
+                    <a href="" class="btn btn-rounded btn-default">2+</a>
+                    <a href="" class="btn btn-rounded btn-default">3+</a>
+                    <a href="" class="btn btn-rounded btn-default">4+</a>
+                    <a href="" class="btn btn-rounded btn-default">5+</a>
+                  </div>
+                </div>
+
+                <hr class="properties-search-hr">
+
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h4>Banheiros</h4>
+                    <a href="" class="btn btn-rounded btn-default">1+</a>
+                    <a href="" class="btn btn-rounded btn-default">2+</a>
+                    <a href="" class="btn btn-rounded btn-default">3+</a>
+                    <a href="" class="btn btn-rounded btn-default">4+</a>
+                    <a href="" class="btn btn-rounded btn-default">5+</a>
+                  </div>
+                </div>
+
+
                 <div class="range-block">
                   <h4>Price range</h4>
                   <div id="slider-price"></div>
@@ -207,17 +287,7 @@
                         <input class="form-control" name="keyword" placeholder="Search" type="text">
                       </div>
                     </div>
-                    <div class="col-sm-12 col-xs-12">
-                      <div class="form-group">
-                        <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Property Type">
-                          <option>Property Type 1</option>
-                          <option>Property Type 2</option>
-                          <option>Property Type 3</option>
-                          <option>Property Type 4</option>
-                          <option>Property Type 5</option>
-                        </select>
-                      </div>
-                    </div>
+
                     <div class="col-sm-6 col-xs-12">
                       <div class="form-group">
                         <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Beds">

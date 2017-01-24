@@ -8,25 +8,24 @@
     <h1>Seu novo imóvel está aqui</h1>
     <h2 class="banner-sub-title">Informe o tipo e o local do imóvel que está procurando.</h2>
     <div class="banner-search-main">
-      <form method="post" action="<?php echo base_url('sp/sao-paulo/pirituba/apartamento/'); ?>" class="form-inline">
+      <form id="banner-search-main-form" method="post" action="<?php echo base_url('sp/sao-paulo/pirituba/apartamento/'); ?>" class="form-inline">
+        <input type="hidden" id="banner-search-main-transaction" name="transaction" value="venda" />
         <div class="form-group">
-          <select class="selectpicker" data-live-search="false" title="Tipo de imóvel">
-
-            <optgroup label="Todos">
-              <option value="todos-os-tipos">Todos os tipos</option>
-            </optgroup>
-
+          <select id="banner-search-main-type" class="selectpicker" data-live-search="false" title="Tipo de imóvel">
             <?php
             if(isset($imoveis_tipos)){
+              $count_imoveis_tipos = 0;
               foreach($imoveis_tipos as $tipo_segmento){
                 ?>
                 <optgroup label="<?php echo $tipo_segmento['segmento']; ?>">
                   <?php
                   if(isset($tipo_segmento['tipos'])){
                     foreach ($tipo_segmento['tipos'] as $tipo) {
+
                       ?>
-                      <option value="<?php echo $tipo['slug']; ?>"><?php echo $tipo['nome']; ?></option>
+                      <option <?php echo !$count_imoveis_tipos ? 'selected="true"' : ''; ?> value="<?php echo $tipo['slug']; ?>"><?php echo $tipo['nome']; ?></option>
                       <?php
+                      $count_imoveis_tipos++;
                     }
                   }
                   ?>
@@ -38,6 +37,8 @@
           </select>
 
           <div class="search input-search input-icon">
+            <input type="hidden" id="banner-search-main-id" name="id" value="0" />
+            <input type="hidden" id="banner-search-main-category" name="category" value="0">
             <input type="text" class="form-control input-search-local" placeholder="Bairro, cidade ou referência do imóvel" autocomplete="off" />
           </div>
           <div class="search-btn">

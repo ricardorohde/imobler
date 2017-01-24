@@ -412,9 +412,10 @@ var nice = false;
     if(slider_price.length >0) {
         slider_price.slider({
             range: true,
-            min: 500,
-            max: 5000,
-            values: [500, 5000],
+            min: 100000,
+            max: 2000000,
+            values: [500000, 1000000],
+            step: 1000,
             slide: function (event, ui) {
                 min_price.val("$ " + ui.values[0]);
                 max_price.val("$ " + ui.values[1]);
