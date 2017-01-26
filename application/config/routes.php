@@ -65,6 +65,16 @@ $route['imovel/(:any)/(:any)/(:any)/(:any)/(:num)'] = function ($state, $city, $
 $route['(:num)'] = 'site/properties/property_details_redirect/$1/id';
 
 //Lista imóveis de tipo específico em estado/cidade/bairro/tipo - Ex: /venda/sp/sao-paulo/pirituba/apartamento/
+$route['(:any)/(:any)/(:any)/(:any)/(:any)/(:num)'] = function ($transaction, $state, $city, $district, $property_type, $page){
+  $params = array();
+  if($transaction) $params['transaction'] = strtolower($transaction);
+  if($state) $params['state'] = strtolower($state);
+  if($city) $params['city'] = strtolower($city);
+  if($district) $params['district'] = strtolower($district);
+  if($property_type) $params['property_type'] = strtolower($property_type);
+
+  return 'site/properties/list/' . json_encode($params) . '/' . $page;
+};
 $route['(:any)/(:any)/(:any)/(:any)/(:any)'] = function ($transaction, $state, $city, $district, $property_type){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
@@ -77,6 +87,15 @@ $route['(:any)/(:any)/(:any)/(:any)/(:any)'] = function ($transaction, $state, $
 };
 
 //Lista imóveis de todos os tipos em estado/cidade/bairro - Ex: /venda/sp/sao-paulo/apartamento/
+$route['(:any)/(:any)/(:any)/(:any)/(:num)'] = function ($transaction, $state, $city, $property_type, $page){
+  $params = array();
+  if($transaction) $params['transaction'] = strtolower($transaction);
+  if($state) $params['state'] = strtolower($state);
+  if($city) $params['city'] = strtolower($city);
+  if($property_type) $params['property_type'] = strtolower($property_type);
+
+  return 'site/properties/list/' . json_encode($params) . '/' . $page;
+};
 $route['(:any)/(:any)/(:any)/(:any)'] = function ($transaction, $state, $city, $property_type){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
@@ -88,6 +107,14 @@ $route['(:any)/(:any)/(:any)/(:any)'] = function ($transaction, $state, $city, $
 };
 
 //Lista imóveis de todos os tipos e de todos os bairros em estado/cidade específicos - Ex: /venda/sp/sao-paulo
+$route['(:any)/(:any)/(:any)/(:num)'] = function ($transaction, $state, $city, $page){
+  $params = array();
+  if($transaction) $params['transaction'] = strtolower($transaction);
+  if($state) $params['state'] = strtolower($state);
+  if($city) $params['city'] = strtolower($city);
+
+  return 'site/properties/list/' . json_encode($params) . '/' . $page;
+};
 $route['(:any)/(:any)/(:any)'] = function ($transaction, $state, $city){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);

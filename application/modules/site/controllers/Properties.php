@@ -7,15 +7,18 @@ class Properties extends Site_Controller {
     $this->load->model('properties_model');
   }
 
-  public function list($route_params = null) {
-    //echo 'Lista de imóveis: ' . print_r($route_params, true);
+  public function list($route_params = null, $page = 1) {
+    $route_params = json_decode($route_params, true);
 
     $properties = $this->properties_model->get_properties(array(
-      'params' => array_merge(array('visibility' => true), json_decode($route_params, true))
+      'params' => array_merge(array(
+        'pagination' => array(
+          'limit' => 12,
+          'page' => $page
+        ),
+        'visibility' => true
+      ), $route_params)
     ));
-
-    print_l($properties);
-    //exit;
 
     $data = array(
       'page' => array(
@@ -30,11 +33,17 @@ class Properties extends Site_Controller {
         'styles' => array(
         ),
         'scripts' => array(
+          array('assets/site/js/jquery.mask.js', true),
+          array('assets/site/js/select2.js', true),
+          array('assets/site/js/mustache.js', true),
+          array('assets/site/js/pages/properties_list.js', true)
         )
-      )
+      ),
+      'filters' => $this->site->get_filters('all', array('params' => $route_params)),
+      'properties' => $properties
     );
 
-    //$this->template->view('site/master', 'site/properties/properties_list', $data);
+    $this->template->view('site/master', 'site/properties/properties_list', $data);
   }
 
   public function property_details($route_params = null) {

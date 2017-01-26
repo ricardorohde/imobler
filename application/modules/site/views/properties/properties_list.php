@@ -46,135 +46,123 @@
           </div><!--/.list-tabs-->
 
           <div class="property-listing grid-view">
-            <div class="row">
+            <div class="property-items row">
               <?php
-              for($loop = 1 ; $loop <= 10 ; $loop++){
-                ?>
-                <div class="item-wrap">
-                  <div class="property-item table-list">
-                    <div class="table-cell">
-                      <div class="figure-block">
-                        <figure class="item-thumb">
-                          <span class="label-featured label label-success">Featured</span>
-                          <div class="label-wrap label-right hide-on-list">
-                            <span class="label label-default">For Sale</span>
-                            <span class="label label-danger">Sold</span>
+              if(isset($properties['results']) && !empty($properties['results'])){
+                foreach ($properties['results'] as $property) {
+                  $property_url = $this->site->get_property_url($property);
+                  ?>
+                  <div class="item-wrap">
+                    <div class="property-item table-list">
+                      <div class="table-cell">
+                        <div class="figure-block">
+                          <figure class="item-thumb">
+                            <span class="label-featured label label-success">Featured</span>
+                            <div class="label-wrap label-right hide-on-list">
+                              <span class="label label-default">For Sale</span>
+                              <span class="label label-danger">Sold</span>
+                            </div>
+                            <div class="price hide-on-list">
+                              <p class="price-start">Start from</p>
+                              <h3>$350,000</h3>
+                              <p class="rant">$21,000/mo</p>
+                            </div>
+                            <a href="<?php echo $property_url; ?>">
+                              <img src="http://placehold.it/364x244" alt="thumb">
+                            </a>
+                            <ul class="actions">
+                              <li>
+                                <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Favorite">
+                                  <i class="fa fa-heart"></i>
+                                </span>
+                              </li>
+                              <li class="share-btn">
+                                <div class="share_tooltip fade">
+                                  <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                  <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                  <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                  <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                </div>
+                                <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
+                              </li>
+                              <li>
+                                <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
+                                  <i class="fa fa-camera"></i>
+                                </span>
+                              </li>
+                            </ul>
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="item-body table-cell">
+
+                        <div class="body-left table-cell">
+                          <div class="info-row">
+                            <div class="label-wrap hide-on-grid">
+                              <div class="label-status label label-default">For Sale</div>
+                              <span class="label label-danger">Sold</span>
+                            </div>
+                            <h2 class="property-title"><a href="<?php echo $property_url; ?>"><?php echo $property['imovel_id']; ?> - <?php echo $property['tipo_nome']; ?> à venda em <?php echo $property['bairro_nome']; ?></a></h2>
+                            <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
                           </div>
-                          <div class="price hide-on-list">
+                          <div class="info-row amenities hide-on-grid">
+                            <p>
+                              <span>Dormitórios: <?php echo $property['imovel_dormitorios']; ?></span><br>
+                              <span>Banheiros: <?php echo $property['imovel_banheiros']; ?></span><br>
+                              <span>Vagas de Garagens: <?php echo $property['imovel_garagens']; ?></span>
+                            </p>
+                            <p>Single Family Home</p>
+                          </div>
+                          <div class="info-row date hide-on-grid">
+                            <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
+                            <p><i class="fa fa-calendar"></i> 12 Days ago </p>
+                          </div>
+                        </div>
+                        <div class="body-right table-cell hidden-gird-cell">
+                          <div class="info-row price">
                             <p class="price-start">Start from</p>
                             <h3>$350,000</h3>
                             <p class="rant">$21,000/mo</p>
                           </div>
-                          <a href="#">
-                            <img src="http://placehold.it/364x244" alt="thumb">
-                          </a>
-                          <ul class="actions">
-                            <li>
-                              <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Favorite">
-                                <i class="fa fa-heart"></i>
-                              </span>
-                            </li>
-                            <li class="share-btn">
-                              <div class="share_tooltip fade">
-                                <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
-                                <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
-                                <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
-                                <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
-                              </div>
-                              <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
-                            </li>
-                            <li>
-                              <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
-                                <i class="fa fa-camera"></i>
-                              </span>
-                            </li>
-                          </ul>
-                        </figure>
-                      </div>
-                    </div>
-                    <div class="item-body table-cell">
-
-                      <div class="body-left table-cell">
-                        <div class="info-row">
-                          <div class="label-wrap hide-on-grid">
-                            <div class="label-status label label-default">For Sale</div>
-                            <span class="label label-danger">Sold</span>
-                          </div>
-                          <h2 class="property-title"><a href="#">Apartment Oceanview</a></h2>
-                          <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
-                        </div>
-                        <div class="info-row amenities hide-on-grid">
-                          <p>
-                            <span>Beds: 3</span>
-                            <span>Baths: 2</span>
-                            <span>Sqft: 1,965</span>
-                          </p>
-                          <p>Single Family Home</p>
-                        </div>
-                        <div class="info-row date hide-on-grid">
-                          <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
-                          <p><i class="fa fa-calendar"></i> 12 Days ago </p>
-                        </div>
-                      </div>
-                      <div class="body-right table-cell hidden-gird-cell">
-                        <div class="info-row price">
-                          <p class="price-start">Start from</p>
-                          <h3>$350,000</h3>
-                          <p class="rant">$21,000/mo</p>
-                        </div>
-                        <div class="info-row phone text-right">
-                          <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
-                          <p><a href="#">+1 (786) 225-0199</a></p>
-                        </div>
-                      </div>
-                      <div class="table-list full-width hide-on-list">
-                        <div class="cell">
-                          <div class="info-row amenities">
-                            <p>
-                              <span>Beds: 3</span>
-                              <span>Baths: 2</span>
-                              <span>Sqft: 1,965</span>
-                            </p>
-                            <p>Single Family Home</p>
-                          </div>
-                        </div>
-                        <div class="cell">
-                          <div class="phone">
+                          <div class="info-row phone text-right">
                             <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
                             <p><a href="#">+1 (786) 225-0199</a></p>
                           </div>
                         </div>
+
+                        <div class="table-list full-width hide-on-list">
+                          <div class="cell">
+                            <div class="info-row amenities">
+                              <p>
+                                <span>Dormitórios: <?php echo $property['imovel_dormitorios']; ?></span><br>
+                                <span>Banheiros: <?php echo $property['imovel_banheiros']; ?></span><br>
+                                <span>Vagas de Garagens: <?php echo $property['imovel_garagens']; ?></span>
+                              </p>
+                              <p>Single Family Home</p>
+                            </div>
+                          </div>
+
+                          <div class="cell">
+                            <div class="phone">
+                              <a href="<?php echo $property_url; ?>" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
+                              <p><a href="#">+1 (786) 225-0199</a></p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
+
                     </div>
                   </div>
-                  <div class="item-foot date hide-on-list">
-                    <div class="item-foot-left">
-                      <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
-                    </div>
-                    <div class="item-foot-right">
-                      <p><i class="fa fa-calendar"></i> 12 Days ago </p>
-                    </div>
-                  </div>
-                </div>
-                <?php
-              }
+                  <?php
+                  }
+                }
               ?>
             </div>
           </div><!--/.property-listing-->
 
-          <hr>
-
-          <div class="pagination-main">
-            <ul class="pagination">
-              <li class="disabled"><a aria-label="Previous" href="#"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
-              <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a aria-label="Next" href="#"><span aria-hidden="true"><i class="fa fa-angle-right"></i></span></a></li>
-            </ul>
-          </div><!--/.pagination-main-->
+          <div class="pagination-content">
+            <?php echo $properties['pagination']; ?>
+          </div>
 
         </div>
       </div><!--/.container-contentbar-->
@@ -183,155 +171,142 @@
         <aside id="sidebar" class="sidebar-white">
           <div class="widget widget-range">
             <div class="widget-body">
-              <form>
+              <form id="properties-list-form" method="post">
+                <input type="text" id="search-transaction" name="transaction" value="venda" />
 
                 <dir class="row">
                   <div class="col-xs-12">
                     <h4>Localização</h4>
-                    <div class="form-group">
-                      <input class="form-control" name="keyword" placeholder="Adicione um bairro ou uma cidade" type="text">
+                    <div class="form-group no-margin">
+                      <input type="text" class="input-search-local form-control" name="keyword" placeholder="Adicione um bairro ou uma cidade">
                     </div>
+
+                    <div class="property-location-items">
+                      <?php
+                      if(isset($filters['property_location']) && !empty($filters['property_location'])){
+                        ?>
+                        <div class="property-location-item" data-json='<?php echo $filters['property_location']['json']; ?>'>
+                          <?php echo $filters['property_location']['label']; ?>
+                          <a href="javascript:void(0);" class="property-location-item-remove pull-right"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                        </div>
+                        <?php
+                      }
+                      ?>
+                    </div>
+
+                    <hr>
                   </div>
                 </dir>
 
                 <div class="row">
                   <div class="col-xs-12">
                     <h4>Tipo de imóvel</h4>
-                    <div class="form-group">
-                      <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Property Type">
-                        <option>Property Type 1</option>
-                        <option>Property Type 2</option>
-                        <option>Property Type 3</option>
-                        <option>Property Type 4</option>
-                        <option>Property Type 5</option>
+                    <div class="form-group no-margin">
+                      <select id="search-property_type" class="form-control" multiple>
+                        <?php
+                        if(isset($filters['property_types']) && !empty($filters['property_types'])){
+                          foreach($filters['property_types'] as $tipo_segmento){
+                            ?>
+                            <optgroup label="<?php echo $tipo_segmento['segmento']; ?>">
+                              <?php
+                              if(isset($tipo_segmento['tipos'])){
+                                foreach ($tipo_segmento['tipos'] as $tipo) {
+                                  ?>
+                                  <option <?php echo (isset($tipo['active']) && $tipo['active'] ? 'selected="true"' : ''); ?> value="<?php echo $tipo['slug']; ?>"><?php echo $tipo['nome']; ?></option>
+                                  <?php
+                                }
+                              }
+                              ?>
+                            </optgroup>
+                            <?php
+                          }
+                        }
+                        ?>
                       </select>
                     </div>
                   </div>
                 </div>
 
-                <hr class="no-margin">
+                <hr>
 
                 <dir class="row">
                   <div class="properties-search-double-left col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <h4>Preço Mínimo</h4>
                     <div class="form-group">
-                      <input class="form-control" name="keyword" placeholder="R$ 200.000" type="text">
+                      <input id="search-min_price" class="form-control price" name="min_price" placeholder="R$ 200.000" type="text">
                     </div>
                   </div>
                   <div class="properties-search-double-right col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <h4>Preço Máximo</h4>
                     <div class="form-group">
-                      <input class="form-control" name="keyword" placeholder="R$ 2.000.000" type="text">
+                      <input id="search-max_price" class="form-control price" name="max_price" placeholder="R$ 2.000.000" type="text">
                     </div>
                   </div>
                 </dir>
 
                 <div class="row">
-                  <div class="col-xs-12">
+                  <div class="properties-data col-xs-12">
                     <h4>Dormitórios</h4>
-                    <a href="" class="btn btn-rounded btn-default">1+</a>
-                    <a href="" class="btn btn-rounded btn-default">2+</a>
-                    <a href="" class="btn btn-rounded btn-default">3+</a>
-                    <a href="" class="btn btn-rounded btn-default">4+</a>
-                    <a href="" class="btn btn-rounded btn-default">5+</a>
+                    <?php
+                    for($bedrooms = 1 ; $bedrooms <= 5 ; $bedrooms++){
+                      ?>
+                      <a href="javascript:void(0);" data-value="<?php echo $bedrooms; ?>" class="properties-data-item properties-bedrooms btn btn-rounded btn-default"><?php echo $bedrooms; ?>+</a>
+                      <?php
+                    }
+                    ?>
                   </div>
                 </div>
 
                 <hr class="properties-search-hr">
 
                 <div class="row">
-                  <div class="col-xs-12">
+                  <div class="properties-data col-xs-12">
                     <h4>Vagas de garagem</h4>
-                    <a href="" class="btn btn-rounded btn-default">1+</a>
-                    <a href="" class="btn btn-rounded btn-default">2+</a>
-                    <a href="" class="btn btn-rounded btn-default">3+</a>
-                    <a href="" class="btn btn-rounded btn-default">4+</a>
-                    <a href="" class="btn btn-rounded btn-default">5+</a>
+                    <?php
+                    for($garages = 1 ; $garages <= 5 ; $garages++){
+                      ?>
+                      <a href="javascript:void(0);" data-value="<?php echo $garages; ?>" class="properties-data-item properties-garages btn btn-rounded btn-default"><?php echo $garages; ?>+</a>
+                      <?php
+                    }
+                    ?>
                   </div>
                 </div>
 
                 <hr class="properties-search-hr">
 
                 <div class="row">
-                  <div class="col-xs-12">
+                  <div class="properties-data col-xs-12">
                     <h4>Banheiros</h4>
-                    <a href="" class="btn btn-rounded btn-default">1+</a>
-                    <a href="" class="btn btn-rounded btn-default">2+</a>
-                    <a href="" class="btn btn-rounded btn-default">3+</a>
-                    <a href="" class="btn btn-rounded btn-default">4+</a>
-                    <a href="" class="btn btn-rounded btn-default">5+</a>
+                    <?php
+                    for($bathrooms = 1 ; $bathrooms <= 5 ; $bathrooms++){
+                      ?>
+                      <a href="javascript:void(0);" data-value="<?php echo $bathrooms; ?>" class="properties-data-item properties-bathrooms btn btn-rounded btn-default"><?php echo $bathrooms; ?>+</a>
+                      <?php
+                    }
+                    ?>
                   </div>
                 </div>
 
+                <hr class="properties-search-hr">
 
-                <div class="range-block">
-                  <h4>Price range</h4>
-                  <div id="slider-price"></div>
-                  <div class="clearfix range-text">
-                    <input type="text" class="pull-left range-input text-left" id="min-price" readonly >
-                    <input type="text" class="pull-right range-input text-right" id="max-price" readonly >
+                <dir class="row">
+                  <div class="properties-search-double-left col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <h4>Área Mínima</h4>
+                    <div class="form-group">
+                      <input id="search-min_price" class="form-control price" name="min_price" placeholder="R$ 200.000" type="text">
+                    </div>
                   </div>
-                </div>
-                <div class="range-block">
-                  <h4>Area Size</h4>
-                  <div id="slider-size"></div>
-                  <div class="clearfix range-text">
-                    <input type="text" class="pull-left range-input text-left" id="min-size" readonly >
-                    <input type="text" class="pull-right range-input text-right" id="max-size" readonly >
+                  <div class="properties-search-double-right col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <h4>Área Máxima</h4>
+                    <div class="form-group">
+                      <input id="search-max_price" class="form-control price" name="max_price" placeholder="R$ 2.000.000" type="text">
+                    </div>
                   </div>
-                </div>
+                </dir>
+
                 <div class="range-block rang-form-block">
                   <div class="row">
-                    <div class="col-sm-12 col-xs-12">
-                      <div class="form-group">
-                        <input class="form-control" name="keyword" placeholder="Search" type="text">
-                      </div>
-                    </div>
 
-                    <div class="col-sm-6 col-xs-12">
-                      <div class="form-group">
-                        <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Beds">
-                          <option>Beds 1</option>
-                          <option>Beds 2</option>
-                          <option>Beds 3</option>
-                          <option>Beds 4</option>
-                          <option>Beds 5</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-xs-12">
-                      <div class="form-group">
-                        <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Baths">
-                          <option>Baths 1</option>
-                          <option>Baths 2</option>
-                          <option>Baths 3</option>
-                          <option>Baths 4</option>
-                          <option>Baths 5</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-12 col-xs-12">
-                      <div class="form-group">
-                        <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Property type">
-                          <option>Type 1</option>
-                          <option>Type 2</option>
-                          <option>Type 3</option>
-                          <option>Type 4</option>
-                          <option>Type 5</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-12 col-xs-12">
-                      <div class="form-group">
-                        <select class="selectpicker" data-live-search="false" data-live-search-style="begins" title="Status">
-                          <option>Status 1</option>
-                          <option>Status 2</option>
-                          <option>Status 3</option>
-                          <option>Status 4</option>
-                          <option>Status 5</option>
-                        </select>
-                      </div>
-                    </div>
                     <div class="col-sm-12 col-xs-12">
                       <label class="advance-trigger"><i class="fa fa-plus-square"></i> Other Features </label>
                     </div>
@@ -670,3 +645,110 @@
     </div>
   </div>
 </section>
+<div id="search-mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; opacity: .5; z-index:5000;">.</div>
+
+<script id="property-item" type="x-tmpl-mustache">
+  {{#results}}
+    <div class="item-wrap">
+      <div class="property-item table-list">
+        <div class="table-cell">
+          <div class="figure-block">
+            <figure class="item-thumb">
+              <span class="label-featured label label-success">Featured</span>
+              <div class="label-wrap label-right hide-on-list">
+                <span class="label label-default">For Sale</span>
+                <span class="label label-danger">Sold</span>
+              </div>
+              <div class="price hide-on-list">
+                <p class="price-start">Start from</p>
+                <h3>$350,000</h3>
+                <p class="rant">$21,000/mo</p>
+              </div>
+              <a href="#">
+                <img src="http://placehold.it/364x244" alt="thumb">
+              </a>
+              <ul class="actions">
+                <li>
+                  <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Favorite">
+                    <i class="fa fa-heart"></i>
+                  </span>
+                </li>
+                <li class="share-btn">
+                  <div class="share_tooltip fade">
+                    <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                    <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                    <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                    <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                  </div>
+                  <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
+                </li>
+                <li>
+                  <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
+                    <i class="fa fa-camera"></i>
+                  </span>
+                </li>
+              </ul>
+            </figure>
+          </div>
+        </div>
+        <div class="item-body table-cell">
+
+          <div class="body-left table-cell">
+            <div class="info-row">
+              <div class="label-wrap hide-on-grid">
+                <div class="label-status label label-default">For Sale</div>
+                <span class="label label-danger">Sold</span>
+              </div>
+              <h2 class="property-title"><a href="#">{{imovel_id}} - {{tipo_nome}} à venda em {{bairro_nome}}</a></h2>
+              <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
+            </div>
+            <div class="info-row amenities hide-on-grid">
+              <p>
+                <span>Dormitórios: {{imovel_dormitorios}}</span><br>
+                <span>Banheiros: {{imovel_banheiros}}</span><br>
+                <span>Vagas de Garagens: {{imovel_garagens}}</span>
+              </p>
+              <p>Single Family Home</p>
+            </div>
+            <div class="info-row date hide-on-grid">
+              <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
+              <p><i class="fa fa-calendar"></i> 12 Days ago </p>
+            </div>
+          </div>
+          <div class="body-right table-cell hidden-gird-cell">
+            <div class="info-row price">
+              <p class="price-start">Start from</p>
+              <h3>$350,000</h3>
+              <p class="rant">$21,000/mo</p>
+            </div>
+            <div class="info-row phone text-right">
+              <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
+              <p><a href="#">+1 (786) 225-0199</a></p>
+            </div>
+          </div>
+
+          <div class="table-list full-width hide-on-list">
+            <div class="cell">
+              <div class="info-row amenities">
+                <p>
+                  <span>Dormitórios: {{imovel_dormitorios}}</span><br>
+                  <span>Banheiros: {{imovel_banheiros}}</span><br>
+                  <span>Vagas de Garagens: {{imovel_garagens}}</span>
+                </p>
+                <p>Single Family Home</p>
+              </div>
+            </div>
+
+            <div class="cell">
+              <div class="phone">
+                <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
+                <p><a href="#">+1 (786) 225-0199</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  {{/results}}
+</script>

@@ -13,19 +13,18 @@
         <div class="form-group">
           <select id="banner-search-main-type" class="selectpicker" data-live-search="false" title="Tipo de imóvel">
             <?php
-            if(isset($imoveis_tipos)){
-              $count_imoveis_tipos = 0;
-              foreach($imoveis_tipos as $tipo_segmento){
+            if(isset($property_types)){
+              $property_types_count = 0;
+              foreach($property_types as $property_types_segment){
                 ?>
-                <optgroup label="<?php echo $tipo_segmento['segmento']; ?>">
+                <optgroup label="<?php echo $property_types_segment['segmento']; ?>">
                   <?php
-                  if(isset($tipo_segmento['tipos'])){
-                    foreach ($tipo_segmento['tipos'] as $tipo) {
-
+                  if(isset($property_types_segment['tipos'])){
+                    foreach ($property_types_segment['tipos'] as $property_type) {
                       ?>
-                      <option <?php echo !$count_imoveis_tipos ? 'selected="true"' : ''; ?> value="<?php echo $tipo['slug']; ?>"><?php echo $tipo['nome']; ?></option>
+                      <option <?php echo !$property_types_count ? 'selected="true"' : ''; ?> value="<?php echo $property_type['slug']; ?>"><?php echo $property_type['nome']; ?></option>
                       <?php
-                      $count_imoveis_tipos++;
+                      $property_types_count++;
                     }
                   }
                   ?>
