@@ -6,26 +6,28 @@ class Tools extends Site_Controller {
 		$this->output->enable_profiler(FALSE);
 	}
 
-	function configjs() {
-		$this->load->view('site/configjs');
-	}
+  function configjs() {
+    $this->load->view('site/configjs');
+  }
 
-	public function get_search_url_by_location(){
-		header('Content-Type: application/json');
-    $this->load->model('search_model');
-    echo $this->search_model->get_search_url_by_location();
-	}
+  function images($property_id, $dimensions, $quality, $file) {
+    header('Content-type: image/jpeg');
 
-  public function get_full_location(){
-    header('Content-Type: application/json');
-    $this->load->model('properties_model');
-    echo $this->properties_model->get_full_location();
+    include APPPATH . 'third_party/ImageResize.php';
+
+    $image = new \Eventviva\ImageResize(FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file);
+
+    $dimensions = explode('x', $dimensions);
+    $image->quality_jpg = $quality;
+    $image->resize($dimensions[0], $dimensions[1]);
+
+    echo (string) $image;
   }
 
 	public function get_locations(){
     header('Content-Type: application/json');
-    $this->load->model('search_model');
-    echo $this->search_model->get_regions_by_term();
+    $this->load->model('properties_model');
+    echo $this->properties_model->get_locations_by_term();
   }
 
   public function get_properties($page = 1){

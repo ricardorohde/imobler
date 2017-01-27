@@ -20,6 +20,8 @@ class Properties extends Site_Controller {
       ), $route_params)
     ));
 
+    //print_l($properties);
+
     $data = array(
       'page' => array(
         'one' => 'home'
@@ -36,6 +38,7 @@ class Properties extends Site_Controller {
           array('assets/site/js/jquery.mask.js', true),
           array('assets/site/js/select2.js', true),
           array('assets/site/js/mustache.js', true),
+          array('assets/site/js/owl.carousel.js', true),
           array('assets/site/js/pages/properties_list.js', true)
         )
       ),

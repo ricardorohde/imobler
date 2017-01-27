@@ -9,6 +9,14 @@
           </div>
           <div class="page-title-right">
             <div class="view hidden-xs">
+              <div class="table-cell sort-tab">
+                Sort by:
+                <select class="selectpicker bs-select-hidden" title="Please select" data-live-search-style="begins" data-live-search="true">
+                  <option>Relevance</option>
+                  <option>Relevance</option>
+                  <option>Relevance</option>
+                </select>
+              </div>
               <div class="table-cell">
                 <span class="view-btn btn-list"><i class="fa fa-th-list"></i></span>
                 <span class="view-btn btn-grid active"><i class="fa fa-th-large"></i></span>
@@ -21,30 +29,6 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 list-grid-area container-contentbar">
         <div id="content-area">
-          <div class="list-tabs table-list full-width">
-            <div class="tabs table-cell">
-              <ul>
-                <li>
-                  <a href="#" class="active">ALL</a>
-                </li>
-                <li>
-                  <a href="#">FOR SALE</a>
-                </li>
-                <li>
-                  <a href="#">FOR RENT</a>
-                </li>
-              </ul>
-            </div>
-            <div class="sort-tab table-cell text-right">
-              Sort by:
-              <select class="selectpicker bs-select-hidden" title="Please select" data-live-search-style="begins" data-live-search="true">
-                <option>Relevance</option>
-                <option>Relevance</option>
-                <option>Relevance</option>
-              </select>
-            </div>
-          </div><!--/.list-tabs-->
-
           <div class="property-listing grid-view">
             <div class="property-items row">
               <?php
@@ -67,9 +51,7 @@
                               <h3>$350,000</h3>
                               <p class="rant">$21,000/mo</p>
                             </div>
-                            <a href="<?php echo $property_url; ?>">
-                              <img src="http://placehold.it/364x244" alt="thumb">
-                            </a>
+
                             <ul class="actions">
                               <li>
                                 <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Favorite">
@@ -91,6 +73,25 @@
                                 </span>
                               </li>
                             </ul>
+
+                            <div class="property-images">
+                              <div class="owl-carousel">
+                                <?php
+                                if(isset($property['imagens']) && !empty($property['imagens'])){
+                                  $count_images = 0;
+                                  foreach($property['imagens'] as $property_image){
+                                    ?>
+                                    <a href="<?php echo $property_url; ?>"><img data-src="<?php echo base_url('tools/images/'. $property['imovel_id'] .'/434x290/80/' . $property_image['arquivo']); ?>" alt="<?php echo $property_image['legenda']; ?>" class="owl-lazy"></a>
+                                    <?php
+                                    $count_images++;
+                                  }
+                                }
+                                ?>
+                              </div>
+                              <a href="javascript:void(0);" class="btn-images-prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                              <a href="javascript:void(0);" class="btn-images-next"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                            </div>
+
                           </figure>
                         </div>
                       </div>
@@ -109,7 +110,7 @@
                             <p>
                               <span>Dormitórios: <?php echo $property['imovel_dormitorios']; ?></span><br>
                               <span>Banheiros: <?php echo $property['imovel_banheiros']; ?></span><br>
-                              <span>Vagas de Garagens: <?php echo $property['imovel_garagens']; ?></span>
+                              <!-- <span>Vagas de Garagens: <?php echo $property['imovel_garagens']; ?></span> -->
                             </p>
                             <p>Single Family Home</p>
                           </div>
@@ -172,29 +173,33 @@
           <div class="widget widget-range">
             <div class="widget-body">
               <form id="properties-list-form" method="post">
-                <input type="text" id="search-transaction" name="transaction" value="venda" />
+                <input type="hidden" id="search-transaction" name="transaction" value="venda" />
 
                 <dir class="row">
                   <div class="col-xs-12">
-                    <h4>Localização</h4>
+                    <h4>Localização do imóvel</h4>
                     <div class="form-group no-margin">
                       <input type="text" class="input-search-local form-control" name="keyword" placeholder="Adicione um bairro ou uma cidade">
                     </div>
 
-                    <div class="property-location-items">
-                      <?php
-                      if(isset($filters['property_location']) && !empty($filters['property_location'])){
-                        ?>
-                        <div class="property-location-item" data-json='<?php echo $filters['property_location']['json']; ?>'>
-                          <?php echo $filters['property_location']['label']; ?>
-                          <a href="javascript:void(0);" class="property-location-item-remove pull-right"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                        </div>
+                    <table class="table">
+                      <tbody class="property-location-items">
                         <?php
-                      }
-                      ?>
-                    </div>
-
-                    <hr>
+                        if(isset($filters['property_location']) && !empty($filters['property_location'])){
+                          ?>
+                          <tr class="property-location-item" data-state='<?php echo $filters['property_location']['results']['state_slug']; ?>' data-city='<?php echo $filters['property_location']['results']['city_slug']; ?>' data-district='<?php echo isset($filters['property_location']['results']['district_slug']) ? $filters['property_location']['results']['district_slug'] : ''; ?>'>
+                            <td>
+                              <?php echo $filters['property_location']['label']; ?>
+                            </td>
+                            <td>
+                              <a href="javascript:void(0);" class="property-location-item-remove pull-right"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                            </td>
+                          </tr>
+                          <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
                 </dir>
 
@@ -233,13 +238,13 @@
                   <div class="properties-search-double-left col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <h4>Preço Mínimo</h4>
                     <div class="form-group">
-                      <input id="search-min_price" class="form-control price" name="min_price" placeholder="R$ 200.000" type="text">
+                      <input id="search-min_price" class="form-control price-mask" name="min_price" placeholder="R$ 200.000" type="text">
                     </div>
                   </div>
                   <div class="properties-search-double-right col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <h4>Preço Máximo</h4>
                     <div class="form-group">
-                      <input id="search-max_price" class="form-control price" name="max_price" placeholder="R$ 2.000.000" type="text">
+                      <input id="search-max_price" class="form-control price-mask" name="max_price" placeholder="R$ 2.000.000" type="text">
                     </div>
                   </div>
                 </dir>
@@ -751,4 +756,15 @@
       </div>
     </div>
   {{/results}}
+</script>
+
+<script id="property-location-item" type="x-tmpl-mustache">
+  <tr class="property-location-item" data-state='{{location.state}}' data-city='{{location.city}}' data-district='{{location.district}}'>
+    <td>
+      {{label}}
+    </td>
+    <td>
+      <a href="javascript:void(0);" class="property-location-item-remove pull-right"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+    </td>
+  </tr>
 </script>

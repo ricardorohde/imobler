@@ -1,3 +1,43 @@
+var property_images = [];
+
+var property_images_swiper_init = function(){
+  $.each($('.property-images'), function(i, item){
+    var $item = $(item);
+    var $carousel = $(item).find('.owl-carousel');
+
+    property_images.push($carousel);
+
+    $carousel.owlCarousel({
+      loop: true,
+      margin: 10,
+      responsiveClass: true,
+      items: 1,
+      nav: false,
+      navContainer: 'ids',
+      margin: 2,
+      dots: false,
+      lazyLoad:true,
+    });
+
+    $item.find('.btn-images-next').on('click', function() {
+        console.log('next');
+        $carousel.trigger('next.owl.carousel');
+    });
+
+    $item.find('.btn-images-prev').on('click', function() {
+        console.log('prev');
+        $carousel.trigger('prev.owl.carousel');
+    });
+  });
+};
+
+var property_images_swiper_destroy = function(){
+  for(var loop = 0 ; loop < property_images.length ; loop++){
+    property_images[loop].trigger('destroy.owl.carousel');
+  }
+  property_images = [];
+};
+
 $( function() {
   var property_item = $('#property-item').html();
   Mustache.parse(property_item);
@@ -13,22 +53,29 @@ $( function() {
     var state = [];
     var city = [];
     var district = [];
+
     $.each($('.property-location-item'), function(i, item){
-      var location_json = $(item).attr('data-json');
-      var location = JSON.parse(location_json);
+      var $item = $(item);
 
-      if(typeof location.state !== 'undefined'){
-        state.push(location.state);
+      if($item[0].hasAttribute("data-state") && $item.attr("data-state").length){
+        if(jQuery.inArray($item.attr("data-state"), state) === -1){
+          state.push($item.attr("data-state"));
+        }
       }
 
-      if(typeof location.city !== 'undefined'){
-        city.push(location.city);
+      if($item[0].hasAttribute("data-city") && $item.attr("data-city").length){
+        if(jQuery.inArray($item.attr("data-city"), city) === -1){
+          city.push($item.attr("data-city"));
+        }
       }
 
-      if(typeof location.district !== 'undefined'){
-        district.push(location.district);
+      if($item[0].hasAttribute("data-district") && $item.attr("data-district").length){
+        if(jQuery.inArray($item.attr("data-district"), district) === -1){
+          district.push($item.attr("data-district"));
+        }
       }
     });
+
     params['state'] = state;
     params['city'] = city;
     params['district'] = district;
@@ -52,8 +99,6 @@ $( function() {
     if($('.properties-bathrooms.active').length){
       params['bathrooms'] = $('.properties-bathrooms.active').data('value');
     }
-
-    console.log(params);
 
     $.ajax({
       url: app.base_url('api/get_properties'),
@@ -89,12 +134,35 @@ $( function() {
       get_properties();
     });
 
-  $('.price').mask('000.000.000.000.000', {reverse: true});
+  $('.price-mask').mask('000.000.000.000.000', {reverse: true});
 
   $('.properties-data-item').on('click', function(){
     $(this).closest('.properties-data').find('.properties-data-item').removeClass('active btn-info');
     $(this).addClass('active btn-info').blur();
     get_properties();
+  });
+
+  property_images_swiper_init();
+
+  var view_changer = $('.view-btn');
+  var view_area = $('.property-listing');
+  view_changer.on("click",function(){
+    property_images_swiper_destroy();
+
+    var view_this = $(this);
+    view_changer.removeClass('active');
+    view_this.addClass('active');
+    if(view_this.hasClass('btn-list')) {
+      view_area.removeClass('grid-view grid-view-3-col').addClass('list-view');
+    }
+    else if(view_this.hasClass('btn-grid')) {
+      view_area.removeClass('list-view grid-view-3-col').addClass('grid-view');
+    }
+    else if(view_this.hasClass('btn-grid-3-col')) {
+      view_area.removeClass('list-view grid-view').addClass('grid-view grid-view-3-col');
+    }
+
+    property_images_swiper_init();
   });
 
   $.widget( "custom.catcomplete", $.ui.autocomplete, {
@@ -128,24 +196,20 @@ $( function() {
     }
   });
 
+  var property_location_item = $('#property-location-item').html();
+  Mustache.parse(property_location_item);
+
   $(".input-search-local").catcomplete({
     source: app.base_url('api/get_locations'),
     minLength: 2,
     delay: 250,
     select: function( event, ui ) {
+      var property_location_item_rendered = Mustache.render(property_location_item, ui.item);
+      $('.property-location-items').append(property_location_item_rendered);
 
-      $.ajax({
-        url: app.base_url('api/get_full_location'),
-        method: 'post',
-        dataType: 'json',
-        data: {
-          'id': ui.item.id,
-          'category': ui.item.category.slug
-        }
-      }).done(function(result) {
+      setTimeout(function(){
         $(".input-search-local").val('').focus();
-        $('<div>').attr('data-json', result.json).addClass('property-location-item').html(result.label).append('<a href="javascript:void(0);" class="property-location-item-remove pull-right"><i class="fa fa-times-circle" aria-hidden="true"></i></a>').appendTo('.property-location-items');
-      });
+      }, 200);
 
       get_properties();
     }

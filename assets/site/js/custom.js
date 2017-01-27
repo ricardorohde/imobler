@@ -923,26 +923,7 @@ var nice = false;
     });
 
 
-    /* ------------------------------------------------------------------------ */
-    /*  CHANGE GRID LIST
-     /* ------------------------------------------------------------------------ */
-    var view_changer = $('.view-btn');
-    var view_area = $('.property-listing');
 
-    view_changer.on("click",function(){
-        var view_this = $(this);
-        view_changer.removeClass('active');
-        view_this.addClass('active');
-        if(view_this.hasClass('btn-list')) {
-            view_area.removeClass('grid-view grid-view-3-col').addClass('list-view');
-        }
-        else if(view_this.hasClass('btn-grid')) {
-            view_area.removeClass('list-view grid-view-3-col').addClass('grid-view');
-        }
-        else if(view_this.hasClass('btn-grid-3-col')) {
-            view_area.removeClass('list-view grid-view').addClass('grid-view grid-view-3-col');
-        }
-    });
 
     /* ------------------------------------------------------------------------ */
     /*  SEARCH PANEL HEIGHT FIX

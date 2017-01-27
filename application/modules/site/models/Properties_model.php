@@ -117,7 +117,6 @@ class Properties_model extends CI_Model {
       $this->db->where('imoveis.status', $request['params']['visibility']);
     }
 
-
     // WHERE
     if(isset($request['select']['where']) && !empty($request['select']['where'])){
       $this->db->where($request['select']['where']);
@@ -152,16 +151,48 @@ class Properties_model extends CI_Model {
     if($query->num_rows()){
       if($row){
         $return = $query->row_array();
+        $return_ids = $return['imovel_id'];
       }else{
-        $return['results'] = $query->result_array();
+        $return['results'] = array();
+        $return_ids = array();
+        foreach($query->result_array() as $result){
+          $return['results'][$result['imovel_id']] = $result;
+          $return_ids[] = $result['imovel_id'];
+        }
       }
 
-      //echo urlencode($this->db->_compile_select());
-
-      return $return;
+      return $this->get_properties_images($return_ids, $return);
     }else{
       return false;
     }
+  }
+
+  public function get_properties_images($properties_ids, $return = null) {
+    $this->db->select("*");
+
+    $this->db->where_in('imoveis_imagens.imovel', $properties_ids);
+
+    $this->db->order_by('imoveis_imagens.padrao DESC, imoveis_imagens.ordem ASC');
+
+    $query = $this->db->get("imoveis_imagens");
+
+    if ($query->num_rows() > 0) {
+      if($return){
+        foreach ($query->result_array() as $imovel_imagem) {
+          $return['results'][$imovel_imagem['imovel']]['imagens'][] = array(
+            'arquivo' => $imovel_imagem['arquivo'],
+            'legenda' => $imovel_imagem['legenda']
+          );
+        }
+        return $return;
+      }
+
+      return $query->result_array();
+    }else{
+      if($return) return $return;
+    }
+
+    return false;
   }
 
   public function get_location($request = array()) {
@@ -202,45 +233,10 @@ class Properties_model extends CI_Model {
 
       $result = array(
         'results' => $row,
-        'json' => json_encode($json),
         'label' => $label
       );
 
       return $result;
-    }
-
-    return false;
-  }
-
-  public function get_full_location(){
-    $post = $this->input->post();
-
-    $select = array(
-      'estados.sigla as state',
-      'cidades.slug as city'
-    );
-
-    if($post['category'] == 'district'){
-      $select[] = 'bairros.slug as district';
-    }
-
-    $this->db->select($select);
-
-    $this->db->from('estados');
-    $this->db->join("cidades", "cidades.estado = estados.id", "inner");
-
-    // Se for bairro
-    if($post['category'] == 'city'){
-      $this->db->where('cidades.id', $post['id']);
-    }else if($post['category'] == 'district'){
-      $this->db->join("bairros", "bairros.cidade = cidades.id", "inner");
-      $this->db->where('bairros.id', $post['id']);
-    }
-
-    $query = $this->db->get();
-
-    if ($query->num_rows() > 0) {
-      return json_encode($this->get_location(array('params' => $query->row_array())));
     }
 
     return false;
@@ -312,145 +308,67 @@ class Properties_model extends CI_Model {
     return false;
   }
 
-  public function get_properties_types() {
-    $this->db->select("*");
+  public function get_locations_by_term() {
 
-    $this->db->where('imoveis_imagens.imovel', $property_id);
+    $this->db->select("
+      UCASE(estados.sigla) as estado_sigla,
+      estados.sigla as estado_slug,
+      cidades.nome as cidade_nome,
+      cidades.slug as cidade_slug,
+      '' as bairro_nome,
+      '' as bairro_slug,
+      'city' as category
+    ");
 
-    $query = $this->db->get("imoveis_imagens");
+    $this->db->from('estados');
+    $this->db->join("cidades", "cidades.estado = estados.id", "inner");
 
-    if ($query->num_rows() > 0) {
-      return $query->result_array();
+    $this->db->like('cidades.nome', $this->input->get('term'));
+
+    $query_city = $this->db->get_compiled_select();
+
+    $this->db->select("
+      UCASE(estados.sigla) as estado_sigla,
+      estados.sigla as estado_slug,
+      cidades.nome as cidade_nome,
+      cidades.slug as cidade_slug,
+      bairros.nome as bairro_nome,
+      bairros.slug as bairro_slug,
+      'district' as category
+    ");
+
+    $this->db->from('estados');
+    $this->db->join("cidades", "cidades.estado = estados.id", "inner");
+    $this->db->join("bairros", "bairros.cidade = cidades.id", "inner");
+
+    $this->db->like('bairros.nome', $this->input->get('term'));
+
+    $query_district = $this->db->get_compiled_select();
+
+    $query = $this->db->query($query_city ." UNION ". $query_district);
+
+    if($query->num_rows() > 0) {
+      $return = array();
+
+      foreach($query->result_array() as $row){
+        array_push($return, array(
+          'label' => ($row['category'] == 'city' ? $row['cidade_nome'] . ' ('. $row['estado_sigla'] .')' : $row['bairro_nome'] . ' ('. $row['cidade_nome'] . ', ' . $row['estado_sigla'] .')'),
+          'location' => array(
+            'state' => $row['estado_slug'],
+            'city' => $row['cidade_slug'],
+            'district' => $row['bairro_slug']
+          ),
+          'category' => array(
+            'slug' => $row['category'],
+            'name' => ($row['category'] == 'city' ? 'Cidades' : 'Bairros')
+          )
+        ));
+      }
+
+      return json_encode($return);
     }
-
-    return false;
   }
 
-  // public function get_rows_count($sql){
-  //   $query = $this->db->query($sql);
-  //   return $query->num_rows();
-  // }
 
-  // public function get_properties($params = array(), $limit = false, $offset = false, $select = '', $join = array(), $order = false, $row = false){
-  //   // SELECT
-  //   $select = !empty($select) ? $select : "
-  //     imoveis.*,
-  //     tipos_de_imoveis.nome as tipo_nome,
-  //     imoveis_imagens.arquivo as imovel_imagem
-  //   ";
-  //   $this->db->select($select);
-
-  //   // FROM
-  //   $this->db->from('imoveis');
-
-  //   // JOIN
-  //   if($join){
-  //     foreach($join as $join_item){
-  //       $this->db->join($join_item[0], $join_item[1], $join_item[2]);
-  //     }
-  //   }else{
-  //     $this->db->join("tipos_de_imoveis", "imoveis.tipo_de_imovel = tipos_de_imoveis.id", "inner");
-  //     $this->db->join("imoveis_imagens", "imoveis_imagens.imovel = imoveis.id", "left");
-
-  //   }
-
-  //   // WHERE
-  //   if($params){
-  //     foreach($params as $key => $value){
-  //       if(is_array($value)){
-  //         foreach($value as $value_item){
-  //           $this->db->where($key, $value_item);
-  //         }
-  //       }else{
-  //         $this->db->where($key, $value);
-  //       }
-  //     }
-  //   }
-  //   $this->db->where('imoveis.status', 1);
-
-  //   if($order){
-  //     if($order === 'rand'){
-  //       $this->db->order_by('rand()');
-  //     }else{
-  //       $this->db->order_by($order);
-  //     }
-  //   }
-
-  //   $this->db->group_by('imoveis.id');
-
-  //   if($limit){
-  //     if($offset){
-  //       $paginar = true;
-  //       $total_rows = $this->get_rows_count($this->db->_compile_select());
-
-  //       $start = max(0, ( $offset -1 ) * $limit);
-
-  //       $this->db->limit($limit, $start);
-  //     }else{
-  //       $this->db->limit($limit);
-  //     }
-  //   }
-
-  //   $query = $this->db->get();
-  //   if ($query->num_rows() > 0) {
-  //     if($row){
-  //       return $query->row_array();
-  //     }
-
-  //     if(isset($paginar) && $paginar){
-  //       $arr_return = array(
-  //         'total_rows' => $total_rows,
-  //         'results' => $query->result_array()
-  //       );
-  //       return $arr_return;
-  //     }else{
-  //       return $query->result_array();
-  //     }
-
-
-  //   }
-  //   return false;
-  // }
-
-  // public function get_properties_images($property_id) {
-  //   $this->db->select("*");
-
-  //   $this->db->where('imoveis_imagens.imovel', $property_id);
-
-  //   $query = $this->db->get("imoveis_imagens");
-
-  //   if ($query->num_rows() > 0) {
-  //     return $query->result_array();
-  //   }
-
-  //   return false;
-  // }
-
-  // public function get_property_url($property_id){
-  //   $property = $this->get_properties(array('imoveis.id' => $property_id), false, false,'
-  //       imoveis.id,
-  //       imoveis.permalink,
-  //       imoveis.dormitorios,
-  //       imoveis.suites,
-  //       imoveis.garagens,
-  //       imoveis.area,
-  //       imoveis.valor,
-  //       cidades.slug AS cidade,
-  //       bairros.slug AS bairro,
-  //       tipos_de_imoveis.slug AS tipo_de_imovel
-  //     ', array(
-  //     array('tipos_de_imoveis', 'imoveis.tipo_de_imovel = tipos_de_imoveis.id', 'inner'),
-  //     array('cidades', 'imoveis.cidade = cidades.id', 'inner'),
-  //     array('bairros', 'imoveis.bairro = bairros.id', 'inner')
-  //   ), false, true);
-
-  //   $permalink = $property['permalink'];
-
-  //   if($property && empty($permalink)){
-  //     $permalink = "/imoveis-a-venda/" . $property['cidade'] . "/" . $property['bairro'] . "/" . $property['tipo_de_imovel'] . "/" . $property['id'] . "/";
-  //   }
-
-  //   return base_url($permalink);
-  // }
 
 }

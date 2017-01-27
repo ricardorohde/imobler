@@ -6,6 +6,8 @@ $route['default_controller'] = 'site/home'; //Home
 // == TOOLS  == \\
 $route['configjs'] = 'site/tools/configjs';
 $route['api/(:any)'] = 'site/tools/$1';
+$route['tools/images/(:num)/(:any)/(:num)/(:any)'] = 'site/tools/images/$1/$2/$3/$4';
+
 
 // == PÁGINAS ESTÁTICAS  == \\
 foreach(array(

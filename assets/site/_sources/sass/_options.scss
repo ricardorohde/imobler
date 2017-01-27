@@ -13,3 +13,54 @@
       height: 100%;
     }
 }
+
+.property-location-items {
+  tr:first-child {
+    td {
+      border-top: 0;
+    }
+  }
+
+  tr:last-child {
+    td {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+}
+
+.property-location-item {
+  td {
+    max-width:200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #666;
+  }
+}
+
+.list-sort-bar {
+  background: #fff;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.btn-images-prev,
+.btn-images-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+}
+
+.btn-images-prev {
+  left: 5px;
+}
+
+.btn-images-next {
+  right: 5px;
+}

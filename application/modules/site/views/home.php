@@ -8,7 +8,7 @@
     <h1>Seu novo imóvel está aqui</h1>
     <h2 class="banner-sub-title">Informe o tipo e o local do imóvel que está procurando.</h2>
     <div class="banner-search-main">
-      <form id="banner-search-main-form" method="post" action="<?php echo base_url('sp/sao-paulo/pirituba/apartamento/'); ?>" class="form-inline">
+      <form id="banner-search-main-form" method="post" class="form-inline">
         <input type="hidden" id="banner-search-main-transaction" name="transaction" value="venda" />
         <div class="form-group">
           <select id="banner-search-main-type" class="selectpicker" data-live-search="false" title="Tipo de imóvel">
@@ -36,8 +36,10 @@
           </select>
 
           <div class="search input-search input-icon">
-            <input type="hidden" id="banner-search-main-id" name="id" value="0" />
-            <input type="hidden" id="banner-search-main-category" name="category" value="0">
+            <input type="text" id="banner-search-main-state" name="state" value="" />
+            <input type="text" id="banner-search-main-city" name="city" value="">
+            <input type="text" id="banner-search-main-district" name="district" value="">
+
             <input type="text" class="form-control input-search-local" placeholder="Bairro, cidade ou referência do imóvel" autocomplete="off" />
           </div>
           <div class="search-btn">
@@ -86,7 +88,7 @@
                               <p class="rant">$21,000/mo</p>
                             </div>
                             <a href="<?php echo $this->site->get_property_url(0); ?>" class="hover-effect">
-                              <img src="https://unsplash.it/385/260/?image=<?php echo rand(1,500); ?>" alt="thumb">
+                              <img src="/assets/site/images/bg-video-1.png?size=/385/260/" alt="thumb">
                             </a>
                             <ul class="actions">
                               <li class="share-btn">
@@ -183,7 +185,7 @@
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Apartment">
+                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Apartment">
                 </a>
                 <figcaption class="location-fig-caption">
                   <h3 class="heading">Apartment</h3>
@@ -196,7 +198,7 @@
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Loft">
+                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Loft">
                 </a>
                 <div class="location-fig-caption">
                   <h3 class="heading">Loft</h3>
@@ -209,7 +211,7 @@
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Single Family Home">
+                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Single Family Home">
                 </a>
                 <div class="location-fig-caption">
                   <h3 class="heading">Single Family Home</h3>
@@ -222,7 +224,7 @@
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Single Family Home">
+                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Single Family Home">
                 </a>
                 <div class="location-fig-caption">
                   <h3 class="heading">Single Family Home</h3>
@@ -235,7 +237,7 @@
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Single Family Home">
+                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Single Family Home">
                 </a>
                 <div class="location-fig-caption">
                   <h3 class="heading">Single Family Home</h3>
@@ -248,7 +250,7 @@
             <div class="location-block">
               <figure>
                 <a href="#">
-                  <img src="https://unsplash.it/370/370/?image=<?php echo rand(1,500); ?>" width="370" height="370" alt="Villa">
+                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Villa">
                 </a>
                 <div class="location-fig-caption">
                   <h3 class="heading">Villa</h3>
@@ -295,7 +297,7 @@
                             <p class="rant">$21,000/mo</p>
                           </div>
                           <a href="<?php echo $this->site->get_property_url(0); ?>" class="hover-effect">
-                            <img src="https://unsplash.it/434/290/?image=<?php echo rand(1,500); ?>" alt="thumb">
+                            <img src="/assets/site/images/bg-video-1.png?size=/434/290/" alt="thumb">
                           </a>
                           <ul class="actions">
                             <li class="share-btn">
