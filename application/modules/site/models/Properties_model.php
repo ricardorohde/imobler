@@ -155,9 +155,11 @@ class Properties_model extends CI_Model {
       }else{
         $return['results'] = array();
         $return_ids = array();
+        $return_count = 0;
         foreach($query->result_array() as $result){
-          $return['results'][$result['imovel_id']] = $result;
-          $return_ids[] = $result['imovel_id'];
+          $return['results'][$return_count] = $result;
+          $return_ids[$return_count] = $result['imovel_id'];
+          $return_count++;
         }
       }
 
@@ -179,7 +181,8 @@ class Properties_model extends CI_Model {
     if ($query->num_rows() > 0) {
       if($return){
         foreach ($query->result_array() as $imovel_imagem) {
-          $return['results'][$imovel_imagem['imovel']]['imagens'][] = array(
+          $property_key = array_search ($imovel_imagem['imovel'], $properties_ids);
+          $return['results'][$property_key]['imagens'][] = array(
             'arquivo' => $imovel_imagem['arquivo'],
             'legenda' => $imovel_imagem['legenda']
           );

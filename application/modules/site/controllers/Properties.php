@@ -20,8 +20,6 @@ class Properties extends Site_Controller {
       ), $route_params)
     ));
 
-    //print_l($properties);
-
     $data = array(
       'page' => array(
         'one' => 'home'

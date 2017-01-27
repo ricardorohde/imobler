@@ -5,6 +5,21 @@ class Site {
     $this->ci =& get_instance();
   }
 
+  public function mustache($template, $data){
+    require_once APPPATH.'third_party/Mustache/Autoloader.php';
+
+    Mustache_Autoloader::register();
+
+    $entry = new Mustache_Engine;
+
+    $this->ci->load->helper('file');
+    $template = read_file("assets/site/templates/" . $template);
+
+    $rendered = $entry->render($template, $data);
+
+    return $rendered;
+  }
+
   public function get_property_url($property = 0){
     $this->ci->load->model('properties_model');
     return $this->ci->properties_model->get_property_permalink($property);

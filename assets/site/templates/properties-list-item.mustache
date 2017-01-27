@@ -1,0 +1,112 @@
+{{#results}}
+  <div class="item-wrap">
+    <div class="property-item table-list">
+      <div class="table-cell">
+        <div class="figure-block">
+          <figure class="item-thumb">
+            <span class="label-featured label label-success">Luciano</span>
+            <div class="label-wrap label-right hide-on-list">
+              <span class="label label-default">For Sale</span>
+              <span class="label label-danger">Sold</span>
+            </div>
+            <div class="price hide-on-list">
+              <p class="price-start">Start from</p>
+              <h3>$350,000</h3>
+              <p class="rant">$21,000/mo</p>
+            </div>
+
+            <ul class="actions">
+              <li>
+                <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Favorite">
+                  <i class="fa fa-heart"></i>
+                </span>
+              </li>
+              <li class="share-btn">
+                <div class="share_tooltip fade">
+                  <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                  <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                  <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                  <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                </div>
+                <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
+              </li>
+              <li>
+                <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
+                  <i class="fa fa-camera"></i>
+                </span>
+              </li>
+            </ul>
+
+            <div class="property-images">
+              <div class="owl-carousel">
+                {{#imagens}}
+                  <a href="{{property_permalink}}"><img data-src="{{base_url}}/tools/images/{{imovel_id}}/434x290/80/{{arquivo}}" alt="{{legenda}}" class="owl-lazy"></a>
+                {{/imagens}}
+              </div>
+              <a href="javascript:void(0);" class="btn-images-prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+              <a href="javascript:void(0);" class="btn-images-next"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            </div>
+
+          </figure>
+        </div>
+      </div>
+      <div class="item-body table-cell">
+
+        <div class="body-left table-cell">
+          <div class="info-row">
+            <div class="label-wrap hide-on-grid">
+              <div class="label-status label label-default">For Sale</div>
+              <span class="label label-danger">Sold</span>
+            </div>
+            <h2 class="property-title"><a href="{{property_permalink}}">{{imovel_id}} - {{tipo_nome}} à venda em {{bairro_nome}}</a></h2>
+            <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
+          </div>
+          <div class="info-row amenities hide-on-grid">
+            <p>
+              <span>Dormitórios: {{imovel_dormitorios}}</span><br>
+              <span>Banheiros: {{imovel_banheiros}}</span><br>
+              <!-- <span>Vagas de Garagens: {{imovel_garagens}}</span> -->
+            </p>
+            <p>Single Family Home</p>
+          </div>
+          <div class="info-row date hide-on-grid">
+            <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
+            <p><i class="fa fa-calendar"></i> 12 Days ago </p>
+          </div>
+        </div>
+        <div class="body-right table-cell hidden-gird-cell">
+          <div class="info-row price">
+            <p class="price-start">Start from</p>
+            <h3>$350,000</h3>
+            <p class="rant">$21,000/mo</p>
+          </div>
+          <div class="info-row phone text-right">
+            <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
+            <p><a href="#">+1 (786) 225-0199</a></p>
+          </div>
+        </div>
+
+        <div class="table-list full-width hide-on-list">
+          <div class="cell">
+            <div class="info-row amenities">
+              <p>
+                <span>Dormitórios: {{imovel_dormitorios}}</span><br>
+                <span>Banheiros: {{imovel_banheiros}}</span><br>
+                <span>Vagas de Garagens: {{imovel_garagens}}</span>
+              </p>
+              <p>Single Family Home</p>
+            </div>
+          </div>
+
+          <div class="cell">
+            <div class="phone">
+              <a href="{{property_permalink}}" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
+              <p><a href="#">+1 (786) 225-0199</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{{/results}}

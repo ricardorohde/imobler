@@ -36,9 +36,9 @@
           </select>
 
           <div class="search input-search input-icon">
-            <input type="text" id="banner-search-main-state" name="state" value="" />
-            <input type="text" id="banner-search-main-city" name="city" value="">
-            <input type="text" id="banner-search-main-district" name="district" value="">
+            <input type="hidden" id="banner-search-main-state" name="state" value="" />
+            <input type="hidden" id="banner-search-main-city" name="city" value="">
+            <input type="hidden" id="banner-search-main-district" name="district" value="">
 
             <input type="text" class="form-control input-search-local" placeholder="Bairro, cidade ou referência do imóvel" autocomplete="off" />
           </div>
