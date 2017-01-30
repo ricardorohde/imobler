@@ -156,6 +156,8 @@ class Properties_model extends CI_Model {
       }
     }
 
+    $sql = $this->db->_compile_select();
+
     $query = $this->db->get();
 
     if($query->num_rows()){
@@ -163,7 +165,7 @@ class Properties_model extends CI_Model {
         $return = $query->row_array();
         $return_ids = $return['imovel_id'];
       }else{
-        $return['results'] = array();
+        $return['results'] = array('sql' => $sql);
         $return_ids = array();
         $return_count = 0;
         foreach($query->result_array() as $result){

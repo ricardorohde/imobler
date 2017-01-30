@@ -10,8 +10,6 @@ class Properties extends Site_Controller {
   public function list($route_params = null, $page = 1) {
     $route_params = json_decode($route_params, true);
 
-    print_l($route_params);
-
     $properties = $this->properties_model->get_properties(array(
       'params' => array_merge(array(
         'pagination' => array(

@@ -4,8 +4,7 @@ var templates = {'properties-list-item': '', 'properties-list-location-item': ''
 var properties_list_get_timeout = 0;
 
 $(function(){
-
-
+  var search_property_type = $('#search-property_type');
 
   properties_list.properties = {
     'get': function($page){
@@ -176,7 +175,6 @@ $(function(){
     'filters': function(){
       if(window.location.hash) {
         var params = jQuery.parseJSON(window.location.hash.substring(1));
-        console.log(params);
 
         if(typeof params['location'] !== 'undefined' && params['location'].length){
           var property_location_items = '';
@@ -185,6 +183,40 @@ $(function(){
             properties_list.locations.add(property_location_item_object, false);
           }
         }
+
+        if(typeof params['property_types'] !== 'undefined' && params['property_types'].length){
+          search_property_type.val(params['property_types']).trigger("change");
+        }
+
+        if(typeof params['min_price'] !== 'undefined' && params['min_price']){
+          $('#search-min_price').val(params['min_price']).unmask();
+        }
+
+        if(typeof params['max_price'] !== 'undefined' && params['max_price']){
+          $('#search-max_price').val(params['max_price']).unmask();
+        }
+
+        if(typeof params['bedrooms'] !== 'undefined' && params['bedrooms']){
+          $('.properties-data-item.properties-bedrooms[data-value='+ params['bedrooms'] +']').addClass('active btn-info');
+        }
+
+        if(typeof params['garages'] !== 'undefined' && params['garages']){
+          $('.properties-data-item.properties-garages[data-value='+ params['garages'] +']').addClass('active btn-info');
+        }
+
+        if(typeof params['bathrooms'] !== 'undefined' && params['bathrooms']){
+          $('.properties-data-item.properties-bathrooms[data-value='+ params['bathrooms'] +']').addClass('active btn-info');
+        }
+
+        if(typeof params['min_area'] !== 'undefined' && params['min_area']){
+          $('#search-min_area').val(params['min_area']).unmask();
+        }
+
+        if(typeof params['max_area'] !== 'undefined' && params['max_area']){
+          $('#search-max_area').val(params['max_area']).unmask();
+        }
+
+        properties_list.properties.get(1);
       }
     }
 
@@ -309,7 +341,7 @@ $(function(){
     properties_list.locations.init();
 
     // PROPERTIES TYPES SELECT
-    $('#search-property_type').select2({
+    search_property_type.select2({
       theme: "bootstrap",
       placeholder: 'Tipo de imóvel'
     })
@@ -353,14 +385,16 @@ $(function(){
         view_type_area.removeClass('list-view').addClass('grid-view');
       }
 
-      // SEND FORM
-      $('#properties-list-form').on('submit', function(event){
-        event.preventDefault();
-        properties_list.properties.get(1);
-      });
-
       properties_list.swiper.init();
     });
+
+    // SEND FORM
+    $('#properties-list-form').on('submit', function(event){
+      event.preventDefault();
+      properties_list.properties.get(1);
+    });
+
+    properties_list.swiper.init();
 
     properties_list.templates.get('properties-list-item');
     properties_list.templates.get('properties-list-location-item', function(){

@@ -52,7 +52,7 @@
             <div class="widget-body">
               <form id="properties-list-form" method="post">
                 <input type="hidden" id="search-transaction" name="transaction" value="venda" />
-                <input type="text" id="search-page" name="page" value="<?php echo $paging; ?>" />
+                <input type="hidden" id="search-page" name="page" value="<?php echo $paging; ?>" />
 
                 <dir class="row">
                   <div class="col-xs-12">
@@ -64,7 +64,6 @@
                     <table class="table">
                       <tbody class="property-location-items">
                         <?php
-                        print_l($filters['property_location']);
                         if(isset($filters['property_location']) && !empty($filters['property_location'])){
                           echo $this->site->mustache('properties-list-location-item.mustache', $filters['property_location']);
                         }
