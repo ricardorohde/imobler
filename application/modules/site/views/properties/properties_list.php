@@ -18,8 +18,8 @@
                 </select>
               </div>
               <div class="table-cell">
-                <span class="view-btn btn-list"><i class="fa fa-th-list"></i></span>
-                <span class="view-btn btn-grid active"><i class="fa fa-th-large"></i></span>
+                <span class="view-btn btn-list <?php echo $this->session->userdata('listview') ? ($this->session->userdata('listview') == 'list-view' ? 'active' : '') : 'active'; ?>"><i class="fa fa-th-list"></i></span>
+                <span class="view-btn btn-grid <?php echo $this->session->userdata('listview') && $this->session->userdata('listview') == 'grid-view' ? 'active' : ''; ?>"><i class="fa fa-th-large"></i></span>
               </div>
             </div>
           </div>
@@ -29,7 +29,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 list-grid-area container-contentbar">
         <div id="content-area">
-          <div class="property-listing grid-view">
+          <div class="property-listing <?php echo $this->session->userdata('listview') ? $this->session->userdata('listview') : 'grid-view'; ?>">
             <div class="property-items row">
               <?php
               if(isset($properties['results']) && !empty($properties['results'])) {
@@ -52,28 +52,21 @@
             <div class="widget-body">
               <form id="properties-list-form" method="post">
                 <input type="hidden" id="search-transaction" name="transaction" value="venda" />
+                <input type="text" id="search-page" name="page" value="<?php echo $paging; ?>" />
 
                 <dir class="row">
                   <div class="col-xs-12">
                     <h4>Localização do imóvel</h4>
                     <div class="form-group no-margin">
-                      <input type="text" class="input-search-local form-control" name="keyword" placeholder="Adicione um bairro ou uma cidade">
+                      <input type="text" class="input-search-local form-control" name="location" placeholder="Adicione um bairro ou uma cidade">
                     </div>
 
                     <table class="table">
                       <tbody class="property-location-items">
                         <?php
+                        print_l($filters['property_location']);
                         if(isset($filters['property_location']) && !empty($filters['property_location'])){
-                          ?>
-                          <tr class="property-location-item" data-state='<?php echo $filters['property_location']['results']['state_slug']; ?>' data-city='<?php echo $filters['property_location']['results']['city_slug']; ?>' data-district='<?php echo isset($filters['property_location']['results']['district_slug']) ? $filters['property_location']['results']['district_slug'] : ''; ?>'>
-                            <td>
-                              <?php echo $filters['property_location']['label']; ?>
-                            </td>
-                            <td>
-                              <a href="javascript:void(0);" class="property-location-item-remove pull-right"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                            </td>
-                          </tr>
-                          <?php
+                          echo $this->site->mustache('properties-list-location-item.mustache', $filters['property_location']);
                         }
                         ?>
                       </tbody>
@@ -85,7 +78,7 @@
                   <div class="col-xs-12">
                     <h4>Tipo de imóvel</h4>
                     <div class="form-group no-margin">
-                      <select id="search-property_type" class="form-control" multiple>
+                      <select id="search-property_type" class="form-control" style="width: 100%" multiple>
                         <?php
                         if(isset($filters['property_types']) && !empty($filters['property_types'])){
                           foreach($filters['property_types'] as $tipo_segmento){
@@ -176,13 +169,13 @@
                   <div class="properties-search-double-left col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <h4>Área Mínima</h4>
                     <div class="form-group">
-                      <input id="search-min_price" class="form-control price" name="min_price" placeholder="R$ 200.000" type="text">
+                      <input id="search-min_area" class="form-control area-mask" name="min_area" placeholder="0 m²" type="text">
                     </div>
                   </div>
                   <div class="properties-search-double-right col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <h4>Área Máxima</h4>
                     <div class="form-group">
-                      <input id="search-max_price" class="form-control price" name="max_price" placeholder="R$ 2.000.000" type="text">
+                      <input id="search-max_area" class="form-control area-mask" name="max_area" placeholder="ilimitado m²" type="text">
                     </div>
                   </div>
                 </dir>
@@ -215,7 +208,7 @@
                 <figure class="item-thumb">
                   <span class="label-featured label label-success">Featured</span>
                   <a class="hover-effect" href="#">
-                    <img src="http://placehold.it/290x194" width="290" height="194" alt="thumb">
+                    <img src="<?php echo base_url('tools/images/0/290x194/80/property-image.jpg'); ?>" alt="thumb">
                   </a>
                   <div class="price">
                     <span class="item-price">$350,000</span>
@@ -226,7 +219,7 @@
                 <figure class="item-thumb">
                   <span class="label-featured label label-success">Featured</span>
                   <a class="hover-effect" href="#">
-                    <img src="http://placehold.it/290x194" width="290" height="194" alt="thumb">
+                    <img src="<?php echo base_url('tools/images/0/290x194/80/property-image.jpg'); ?>" alt="thumb">
                   </a>
                   <div class="price">
                     <span class="item-price">$350,000</span>
@@ -251,7 +244,7 @@
                         <span class="label label-danger">Hot Offer</span>
                       </div>
                       <a href="#" class="hover-effect">
-                        <img src="http://placehold.it/370x202" alt="thumb">
+                        <img src="<?php echo base_url('tools/images/0/370x202/80/property-image.jpg'); ?>" alt="thumb">
                       </a>
                       <div class="price">
                         <span class="item-price">$350,000</span>
@@ -285,7 +278,8 @@
                         <span class="label label-danger">Hot Offer</span>
                       </div>
                       <a href="#" class="hover-effect">
-                        <img src="http://placehold.it/370x202" alt="thumb">
+
+                        <img src="<?php echo base_url('tools/images/0/370x202/80/property-image.jpg'); ?>" alt="thumb">
                       </a>
                       <div class="price">
                         <span class="item-price">$350,000</span>
@@ -319,7 +313,7 @@
                         <span class="label label-danger">Hot Offer</span>
                       </div>
                       <a href="#" class="hover-effect">
-                        <img src="http://placehold.it/370x202" alt="thumb">
+                        <img src="<?php echo base_url('tools/images/0/370x202/80/property-image.jpg'); ?>" alt="thumb">
                       </a>
                       <div class="price">
                         <span class="item-price">$350,000</span>
@@ -355,7 +349,7 @@
                 <div class="media-left">
                   <figure class="item-thumb">
                     <a class="hover-effect" href="#">
-                      <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      <img src="<?php echo base_url('tools/images/0/100x75/80/property-image.jpg'); ?>" alt="thumb">
                     </a>
                   </figure>
                 </div>
@@ -372,7 +366,7 @@
                 <div class="media-left">
                   <figure class="item-thumb">
                     <a class="hover-effect" href="#">
-                      <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      <img src="<?php echo base_url('tools/images/0/100x75/80/property-image.jpg'); ?>" alt="thumb">
                     </a>
                   </figure>
                 </div>
@@ -389,7 +383,7 @@
                 <div class="media-left">
                   <figure class="item-thumb">
                     <a class="hover-effect" href="#">
-                      <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      <img src="<?php echo base_url('tools/images/0/100x75/80/property-image.jpg'); ?>" alt="thumb">
                     </a>
                   </figure>
                 </div>
@@ -413,7 +407,7 @@
                 <div class="media-left">
                   <figure class="item-thumb">
                     <a class="hover-effect" href="#">
-                      <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      <img src="<?php echo base_url('tools/images/0/100x75/80/property-image.jpg'); ?>" alt="thumb">
                     </a>
                   </figure>
                 </div>
@@ -432,7 +426,7 @@
                 <div class="media-left">
                   <figure class="item-thumb">
                     <a class="hover-effect" href="#">
-                      <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      <img src="<?php echo base_url('tools/images/0/100x75/80/property-image.jpg'); ?>" alt="thumb">
                     </a>
                   </figure>
                 </div>
@@ -451,7 +445,7 @@
                 <div class="media-left">
                   <figure class="item-thumb">
                     <a class="hover-effect" href="#">
-                      <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      <img src="<?php echo base_url('tools/images/0/100x75/80/property-image.jpg'); ?>" alt="thumb">
                     </a>
                   </figure>
                 </div>
@@ -490,7 +484,7 @@
               <div class="media">
                 <div class="media-left">
                   <a href="#">
-                    <img class="media-object img-circle" src="http://placehold.it/50x50" alt="Thumb" width="50" height="50">
+                    <img class="media-object img-circle" src="<?php echo base_url('tools/images/0/50x50/80/property-image.jpg'); ?>" alt="Thumb" width="50" height="50">
                   </a>
                 </div>
                 <div class="media-body">
@@ -507,7 +501,7 @@
               <div class="media">
                 <div class="media-left">
                   <a href="#">
-                    <img class="media-object img-circle" src="http://placehold.it/50x50" alt="Thumb" width="50" height="50">
+                    <img class="media-object img-circle" src="<?php echo base_url('tools/images/0/50x50/80/property-image.jpg'); ?>" alt="Thumb" width="50" height="50">
                   </a>
                 </div>
                 <div class="media-body">
@@ -528,121 +522,3 @@
     </div>
   </div>
 </section>
-<div id="search-mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; opacity: .5; z-index:5000;">.</div>
-
-<script id="property-item" type="x-tmpl-mustache">
-  {{#results}}
-    <div class="item-wrap">
-      <div class="property-item table-list">
-        <div class="table-cell">
-          <div class="figure-block">
-            <figure class="item-thumb">
-              <span class="label-featured label label-success">Featured</span>
-              <div class="label-wrap label-right hide-on-list">
-                <span class="label label-default">For Sale</span>
-                <span class="label label-danger">Sold</span>
-              </div>
-              <div class="price hide-on-list">
-                <p class="price-start">Start from</p>
-                <h3>$350,000</h3>
-                <p class="rant">$21,000/mo</p>
-              </div>
-              <a href="#">
-                <img src="http://placehold.it/364x244" alt="thumb">
-              </a>
-              <ul class="actions">
-                <li>
-                  <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Favorite">
-                    <i class="fa fa-heart"></i>
-                  </span>
-                </li>
-                <li class="share-btn">
-                  <div class="share_tooltip fade">
-                    <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
-                    <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
-                    <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
-                    <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
-                  </div>
-                  <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
-                </li>
-                <li>
-                  <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
-                    <i class="fa fa-camera"></i>
-                  </span>
-                </li>
-              </ul>
-            </figure>
-          </div>
-        </div>
-        <div class="item-body table-cell">
-
-          <div class="body-left table-cell">
-            <div class="info-row">
-              <div class="label-wrap hide-on-grid">
-                <div class="label-status label label-default">For Sale</div>
-                <span class="label label-danger">Sold</span>
-              </div>
-              <h2 class="property-title"><a href="#">{{imovel_id}} - {{tipo_nome}} à venda em {{bairro_nome}}</a></h2>
-              <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
-            </div>
-            <div class="info-row amenities hide-on-grid">
-              <p>
-                <span>Dormitórios: {{imovel_dormitorios}}</span><br>
-                <span>Banheiros: {{imovel_banheiros}}</span><br>
-                <span>Vagas de Garagens: {{imovel_garagens}}</span>
-              </p>
-              <p>Single Family Home</p>
-            </div>
-            <div class="info-row date hide-on-grid">
-              <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
-              <p><i class="fa fa-calendar"></i> 12 Days ago </p>
-            </div>
-          </div>
-          <div class="body-right table-cell hidden-gird-cell">
-            <div class="info-row price">
-              <p class="price-start">Start from</p>
-              <h3>$350,000</h3>
-              <p class="rant">$21,000/mo</p>
-            </div>
-            <div class="info-row phone text-right">
-              <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
-              <p><a href="#">+1 (786) 225-0199</a></p>
-            </div>
-          </div>
-
-          <div class="table-list full-width hide-on-list">
-            <div class="cell">
-              <div class="info-row amenities">
-                <p>
-                  <span>Dormitórios: {{imovel_dormitorios}}</span><br>
-                  <span>Banheiros: {{imovel_banheiros}}</span><br>
-                  <span>Vagas de Garagens: {{imovel_garagens}}</span>
-                </p>
-                <p>Single Family Home</p>
-              </div>
-            </div>
-
-            <div class="cell">
-              <div class="phone">
-                <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
-                <p><a href="#">+1 (786) 225-0199</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  {{/results}}
-</script>
-
-<script id="property-location-item" type="x-tmpl-mustache">
-  <tr class="property-location-item" data-state='{{location.state}}' data-city='{{location.city}}' data-district='{{location.district}}'>
-    <td>
-      {{label}}
-    </td>
-    <td>
-      <a href="javascript:void(0);" class="property-location-item-remove pull-right"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-    </td>
-  </tr>
-</script>

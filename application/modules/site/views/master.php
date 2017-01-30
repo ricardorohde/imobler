@@ -63,9 +63,11 @@
       $LAB
         .script("<?php echo base_url('assets/site/js/jquery.js'); ?>").wait()
         .script("<?php echo base_url('configjs'); ?>").wait()
+        .script("<?php echo base_url('assets/site/js/pace.min.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/modernizr.custom.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/bootstrap.min.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/owl.carousel.min.js'); ?>").wait()
+        .script("<?php echo base_url('assets/site/js/swiper.jquery.min.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/jquery.matchHeight-min.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/bootstrap-select.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/jquery-ui.js'); ?>").wait()

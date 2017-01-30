@@ -36,7 +36,7 @@ class Tools extends Site_Controller {
     $properties = $this->properties_model->get_properties(array(
       'params' => array_merge(array(
         'pagination' => array(
-          'limit' => 1,
+          'limit' => $this->config->item('property_list_limit'),
           'page' => $page
         ),
         'visibility' => true
@@ -44,5 +44,11 @@ class Tools extends Site_Controller {
     ));
 
     echo json_encode($properties);
+  }
+
+  public function set_listview() {
+    if($this->input->post('listview')){
+      $this->session->set_userdata('listview', $this->input->post('listview'));
+    }
   }
 }

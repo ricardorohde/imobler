@@ -62,13 +62,13 @@ class Site {
     $config["per_page"] = $limit; // Number of items you intend to show per page.
     $config['reuse_query_string'] = TRUE;
     $config['use_page_numbers'] = TRUE; // Use pagination number for anchor URL.
-    $config['num_links'] = 1; //Set that how many number of pages you want to view.
+    $config['num_links'] = 5; //Set that how many number of pages you want to view.
     $config['full_tag_open'] = '<hr><div class="pagination-main"><ul class="pagination">';
     $config['full_tag_close'] = '</ul></div><!--pagination-->';
-    $config['first_link'] = '&laquo; First';
+    $config['first_link'] = '<i class="fa fa-angle-double-left" aria-hidden="true"></i>';
     $config['first_tag_open'] = '<li class="prev page">';
     $config['first_tag_close'] = '</li>';
-    $config['last_link'] = 'Last &raquo;';
+    $config['last_link'] = '<i class="fa fa-angle-double-right" aria-hidden="true"></i>';
     $config['last_tag_open'] = '<li class="next page">';
     $config['last_tag_close'] = '</li>';
     $config['next_link'] = '<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>';
@@ -82,6 +82,7 @@ class Site {
     $config['num_tag_open'] = '<li class="page">';
     $config['num_tag_close'] = '</li>';
     $config['anchor_class'] = 'follow_link';
+    $config['attributes'] = array('class' => 'pagination-item');
 
     // To initialize "$config" array and set to pagination library.
     $this->ci->pagination->initialize($config);

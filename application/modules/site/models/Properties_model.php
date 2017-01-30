@@ -97,6 +97,16 @@ class Properties_model extends CI_Model {
       $this->db->where('imoveis_negociacoes.valor <=', preg_replace("/[^0-9]/", "", $request['params']['max_price']));
     }
 
+    // Área mínima
+    if(isset($request['params']['min_area']) && !empty($request['params']['min_area'])){
+      $this->db->where('imoveis.area_util >=', preg_replace("/[^0-9]/", "", $request['params']['min_area']));
+    }
+
+    // Área máxima
+    if(isset($request['params']['max_area']) && !empty($request['params']['max_area'])){
+      $this->db->where('imoveis.area_util <=', preg_replace("/[^0-9]/", "", $request['params']['max_area']));
+    }
+
     // Dormitórios
     if(isset($request['params']['bedrooms']) && !empty($request['params']['bedrooms'])){
       $this->db->where('imoveis.dormitorios >=', $request['params']['bedrooms']);
@@ -158,6 +168,7 @@ class Properties_model extends CI_Model {
         $return_count = 0;
         foreach($query->result_array() as $result){
           $return['results'][$return_count] = $result;
+          $return['results'][$return_count]['imovel_permalink'] = $this->site->get_property_url($result);
           $return_ids[$return_count] = $result['imovel_id'];
           $return_count++;
         }
@@ -202,20 +213,20 @@ class Properties_model extends CI_Model {
     $this->db->from('estados');
 
     if(isset($request['params']['state'])){
-      $this->db->select('UCASE(estados.sigla) as state_name, estados.sigla as state_slug');
+      $this->db->select('UCASE(estados.sigla) as state_name, estados.sigla as state');
       $this->db->where('estados.sigla', $request['params']['state']);
       $label = '%state_name%';
     }
 
     if(isset($request['params']['city'])){
-      $this->db->select('cidades.nome as city_name, cidades.slug as city_slug');
+      $this->db->select('cidades.nome as city_name, cidades.slug as city');
       $this->db->where('cidades.slug', $request['params']['city']);
       $this->db->join("cidades", "cidades.estado = estados.id", "inner");
       $label = '%city_name% (%state_name%)';
     }
 
     if(isset($request['params']['district'])){
-      $this->db->select('bairros.nome as district_name, bairros.slug as district_slug');
+      $this->db->select('bairros.nome as district_name, bairros.slug as district');
       $this->db->where('bairros.slug', $request['params']['district']);
       $this->db->join("bairros", "bairros.cidade = cidades.id", "inner");
       $label = '%district_name% (%city_name%, %state_name%)';
@@ -224,18 +235,17 @@ class Properties_model extends CI_Model {
     $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
-      $json = array();
       $row = $query->row_array();
-
+      $location = array();
       foreach ($row as $key => $value) {
         $label = str_replace('%'.$key.'%', $value, $label);
-        if(in_array($key, array('state_slug', 'city_slug', 'district_slug'))){
-          $json[str_replace('_slug', '', $key)] = $value;
+        if(in_array($key, array('state', 'city', 'district'))){
+          $location[$key] = $value;
         }
       }
 
       $result = array(
-        'results' => $row,
+        'location' => $location,
         'label' => $label
       );
 

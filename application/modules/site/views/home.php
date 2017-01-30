@@ -12,9 +12,9 @@
         <input type="hidden" id="banner-search-main-transaction" name="transaction" value="venda" />
         <div class="form-group">
           <select id="banner-search-main-type" class="selectpicker" data-live-search="false" title="Tipo de imóvel">
+            <option selected="true" value="0">Todos os tipos</option>
             <?php
             if(isset($property_types)){
-              $property_types_count = 0;
               foreach($property_types as $property_types_segment){
                 ?>
                 <optgroup label="<?php echo $property_types_segment['segmento']; ?>">
@@ -22,9 +22,8 @@
                   if(isset($property_types_segment['tipos'])){
                     foreach ($property_types_segment['tipos'] as $property_type) {
                       ?>
-                      <option <?php echo !$property_types_count ? 'selected="true"' : ''; ?> value="<?php echo $property_type['slug']; ?>"><?php echo $property_type['nome']; ?></option>
+                      <option value="<?php echo $property_type['slug']; ?>"><?php echo $property_type['nome']; ?></option>
                       <?php
-                      $property_types_count++;
                     }
                   }
                   ?>

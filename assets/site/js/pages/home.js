@@ -17,7 +17,10 @@ $( function() {
     }
 
     // Property Type
-    url += '/' + $('#banner-search-main-type').find('option:selected').val();
+    var property_type = $('#banner-search-main-type').find('option:selected').val();
+    if(property_type !== '0'){
+      url += '/' + property_type;
+    }
 
     // Redirect
     window.location.href = app.base_url(url);

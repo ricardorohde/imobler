@@ -7,6 +7,8 @@ var app = app || {};
 	app = {
 		body: $("body"),
 
+		property_list_limit: <?php echo $this->config->item('property_list_limit'); ?>,
+
 		base_url: function($uri){
 			var $base_url = '<?php echo base_url(); ?>';
 

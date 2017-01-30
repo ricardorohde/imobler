@@ -1704,39 +1704,39 @@ var nice = false;
 
     }
 
-    var agency_carousel = $("#agency-carousel");
-    if(agency_carousel.length > 0) {
+    // var agency_carousel = $("#agency-carousel");
+    // if(agency_carousel.length > 0) {
 
-        agency_carousel.owlCarousel({
-            rtl: houzez_rtl,
-            loop: true,
-            dots: true,
-            items:4,
-            slideBy: 4,
-            nav: false,
-            smartSpeed:600
-        });
+    //     agency_carousel.owlCarousel({
+    //         rtl: houzez_rtl,
+    //         loop: true,
+    //         dots: true,
+    //         items:4,
+    //         slideBy: 4,
+    //         nav: false,
+    //         smartSpeed:600
+    //     });
 
-        $('.btn-crl-agency-prev').on('click',function() {
-            agency_carousel.trigger('prev.owl.carousel',[600])
-        });
-        $('.btn-crl-agency-next').on('click',function() {
-            agency_carousel.trigger('next.owl.carousel',[600])
-        });
-    }
+    //     $('.btn-crl-agency-prev').on('click',function() {
+    //         agency_carousel.trigger('prev.owl.carousel',[600])
+    //     });
+    //     $('.btn-crl-agency-next').on('click',function() {
+    //         agency_carousel.trigger('next.owl.carousel',[600])
+    //     });
+    // }
 
-    var widget_slider = $(".property-widget-slider");
-    if(widget_slider.length > 0) {
-        widget_slider.owlCarousel({
-            rtl: houzez_rtl,
-            dots: true,
-            items: 1,
-            smartSpeed: 600,
-            slideBy: 1,
-            nav: true,
-            navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]
-        });
-    }
+    // var widget_slider = $(".property-widget-slider");
+    // if(widget_slider.length > 0) {
+    //     widget_slider.owlCarousel({
+    //         rtl: houzez_rtl,
+    //         dots: true,
+    //         items: 1,
+    //         smartSpeed: 600,
+    //         slideBy: 1,
+    //         nav: true,
+    //         navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]
+    //     });
+    // }
 
     /* ------------------------------------------------------------------------ */
     /*  SLIDER FOR DETAIL PAGE

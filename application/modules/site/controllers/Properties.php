@@ -10,10 +10,12 @@ class Properties extends Site_Controller {
   public function list($route_params = null, $page = 1) {
     $route_params = json_decode($route_params, true);
 
+    print_l($route_params);
+
     $properties = $this->properties_model->get_properties(array(
       'params' => array_merge(array(
         'pagination' => array(
-          'limit' => 12,
+          'limit' => $this->config->item('property_list_limit'),
           'page' => $page
         ),
         'visibility' => true
@@ -36,10 +38,10 @@ class Properties extends Site_Controller {
           array('assets/site/js/jquery.mask.js', true),
           array('assets/site/js/select2.js', true),
           array('assets/site/js/mustache.js', true),
-          array('assets/site/js/owl.carousel.js', true),
           array('assets/site/js/pages/properties_list.js', true)
         )
       ),
+      'paging' => $page,
       'filters' => $this->site->get_filters('all', array('params' => $route_params)),
       'properties' => $properties
     );

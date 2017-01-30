@@ -6,6 +6,7 @@ $route['default_controller'] = 'site/home'; //Home
 // == TOOLS  == \\
 $route['configjs'] = 'site/tools/configjs';
 $route['api/(:any)'] = 'site/tools/$1';
+$route['api/(:any)/(:num)'] = 'site/tools/$1/$2';
 $route['tools/images/(:num)/(:any)/(:num)/(:any)'] = 'site/tools/images/$1/$2/$3/$4';
 
 
@@ -98,6 +99,18 @@ $route['(:any)/(:any)/(:any)/(:any)/(:num)'] = function ($transaction, $state, $
 
   return 'site/properties/list/' . json_encode($params) . '/' . $page;
 };
+
+//Paginação da Lista de imóveis de todos os tipos e de todos os bairros em estado/cidade específicos - Ex: /venda/sp/sao-paulo/2
+$route['(:any)/(:any)/(:any)/(:num)'] = function ($transaction, $state, $city, $page){
+  $params = array();
+  if($transaction) $params['transaction'] = strtolower($transaction);
+  if($state) $params['state'] = strtolower($state);
+  if($city) $params['city'] = strtolower($city);
+
+  return 'site/properties/list/' . json_encode($params) . '/' . $page;
+};
+
+//Lista imóveis de todos os tipos em estado/cidade/bairro - Ex: /venda/sp/sao-paulo/apartamento/
 $route['(:any)/(:any)/(:any)/(:any)'] = function ($transaction, $state, $city, $property_type){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
@@ -108,15 +121,6 @@ $route['(:any)/(:any)/(:any)/(:any)'] = function ($transaction, $state, $city, $
   return 'site/properties/list/' . json_encode($params);
 };
 
-//Lista imóveis de todos os tipos e de todos os bairros em estado/cidade específicos - Ex: /venda/sp/sao-paulo
-$route['(:any)/(:any)/(:any)/(:num)'] = function ($transaction, $state, $city, $page){
-  $params = array();
-  if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
-
-  return 'site/properties/list/' . json_encode($params) . '/' . $page;
-};
 $route['(:any)/(:any)/(:any)'] = function ($transaction, $state, $city){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);

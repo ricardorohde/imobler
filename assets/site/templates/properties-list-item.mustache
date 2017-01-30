@@ -36,15 +36,27 @@
                 </span>
               </li>
             </ul>
-
             <div class="property-images">
-              <div class="owl-carousel">
-                {{#imagens}}
-                  <a href="{{property_permalink}}"><img data-src="{{base_url}}/tools/images/{{imovel_id}}/434x290/80/{{arquivo}}" alt="{{legenda}}" class="owl-lazy"></a>
-                {{/imagens}}
-              </div>
-              <a href="javascript:void(0);" class="btn-images-prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-              <a href="javascript:void(0);" class="btn-images-next"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+              <a href="{{imovel_permalink}}">
+                <div class="swiper-container">
+                  <div class="swiper-wrapper">
+                    {{#imagens.0}}
+                      {{#imagens}}
+                        <div class="swiper-slide">
+                          <img src="{{base_url}}/tools/images/0/430x300/80/property-image.jpg" data-src="{{base_url}}/tools/images/{{imovel_id}}/430x300/80/{{arquivo}}" alt="{{legenda}}" class="swiper-lazy">
+                        </div>
+                      {{/imagens}}
+                    {{/imagens.0}}
+                    {{^imagens.0}}
+                      <div class="swiper-slide">
+                        <img src="{{base_url}}/tools/images/0/430x300/80/property-image.jpg" alt="Imagem indisponível">
+                      </div>
+                    {{/imagens.0}}
+                  </div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </a>
             </div>
 
           </figure>
@@ -58,7 +70,7 @@
               <div class="label-status label label-default">For Sale</div>
               <span class="label label-danger">Sold</span>
             </div>
-            <h2 class="property-title"><a href="{{property_permalink}}">{{imovel_id}} - {{tipo_nome}} à venda em {{bairro_nome}}</a></h2>
+            <h2 class="property-title"><a href="{{imovel_permalink}}">{{imovel_id}} - {{tipo_nome}} à venda em {{bairro_nome}}</a></h2>
             <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
           </div>
           <div class="info-row amenities hide-on-grid">
@@ -100,7 +112,7 @@
 
           <div class="cell">
             <div class="phone">
-              <a href="{{property_permalink}}" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
+              <a href="{{imovel_permalink}}" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
               <p><a href="#">+1 (786) 225-0199</a></p>
             </div>
           </div>
