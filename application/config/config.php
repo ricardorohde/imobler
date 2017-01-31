@@ -27,7 +27,7 @@ $root = "http://".$_SERVER['HTTP_HOST'];
 $root .= dirname($_SERVER['SCRIPT_NAME']);
 $config['base_url'] = $root;
 
-$config['site_versao'] = '20170120';
+$config['site_versao'] = md5(time() . rand(0,999));
 
 /*
 |--------------------------------------------------------------------------

@@ -33,6 +33,8 @@ class Tools extends Site_Controller {
   public function get_properties($page = 1){
     $this->load->model('properties_model');
 
+    //print_l($this->input->post());
+
     $properties = $this->properties_model->get_properties(array(
       'params' => array_merge(array(
         'pagination' => array(

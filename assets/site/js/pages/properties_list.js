@@ -1,3 +1,4 @@
+/*
 var properties_list = app['properties_list'] = {};
 var swiper_images_status = false;
 var templates = {'properties-list-item': '', 'properties-list-location-item': ''};
@@ -7,12 +8,12 @@ $(function(){
   var search_property_type = $('#search-property_type');
 
   properties_list.properties = {
-    'get': function($page){
+    'get': function($page, $refresh){
 
       $('.property-items').addClass('processing');
 
       // SET PAGE FILTER
-      $('#search-page').val($page || 1);
+      $('#search-page').val($page);
 
       Pace.track(function(){
         var properties_list_url = '';
@@ -121,49 +122,61 @@ $(function(){
           get_properties_uri += '/' + $page;
         }
 
+        properties_list_url_params['page'] = $page;
+
         var $base_url = properties_list_url;
         var $url_suffix = JSON.stringify(properties_list_url_params);
 
-        params['base_url'] = $base_url;
+        console.log($base_url);
+
+
         //params['url_suffix'] = encodeURIComponent($url_suffix);
 
-        //Swiper Destroy
-        properties_list.swiper.destroy();
+        window.history.pushState('page', 'OOOOPS', app.base_url($base_url += '#' + $url_suffix));
 
-        $.ajax({
-          url: app.base_url(get_properties_uri),
-          method: 'post',
-          dataType: 'json',
-          data: params
-        }).done(function(result) {
-          $('html, body').animate({scrollTop: $('#section-body').offset().top}, {duration: 600, easing: 'swing'});
+        if(typeof $refresh !== 'undefined' && $refresh){
+          params['base_url'] = $base_url;
 
-          window.history.pushState('page', 'OOOOPS', app.base_url($base_url += '#' + $url_suffix));
+          //Swiper Destroy
+          properties_list.swiper.destroy();
 
+          $.ajax({
+            url: app.base_url(get_properties_uri),
+            method: 'post',
+            dataType: 'json',
+            data: params
+          }).done(function(result) {
+            $('html, body').animate({scrollTop: $('#section-body').offset().top}, {duration: 600, easing: 'swing'});
+
+
+
+            $('.property-items').removeClass('processing');
+
+            if(result === false){
+              var template_properties_list_no_results = Mustache.render(templates['properties-list-no-results'], result);
+              $('.property-items').html(template_properties_list_no_results);
+              $('.pagination-content').empty();
+
+              return false;
+            }
+
+            var template_properties_list_item = Mustache.render(templates['properties-list-item'], result);
+            $('.property-items').html(template_properties_list_item);
+
+            $('.pagination-content').html(result.pagination);
+
+            properties_list.swiper.init();
+          });
+        }else{
           $('.property-items').removeClass('processing');
-
-          if(result === false){
-            var template_properties_list_no_results = Mustache.render(templates['properties-list-no-results'], result);
-            $('.property-items').html(template_properties_list_no_results);
-            $('.pagination-content').empty();
-
-            return false;
-          }
-
-          var template_properties_list_item = Mustache.render(templates['properties-list-item'], result);
-          $('.property-items').html(template_properties_list_item);
-
-          $('.pagination-content').html(result.pagination);
-
-          properties_list.swiper.init();
-        });
+        }
       });
     }, //get
 
-    'process': function($page){
+    'process': function($page, $refresh){
       clearTimeout(properties_list_get_timeout);
       properties_list_get_timeout = setTimeout(function(){
-        properties_list.properties.get($page);
+        properties_list.properties.get($page, $refresh);
       }, 500);
     }, //process
 
@@ -210,7 +223,11 @@ $(function(){
         $('#search-max_area').val(params['max_area']).unmask();
       }
 
-      properties_list.properties.get(1);
+      if(typeof params['page'] !== 'undefined' && params['page']){
+        $('#search-page').val(params['page']);
+      }
+
+      properties_list.properties.get(params['page'], true);
 
     },
 
@@ -276,7 +293,7 @@ $(function(){
         //console.log('>>>' + templates['properties-list-location-item']);
         $('.property-location-items').append(template_properties_list_item);
         if(typeof refresh !== 'undefined' && refresh){
-          properties_list.properties.process(1);
+          properties_list.properties.process(1, true);
         }
       }
 
@@ -324,13 +341,13 @@ $(function(){
         }else{
           $(this).closest('.property-location-item').remove();
           setTimeout(function(){
-            properties_list.properties.process(1);
+            properties_list.properties.process(1, true);
           }, 200);
         }
       });
 
       $('#search-min_price, #search-max_price, #search-min_area, #search-min_area').on('blur', function(){
-        properties_list.properties.process(1);
+        properties_list.properties.process(1, true);
       });
     }
   };
@@ -355,10 +372,10 @@ $(function(){
       placeholder: 'Tipo de imóvel'
     })
     .on('select2:select', function () {
-      properties_list.properties.process(1);
+      properties_list.properties.process(1, true);
     })
     .on('select2:unselect', function(){
-      properties_list.properties.process(1);
+      properties_list.properties.process(1, true);
     });
 
     // MASK
@@ -375,13 +392,13 @@ $(function(){
         $(this).addClass('active btn-info').blur();
       }
 
-      properties_list.properties.process(1);
+      properties_list.properties.process(1, true);
     });
 
     // PAGINAÇAO JS
     $('.pagination-content').on('click', '.pagination-item', function(event){
       event.preventDefault();
-      properties_list.properties.process($(this).attr('data-ci-pagination-page'));
+      properties_list.properties.process($(this).attr('data-ci-pagination-page'), true);
     });
 
     // VIEW TYPE
@@ -407,7 +424,7 @@ $(function(){
     // SEND FORM
     $('#properties-list-form').on('submit', function(event){
       event.preventDefault();
-      properties_list.properties.get(1);
+      properties_list.properties.get(1, true);
     });
 
     properties_list.swiper.init();
@@ -415,6 +432,7 @@ $(function(){
     properties_list.templates.get('properties-list-item');
     properties_list.templates.get('properties-list-no-results');
     properties_list.templates.get('properties-list-location-item', function(){
+      //properties_list.properties.process(1, false);
       properties_list.properties.filters();
     });
   };
@@ -422,3 +440,4 @@ $(function(){
   properties_list.init();
 
 }); //$function
+*/
