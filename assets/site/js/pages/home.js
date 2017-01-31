@@ -31,9 +31,10 @@ $( function() {
     }
 
     url_filters.location.push(url_filter);
+    // + '#' + JSON.stringify(url_filters)
 
     // Redirect
-    window.location.href = app.base_url(url + '#' + JSON.stringify(url_filters))
+    window.location.href = app.base_url(url);
     //console.log(app.base_url(url + '#' + JSON.stringify(url_filters)));
   };
 
