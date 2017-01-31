@@ -11,6 +11,8 @@ class Properties_model extends CI_Model {
   }
 
   public function get_properties($request = array(), $row = false){
+    //print_l($request);
+
     $return = array();
     $where = array();
 
@@ -67,20 +69,42 @@ class Properties_model extends CI_Model {
       $this->db->where_in('imoveis_tipos.slug', $request['params']['property_type']);
     }
 
-    // Estado
-    if(isset($request['params']['state']) && !empty($request['params']['state'])){
-      $this->db->where_in('estados.sigla', $request['params']['state']);
+
+
+    if(isset($request['params']['location']) && !empty($request['params']['location'])){
+      $this->db->group_start();
+
+      $location_count = 0;
+      foreach($request['params']['location'] as $location){
+        if(!$location_count){
+          $this->db->group_start();
+        }else{
+          $this->db->or_group_start();
+        }
+
+        // Estado
+        if(isset($location['state']) && !empty($location['state'])){
+          $this->db->where('estados.sigla', $location['state']);
+        }
+
+        // Cidade
+        if(isset($location['city']) && !empty($location['city'])){
+          $this->db->where('cidades.slug', $location['city']);
+        }
+
+        // Bairro
+        if(isset($location['district']) && !empty($location['district'])){
+          $this->db->where('bairros.slug', $location['district']);
+        }
+
+        $this->db->group_end();
+
+        $location_count++;
+      }
+
+      $this->db->group_end();
     }
 
-    // Cidade
-    if(isset($request['params']['city']) && !empty($request['params']['city'])){
-      $this->db->where_in('cidades.slug', $request['params']['city']);
-    }
-
-    // Bairro
-    if(isset($request['params']['district']) && !empty($request['params']['district'])){
-      $this->db->where_in('bairros.slug', $request['params']['district']);
-    }
 
     // Transação
     if(isset($request['params']['transaction']) && !empty($request['params']['transaction'])){
@@ -143,7 +167,7 @@ class Properties_model extends CI_Model {
         if(isset($request['params']['pagination']['page']) && !empty($request['params']['pagination']['page'])){
           $page = max(0, ($request['params']['pagination']['page'] - 1) * $limit);
 
-          $return['pagination'] = $this->site->create_pagination($limit, $return['total_rows'], rtrim(current_url(), "/" . $request['params']['pagination']['page']));
+          $return['pagination'] = $this->site->create_pagination($limit, $return['total_rows'], rtrim((isset($request['params']['base_url']) ? base_url($request['params']['base_url']) : current_url()), "/" . $request['params']['pagination']['page']), (isset($request['params']['url_suffix']) ? $request['params']['url_suffix'] : null));
         }
       }
     }
@@ -165,7 +189,8 @@ class Properties_model extends CI_Model {
         $return = $query->row_array();
         $return_ids = $return['imovel_id'];
       }else{
-        $return['results'] = array('sql' => $sql);
+        $return['results'] = array();
+        $return['sql'] = $sql;
         $return_ids = array();
         $return_count = 0;
         foreach($query->result_array() as $result){
@@ -214,22 +239,22 @@ class Properties_model extends CI_Model {
   public function get_location($request = array()) {
     $this->db->from('estados');
 
-    if(isset($request['params']['state'])){
+    if(isset($request['params']['location'][0]['state'])){
       $this->db->select('UCASE(estados.sigla) as state_name, estados.sigla as state');
-      $this->db->where('estados.sigla', $request['params']['state']);
+      $this->db->where('estados.sigla', $request['params']['location'][0]['state']);
       $label = '%state_name%';
     }
 
-    if(isset($request['params']['city'])){
+    if(isset($request['params']['location'][0]['city'])){
       $this->db->select('cidades.nome as city_name, cidades.slug as city');
-      $this->db->where('cidades.slug', $request['params']['city']);
+      $this->db->where('cidades.slug', $request['params']['location'][0]['city']);
       $this->db->join("cidades", "cidades.estado = estados.id", "inner");
       $label = '%city_name% (%state_name%)';
     }
 
-    if(isset($request['params']['district'])){
+    if(isset($request['params']['location'][0]['district'])){
       $this->db->select('bairros.nome as district_name, bairros.slug as district');
-      $this->db->where('bairros.slug', $request['params']['district']);
+      $this->db->where('bairros.slug', $request['params']['location'][0]['district']);
       $this->db->join("bairros", "bairros.cidade = cidades.id", "inner");
       $label = '%district_name% (%city_name%, %state_name%)';
     }

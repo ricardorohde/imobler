@@ -55,9 +55,10 @@ $route['imovel/(:any)'] = function ($slug){
 // Ficha do imóvel - Estruturado - Ex: /imovel/sp/sao-paulo/vila-pereira-barreto-pirituba/sobrado/6140/
 $route['imovel/(:any)/(:any)/(:any)/(:any)/(:num)'] = function ($state, $city, $district, $property_type, $property_id){
   $params = array();
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
-  if($district) $params['district'] = strtolower($district);
+
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
+  if($district) $params['location'][0]['district'] = strtolower($district);
   if($property_type) $params['property_type'] = strtolower($property_type);
   if($property_id) $params['property_id'] = $property_id;
 
@@ -81,9 +82,9 @@ $transactions = 'venda|aluguel';
 $route['('. $transactions .')/(:any)/(:any)/(:any)/('. implode('|', $property_types) .')/(:num)'] = function ($transaction, $state, $city, $district, $property_type, $page){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
-  if($district) $params['district'] = strtolower($district);
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
+  if($district) $params['location'][0]['district'] = strtolower($district);
   if($property_type) $params['property_type'] = strtolower($property_type);
 
   return 'site/properties/list/' . json_encode($params) . '/' . $page;
@@ -91,9 +92,9 @@ $route['('. $transactions .')/(:any)/(:any)/(:any)/('. implode('|', $property_ty
 $route['('. $transactions .')/(:any)/(:any)/(:any)/('. implode('|', $property_types) .')'] = function ($transaction, $state, $city, $district, $property_type){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
-  if($district) $params['district'] = strtolower($district);
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
+  if($district) $params['location'][0]['district'] = strtolower($district);
   if($property_type) $params['property_type'] = strtolower($property_type);
 
   return 'site/properties/list/' . json_encode($params);
@@ -103,8 +104,8 @@ $route['('. $transactions .')/(:any)/(:any)/(:any)/('. implode('|', $property_ty
 $route['('. $transactions .')/(:any)/(:any)/('. implode('|', $property_types) .')/(:num)'] = function ($transaction, $state, $city, $property_type, $page){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
   if($property_type) $params['property_type'] = strtolower($property_type);
 
   return 'site/properties/list/' . json_encode($params) . '/' . $page;
@@ -112,8 +113,8 @@ $route['('. $transactions .')/(:any)/(:any)/('. implode('|', $property_types) .'
 $route['('. $transactions .')/(:any)/(:any)/('. implode('|', $property_types) .')'] = function ($transaction, $state, $city, $property_type){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
   if($property_type) $params['property_type'] = strtolower($property_type);
 
   return 'site/properties/list/' . json_encode($params);
@@ -123,18 +124,18 @@ $route['('. $transactions .')/(:any)/(:any)/('. implode('|', $property_types) .'
 $route['('. $transactions .')/(:any)/(:any)/(:any)/(:num)'] = function ($transaction, $state, $city, $district, $page){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
-  if($district) $params['district'] = strtolower($district);
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
+  if($district) $params['location'][0]['district'] = strtolower($district);
 
   return 'site/properties/list/' . json_encode($params) . '/' . $page;
 };
 $route['('. $transactions .')/(:any)/(:any)/(:any)'] = function ($transaction, $state, $city, $district){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
-  if($district) $params['district'] = strtolower($district);
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
+  if($district) $params['location'][0]['district'] = strtolower($district);
 
   return 'site/properties/list/' . json_encode($params);
 };
@@ -143,16 +144,16 @@ $route['('. $transactions .')/(:any)/(:any)/(:any)'] = function ($transaction, $
 $route['('. $transactions .')/(:any)/(:any)/(:num)'] = function ($transaction, $state, $city, $page){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
 
   return 'site/properties/list/' . json_encode($params) . '/' . $page;
 };
 $route['('. $transactions .')/(:any)/(:any)'] = function ($transaction, $state, $city){
   $params = array();
   if($transaction) $params['transaction'] = strtolower($transaction);
-  if($state) $params['state'] = strtolower($state);
-  if($city) $params['city'] = strtolower($city);
+  if($state) $params['location'][0]['state'] = strtolower($state);
+  if($city) $params['location'][0]['city'] = strtolower($city);
 
   return 'site/properties/list/' . json_encode($params);
 };

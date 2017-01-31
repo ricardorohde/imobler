@@ -53,11 +53,14 @@ class Site {
     return $return;
   }
 
-  public function create_pagination($limit, $total_rows, $base_url){
+  public function create_pagination($limit, $total_rows, $base_url, $url_suffix = null){
     $this->ci->load->library('pagination');
 
     $config = array();
     $config["base_url"] = $base_url; // Set base_url for every links
+    if($url_suffix){
+      $config['suffix'] = '#' . urldecode($url_suffix);
+    }
     $config["total_rows"] = $total_rows; // Set total rows in the result set you are creating pagination for.
     $config["per_page"] = $limit; // Number of items you intend to show per page.
     $config['reuse_query_string'] = TRUE;
