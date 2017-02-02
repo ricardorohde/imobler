@@ -13,7 +13,7 @@ class Site {
     $entry = new Mustache_Engine;
 
     $this->ci->load->helper('file');
-    $template = read_file("assets/site/templates/" . $template);
+    $template = read_file("application/modules/site/views/includes/templates/" . $template);
 
     $rendered = $entry->render($template, $data);
 
@@ -51,6 +51,18 @@ class Site {
     }
 
     return $return;
+  }
+
+  public function get_templates($templates = array()) {
+    if(!empty($templates)){
+      foreach ($templates as $template) {
+        ?>
+        <script id="template__<?php echo $template; ?>" type="x-tmpl-mustache">
+          <?php $this->ci->load->view('site/includes/templates/'. $template .'.mustache'); ?>
+        </script>
+        <?php
+      }
+    }
   }
 
   public function create_pagination($limit, $total_rows, $base_url, $url_suffix = null){

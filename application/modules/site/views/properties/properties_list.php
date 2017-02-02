@@ -65,7 +65,9 @@
                       <tbody class="property-location-items">
                         <?php
                         if(isset($filters['property_location']) && !empty($filters['property_location'])){
-                          echo $this->site->mustache('properties-list-location-item.mustache', $filters['property_location']);
+                          echo $this->site->mustache('properties-list-location-item.mustache', array('location' => array(
+                            array_merge(array('label' => $filters['property_location']['label']), $filters['property_location']['location'])
+                          )));
                         }
                         ?>
                       </tbody>
@@ -125,7 +127,7 @@
                     <?php
                     for($bedrooms = 1 ; $bedrooms <= 5 ; $bedrooms++){
                       ?>
-                      <a href="javascript:void(0);" data-value="<?php echo $bedrooms; ?>" class="properties-data-item properties-bedrooms btn btn-rounded btn-default"><?php echo $bedrooms; ?>+</a>
+                      <a href="javascript:void(0);" data-item="bedrooms" data-value="<?php echo $bedrooms; ?>" class="properties-data-item properties-bedrooms btn btn-rounded btn-default"><?php echo $bedrooms; ?>+</a>
                       <?php
                     }
                     ?>
@@ -140,7 +142,7 @@
                     <?php
                     for($garages = 1 ; $garages <= 5 ; $garages++){
                       ?>
-                      <a href="javascript:void(0);" data-value="<?php echo $garages; ?>" class="properties-data-item properties-garages btn btn-rounded btn-default"><?php echo $garages; ?>+</a>
+                      <a href="javascript:void(0);" data-item="garages" data-value="<?php echo $garages; ?>" class="properties-data-item properties-garages btn btn-rounded btn-default"><?php echo $garages; ?>+</a>
                       <?php
                     }
                     ?>
@@ -155,7 +157,7 @@
                     <?php
                     for($bathrooms = 1 ; $bathrooms <= 5 ; $bathrooms++){
                       ?>
-                      <a href="javascript:void(0);" data-value="<?php echo $bathrooms; ?>" class="properties-data-item properties-bathrooms btn btn-rounded btn-default"><?php echo $bathrooms; ?>+</a>
+                      <a href="javascript:void(0);" data-item="bathrooms" data-value="<?php echo $bathrooms; ?>" class="properties-data-item properties-bathrooms btn btn-rounded btn-default"><?php echo $bathrooms; ?>+</a>
                       <?php
                     }
                     ?>
@@ -203,3 +205,5 @@
     </div>
   </div>
 </section>
+
+<?php $this->site->get_templates(array('properties-list-item','properties-list-location-item','properties-list-no-results')); ?>
