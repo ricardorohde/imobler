@@ -36,6 +36,7 @@ class Properties extends Site_Controller {
           array('assets/site/js/jquery.mask.js', true),
           array('assets/site/js/select2.js', true),
           array('assets/site/js/mustache.js', true),
+          array('assets/site/js/base64.js', true),
           array('assets/site/js/pages/properties_list.js', true)
         )
       ),

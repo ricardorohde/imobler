@@ -71,7 +71,8 @@ class Site {
     $config = array();
     $config["base_url"] = $base_url; // Set base_url for every links
     if($url_suffix){
-      $config['suffix'] = '#' . urldecode($url_suffix);
+      $config['suffix'] = '#filter' . base64_encode($url_suffix);//$url_suffix;
+      $config['first_url'] = $config['base_url'] . $config['suffix'];
     }
     $config["total_rows"] = $total_rows; // Set total rows in the result set you are creating pagination for.
     $config["per_page"] = $limit; // Number of items you intend to show per page.
@@ -92,7 +93,7 @@ class Site {
     $config['prev_link'] = '<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>';
     $config['prev_tag_open'] = '<li class="prev page">';
     $config['prev_tag_close'] = '</li>';
-    $config['cur_tag_open'] = '<li class="active"><a href="">';
+    $config['cur_tag_open'] = '<li class="active"><a>';
     $config['cur_tag_close'] = '</a></li>';
     $config['num_tag_open'] = '<li class="page">';
     $config['num_tag_close'] = '</li>';

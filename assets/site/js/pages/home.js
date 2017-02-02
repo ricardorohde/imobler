@@ -1,3 +1,5 @@
+var search_process = false;
+
 $( function() {
   var get_search_url_by_location = function(){
     var url = '';
@@ -65,17 +67,20 @@ $( function() {
     minLength: 2,
     delay: 250,
     select: function( event, ui ) {
+      search_process = true;
 
       $('#banner-search-main-state').val(ui.item.location.state);
       $('#banner-search-main-city').val(ui.item.location.city);
       $('#banner-search-main-district').val(ui.item.location.district);
 
-      get_search_url_by_location();
+      //get_search_url_by_location();
     }
   });
 
   $('#banner-search-main-form').on('submit', function(event){
     event.preventDefault();
-    get_search_url_by_location();
+    if(search_process){
+      get_search_url_by_location();
+    }
   });
 });

@@ -11,8 +11,6 @@ class Properties_model extends CI_Model {
   }
 
   public function get_properties($request = array(), $row = false){
-    //print_l($request);
-
     $return = array();
     $where = array();
 

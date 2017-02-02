@@ -51,8 +51,8 @@
           <div class="widget widget-range">
             <div class="widget-body">
               <form id="properties-list-form" method="post">
-                <input type="text" id="search-transaction" name="transaction" value="venda" />
-                <input type="text" id="search-page" name="page" value="<?php echo $paging; ?>" />
+                <input type="hidden" id="search-transaction" name="transaction" value="venda" />
+                <input type="hidden" id="search-page" name="page" value="<?php echo $paging; ?>" />
 
                 <dir class="row">
                   <div class="col-xs-12">
@@ -193,7 +193,7 @@
                       </div>
                     </div>
                     <div class="col-sm-12 col-xs-12">
-                      <button type="submit" class="btn btn-secondary btn-block"> Search</button>
+                      <button type="submit" class="btn btn-secondary btn-block"> Buscar</button>
                     </div>
                   </div>
                 </div>

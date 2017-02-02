@@ -11,6 +11,8 @@ $(function(){
     var properties_list_url = '';
     var params = {};
 
+    console.info('vai atualizar');
+
     $('.property-items').addClass('processing');
 
 
@@ -69,10 +71,12 @@ $(function(){
 
 
     // PAGE
-    var $page = params['page'] = $('#search-page').val();
+    var $page = $('#search-page').val();
+    properties_list_url_filters['page'] = $page;
     if($page > 1) {
       properties_list_url += '/' + $page;
     }
+
 
     //MIN-MAX PRICE
     var $min_price = $('#search-min_price');
@@ -121,17 +125,34 @@ $(function(){
 
     var properties_list_url_filters_json = JSON.stringify(properties_list_url_filters);
 
+    params['base_url'] = properties_list_url;
+    params['url_suffix'] = properties_list_url_filters_json;
+
     window.history.pushState('page', 'OOOOPS', app.base_url(properties_list_url + '#' + properties_list_url_filters_json));
 
+    $.ajax({
+      url: app.base_url('api/get_properties/' + $page),
+      method: 'post',
+      dataType: 'json',
+      data: params
+    }).done(function(result) {
+      $('html, body').animate({scrollTop: $('#section-body').offset().top}, {duration: 600, easing: 'swing'});
+      $('.property-items').removeClass('processing');
 
-        // var get_properties_uri = 'api/get_properties';
-        // if(typeof $page !== 'undefined' && $page){
-        //   get_properties_uri += '/' + $page;
-        // }
+      if(result === false){
+        var template_properties_list_no_results = Mustache.render(templates['properties-list-no-results'], result);
+        $('.property-items').html(template_properties_list_no_results);
+        $('.pagination-content').empty();
+        return false;
+      }
 
-    console.log(properties_list_url);
-    console.log(properties_list_url);
-    console.log(params);
+      var template_properties_list_item = Mustache.render(templates['properties-list-item'], result);
+      $('.property-items').html(template_properties_list_item);
+
+      $('.pagination-content').html(result.pagination);
+
+      properties_list.swiper.init();
+    });
 
     return true;
   };
@@ -141,11 +162,15 @@ $(function(){
   properties_list.set_filters = function($params, $update, $callback){
     var update_process = true;
 
+//    var $page = $('#search-page').val($params['page'] || 1);
+
     if(typeof $params['page'] !== 'undefined'){
       $('#search-page').val($params['page']);
     }
 
+    // LOCATION
     if(typeof $params['location'] !== 'undefined' && $params['location'].length){
+      var $locations = {'location': []};
 
       for($location in $params['location']){
         var add = true;
@@ -153,21 +178,28 @@ $(function(){
 
         $.each($('.property-location-item-label'), function(i,item){
           var $item = $(item);
-          var $item_color = $item.css('color');
-          if($.trim($item.html()) == $location_item.label){
-            update_process = false;
+
+          if($location_item.label == $.trim($item.html())){
             add = false;
-            $item.closest('.property-location-item').animate({'background-color':'#f1f1f1'}, 150).delay(200).queue( (next) => { $item.closest('.property-location-item').animate({'background-color':'transparent'}, 150); next(); } );
+            $item.closest('.property-location-item').animate({'background-color':'#FAE7E7'}, 150).delay(200).queue( (next) => { $item.closest('.property-location-item').animate({'background-color':'transparent'}, 150); next(); } );
           }
         });
 
         if(add){
-          var template_properties_list_item = Mustache.render(templates['properties-list-location-item'], $params);
-          $('.property-location-items').append(template_properties_list_item);
+          $locations.location.push($location_item);
         }
       }
+
+      var template_properties_list_item = Mustache.render(templates['properties-list-location-item'], $locations);
+      $('.property-location-items').append(template_properties_list_item);
     }
 
+    // PROPERTY TYPES
+    if(typeof $params['property_types'] !== 'undefined' && $params['property_types'].length){
+      search_property_type.val($params['property_types']).trigger("change");
+    }
+
+    // FEATURES
     var property_features = ['bedrooms','garages','bathrooms'];
     for(item in property_features){
       if(typeof $params[property_features[item]] !== 'undefined'){
@@ -179,18 +211,18 @@ $(function(){
       }
     }
 
-   if(typeof $params['min_price'] !== 'undefined' && $params['min_price']){
+    // PRICES
+    if(typeof $params['min_price'] !== 'undefined' && $params['min_price']){
       $('#search-min_price').val($params['min_price']).unmask();
     }
-
     if(typeof $params['max_price'] !== 'undefined' && $params['max_price']){
       $('#search-max_price').val($params['max_price']).unmask();
     }
 
+    // AREAS
     if(typeof $params['min_area'] !== 'undefined' && $params['min_area']){
       $('#search-min_area').val($params['min_area']).unmask();
     }
-
     if(typeof $params['max_area'] !== 'undefined' && $params['max_area']){
       $('#search-max_area').val($params['max_area']).unmask();
     }
@@ -209,7 +241,18 @@ $(function(){
   properties_list.get_url_filters = function($update){
     console.log('pega url filtros');
 
-    var url_filters = jQuery.parseJSON(window.location.hash.substring(1));
+    var filter = window.location.hash.substring(1);
+
+    if(filter.substring(0,6) == 'filter'){
+      filter = app.base64.decode(filter.substring(6));
+    }
+
+    var url_filters = jQuery.parseJSON(filter);
+
+    if(typeof url_filters.page !== 'undefined'){
+      delete url_filters.page;
+    }
+
     return properties_list.set_filters(url_filters, $update || false);
   };
 
@@ -244,7 +287,7 @@ $(function(){
       console.log('swiper init');
 
       $('.swiper-container').each(function(i, item){
-        item.swiper.destroy(true, true);
+        //item.swiper.destroy(true, true);
       });
 
       return swiper_images_status = false;
@@ -269,6 +312,14 @@ $(function(){
 
   // Init
   properties_list.init = function(){
+
+    window.onpopstate = function (event) {
+      if (event.state) {
+        console.log('pushState/replaceState');
+      } else {
+        console.log('page load');
+      }
+    }
 
     // SEND FORM
     $('#properties-list-form').on('submit', function(event){
@@ -337,14 +388,14 @@ $(function(){
     // DORMS, BANHEIROS e GARAGENS
     $('.properties-data-item').on('click', function(){
       var $this = $(this);
-      var item_json = {};
+      var item_json = {'page':1};
       item_json[$this.data('item')] = $this.data('value');
       properties_list.set_filters(item_json, true);
     });
 
     // PRICE/AREA
     $('#search-min_price, #search-max_price, #search-min_area, #search-max_area').on('blur', function(){
-      properties_list.update();
+      properties_list.set_filters({"page":1}, true);
     });
 
     // REMOVER LOCALIZAÇÃO
@@ -353,9 +404,9 @@ $(function(){
         alert('nao pode');
       }else{
         $(this).closest('.property-location-item').remove();
-        setTimeout(function(){
-          properties_list.update();
-        }, 150);
+        // setTimeout(function(){
+          properties_list.set_filters({"page":1}, true);
+        // }, 150);
       }
     });
 
@@ -377,6 +428,12 @@ $(function(){
       }
 
       properties_list.swiper.init();
+    });
+
+    // PAGINAÇAO JS
+    $('.pagination-content').on('click', '.pagination-item', function(event){
+      event.preventDefault();
+      properties_list.set_filters({"page": $(this).attr('data-ci-pagination-page')}, true);
     });
 
     properties_list.get_templates(['properties-list-item','properties-list-no-results','properties-list-location-item']);
@@ -506,9 +563,7 @@ $(function(){
         }
       }
 
-      if(typeof params['property_types'] !== 'undefined' && params['property_types'].length){
-        search_property_type.val(params['property_types']).trigger("change");
-      }
+
 
       if(typeof params['min_price'] !== 'undefined' && params['min_price']){
         $('#search-min_price').val(params['min_price']).unmask();
@@ -580,11 +635,7 @@ $(function(){
 
 
 
-    // PAGINAÇAO JS
-    $('.pagination-content').on('click', '.pagination-item', function(event){
-      event.preventDefault();
-      properties_list.properties.process($(this).attr('data-ci-pagination-page'), true);
-    });
+
 
 
 
