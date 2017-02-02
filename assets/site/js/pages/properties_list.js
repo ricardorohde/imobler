@@ -149,6 +149,7 @@ $(function(){
       if(result === false){
         var template_properties_list_no_results = Mustache.render(templates['properties-list-no-results'], result);
         $('.property-items').html(template_properties_list_no_results);
+        $('#total-results').html('Nenhum imóvel encontrado');
         $('.pagination-content').empty();
         return false;
       }
@@ -156,6 +157,7 @@ $(function(){
       var template_properties_list_item = Mustache.render(templates['properties-list-item'], result);
       $('.property-items').html(template_properties_list_item);
 
+      $('#total-results').html('Foram encontrados <strong>'+ result.total_rows +'</strong> imóveis');
       $('.pagination-content').html(result.pagination);
 
       properties_list.swiper.init();

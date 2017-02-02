@@ -5,7 +5,7 @@
         <div class="col-sm-12">
           <ol class="breadcrumb"><li ><a href="/"><i class="fa fa-home"></i></a></li><li class="active">Simple Listing – List View</li></ol>
           <div class="page-title-left">
-            <h2>Simple Listing – List View</h2>
+            <h2 id="total-results">Foram encontrados <strong><?php echo $properties['total_rows']; ?></strong> imóveis</h2>
           </div>
           <div class="page-title-right">
             <div class="view hidden-xs">
