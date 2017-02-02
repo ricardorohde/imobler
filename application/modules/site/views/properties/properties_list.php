@@ -10,11 +10,10 @@
           <div class="page-title-right">
             <div class="view hidden-xs">
               <div class="table-cell sort-tab">
-                Sort by:
-                <select class="selectpicker bs-select-hidden" title="Please select" data-live-search-style="begins" data-live-search="true">
-                  <option>Relevance</option>
-                  <option>Relevance</option>
-                  <option>Relevance</option>
+                <select id="search-orderby" name="orderby" class="selectpicker orderby">
+                  <option value="most_recent">Mais recentes</option>
+                  <option value="biggest_price">Preço maior</option>
+                  <option value="lowest_price">Preço menor</option>
                 </select>
               </div>
               <div class="table-cell">

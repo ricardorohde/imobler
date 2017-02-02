@@ -4,6 +4,7 @@ var templates = {'properties-list-item': '', 'properties-list-location-item': ''
 
 $(function(){
   var search_property_type = $('#search-property_type');
+  var search_orderby = $('#search-orderby');
 
   // Atualiza registros
   properties_list.update = function(){
@@ -123,6 +124,12 @@ $(function(){
       properties_list_url_filters['bathrooms'] = $bathrooms.attr('data-value');
     }
 
+    // ORDER BY
+    if(search_orderby.val()){
+      params['orderby'] = search_orderby.val();
+      properties_list_url_filters['orderby'] = search_orderby.val();
+    }
+
     var properties_list_url_filters_json = JSON.stringify(properties_list_url_filters);
 
     params['base_url'] = properties_list_url;
@@ -225,6 +232,10 @@ $(function(){
     }
     if(typeof $params['max_area'] !== 'undefined' && $params['max_area']){
       $('#search-max_area').val($params['max_area']).unmask();
+    }
+
+    if(typeof $params['orderby'] !== 'undefined'){
+      search_orderby.selectpicker('val', $params['orderby']);
     }
 
     if($callback){
@@ -429,6 +440,20 @@ $(function(){
 
       properties_list.swiper.init();
     });
+
+    search_orderby.selectpicker({
+      liveSearchStyle: 'begins',
+      liveSearch: false,
+      size: 'auto'
+    });
+
+    search_orderby.on('hidden.bs.select', function (e) {
+      var filters = {};
+      filters['page'] = 1;
+      filters['orderby'] = $(this).val();
+      properties_list.set_filters(filters, true);
+    });
+
 
     // PAGINAÇAO JS
     $('.pagination-content').on('click', '.pagination-item', function(event){
