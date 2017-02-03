@@ -36,6 +36,10 @@ class Site {
       $return = $this->ci->properties_model->get_location($params);
     }
 
+    if($item == 'property_features'){
+      $return = $this->ci->properties_model->get_properties_features(array(), true);
+    }
+
     return $return;
   }
 
@@ -45,7 +49,7 @@ class Site {
     if($item != 'all'){
       $return = $this->get_filter($item, $params);
     }else{
-      foreach(array('property_types', 'property_location') as $filter){
+      foreach(array('property_types', 'property_location', 'property_features') as $filter){
         $return[$filter] = $this->get_filter($filter, $params);
       }
     }

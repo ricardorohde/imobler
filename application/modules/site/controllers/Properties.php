@@ -42,7 +42,8 @@ class Properties extends Site_Controller {
       ),
       'paging' => $page,
       'filters' => $this->site->get_filters('all', array('params' => $route_params)),
-      'properties' => $properties
+      'properties' => $properties,
+      'route_params' => $route_params
     );
 
     $this->template->view('site/master', 'site/properties/properties_list', $data);

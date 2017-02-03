@@ -3,9 +3,9 @@
     <div class="page-title breadcrumb-top">
       <div class="row">
         <div class="col-sm-12">
-          <ol class="breadcrumb"><li ><a href="/"><i class="fa fa-home"></i></a></li><li class="active">Simple Listing – List View</li></ol>
+          <ol class="breadcrumb"><li ><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li><li class="active">Resultado da busca por imóveis</li></ol>
           <div class="page-title-left">
-            <h2 id="total-results">Foram encontrados <strong><?php echo $properties['total_rows']; ?></strong> imóveis</h2>
+            <h2 id="total-results"><?php echo ($properties['total_rows'] == 1 ? 'Foi encontrado <strong>'. $properties['total_rows'] .'</strong> imóvel' : 'Foram encontrados <strong>'. $properties['total_rows'] .'</strong> imóveis') . ' ' . ($route_params['transaction'] == 'venda' ? 'à venda' : 'para locação'); ?></h2>
           </div>
           <div class="page-title-right">
             <div class="view hidden-xs">
@@ -17,8 +17,8 @@
                 </select>
               </div>
               <div class="table-cell">
-                <span class="view-btn btn-list <?php echo $this->session->userdata('listview') ? ($this->session->userdata('listview') == 'list-view' ? 'active' : '') : 'active'; ?>"><i class="fa fa-th-list"></i></span>
-                <span class="view-btn btn-grid <?php echo $this->session->userdata('listview') && $this->session->userdata('listview') == 'grid-view' ? 'active' : ''; ?>"><i class="fa fa-th-large"></i></span>
+                <span title="Lista" class="view-btn btn-list <?php echo $this->session->userdata('listview') ? ($this->session->userdata('listview') == 'list-view' ? 'active' : '') : 'active'; ?>"><i class="fa fa-th-list"></i></span>
+                <span title="Grade" class="view-btn btn-grid <?php echo $this->session->userdata('listview') && $this->session->userdata('listview') == 'grid-view' ? 'active' : ''; ?>"><i class="fa fa-th-large"></i></span>
               </div>
             </div>
           </div>
@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 list-grid-area container-contentbar">
         <div id="content-area">
-          <div class="property-listing <?php echo $this->session->userdata('listview') ? $this->session->userdata('listview') : 'grid-view'; ?>">
+          <div class="property-listing <?php echo $this->session->userdata('listview') ? $this->session->userdata('listview') : 'list-view'; ?>">
             <div class="property-items row">
               <?php
               if(isset($properties['results']) && !empty($properties['results'])) {
@@ -184,11 +184,17 @@
                   <div class="row">
 
                     <div class="col-sm-12 col-xs-12">
-                      <label class="advance-trigger"><i class="fa fa-plus-square"></i> Other Features </label>
+                      <label class="advance-trigger btn-other-features"><i class="fa fa-plus-square"></i> Outras características </label>
                     </div>
                     <div class="col-sm-12 col-xs-12">
                       <div class="features-list field-expand">
-                        <label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-air-conditioning" value="air-conditioning" type="checkbox">Air Conditioning</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-barbeque" value="barbeque" type="checkbox">Barbeque</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-dryer" value="dryer" type="checkbox">Dryer</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-gym" value="gym" type="checkbox">Gym</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-laundry" value="laundry" type="checkbox">Laundry</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-lawn" value="lawn" type="checkbox">Lawn</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-microwave" value="microwave" type="checkbox">Microwave</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-outdoor-shower" value="outdoor-shower" type="checkbox">Outdoor Shower</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-refrigerator" value="refrigerator" type="checkbox">Refrigerator</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-sauna" value="sauna" type="checkbox">Sauna</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-swimming-pool" value="swimming-pool" type="checkbox">Swimming Pool</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-tv-cable" value="tv-cable" type="checkbox">TV Cable</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-washer" value="washer" type="checkbox">Washer</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-wifi" value="wifi" type="checkbox">WiFi</label><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-window-coverings" value="window-coverings" type="checkbox">Window Coverings</label>
+                        <?php
+                        if(isset($filters['property_features']) && !empty($filters['property_features'])){
+                          foreach($filters['property_features'] as $feature){
+                            ?><label class="checkbox-inline"><input name="feature[]" data-search="feature" id="feature-<?php echo $feature['id']; ?>" value="<?php echo $feature['id']; ?>" type="checkbox"><?php echo $feature['nome']; ?></label><?php
+                          }
+                        }
+                        ?>
                       </div>
                     </div>
                     <div class="col-sm-12 col-xs-12">

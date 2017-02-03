@@ -124,11 +124,25 @@ $(function(){
       properties_list_url_filters['bathrooms'] = $bathrooms.attr('data-value');
     }
 
+    // FEATURES
+    var $features = $('input[data-search=feature]:checked');
+    if($features.length){
+      var $features_array = $features.map(function () {
+        return this.value;
+      }).get();
+
+      params['features'] = $features_array;
+      properties_list_url_filters['features'] = $features_array;
+    }
+
+
     // ORDER BY
     if(search_orderby.val()){
       params['orderby'] = search_orderby.val();
       properties_list_url_filters['orderby'] = search_orderby.val();
     }
+
+
 
     var properties_list_url_filters_json = JSON.stringify(properties_list_url_filters);
 
@@ -157,7 +171,9 @@ $(function(){
       var template_properties_list_item = Mustache.render(templates['properties-list-item'], result);
       $('.property-items').html(template_properties_list_item);
 
-      $('#total-results').html('Foram encontrados <strong>'+ result.total_rows +'</strong> imóveis');
+      var results_text = (result.total_rows == 1 ? 'Foi encontrado <strong>'+ result.total_rows +'</strong> imóvel' : 'Foram encontrados <strong>'+ result.total_rows +'</strong> imóveis') + ' ' + ($transaction == 'venda' ? 'à venda' : 'para locação');
+
+      $('#total-results').html(results_text);
       $('.pagination-content').html(result.pagination);
 
       properties_list.swiper.init();
@@ -234,6 +250,16 @@ $(function(){
     }
     if(typeof $params['max_area'] !== 'undefined' && $params['max_area']){
       $('#search-max_area').val($params['max_area']).unmask();
+    }
+
+    if(typeof $params['features'] !== 'undefined' && $params['features'].length){
+      for($feature in $params['features']){
+        $('#feature-' + $params['features'][$feature]).prop('checked', true);
+      }
+
+      setTimeout(function(){
+        $('.btn-other-features').trigger("click");
+      }, 150);
     }
 
     if(typeof $params['orderby'] !== 'undefined'){

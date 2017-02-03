@@ -27,7 +27,7 @@ class Properties_model extends CI_Model {
       imoveis.status as imovel_status,
       imoveis_tipos.nome as tipo_nome,
       imoveis_tipos.slug as tipo_slug,
-      imoveis_negociacoes.valor as negociacao_valor,
+      format(sum(imoveis_negociacoes.valor), 2, 'de_DE') as negociacao_valor,
       imoveis_negociacoes.permalink as negociacao_permalink,
       enderecos.cep as endereco_cep,
       enderecos.logradouro as endereco_logradouro,
@@ -149,6 +149,36 @@ class Properties_model extends CI_Model {
       $this->db->where('imoveis.status', $request['params']['visibility']);
     }
 
+    // Características
+    if(isset($request['params']['features']) && !empty($request['params']['features'])){
+
+      $this->db->join("imoveis_caracteristicas", "imoveis_caracteristicas.imovel = imoveis.id", "inner"); // Imóveis características
+
+
+      $this->db->group_start();
+
+      $feature_count = 0;
+      foreach ($request['params']['features'] as $feature) {
+        if(!$feature_count){
+          $this->db->group_start();
+        }else{
+          $this->db->or_group_start();
+        }
+
+        $this->db->where('imoveis_caracteristicas.caracteristica', $feature);
+
+        $this->db->group_end();
+
+        $feature_count++;
+      }
+
+      $this->db->group_end();
+
+      $this->db->having('COUNT(imoveis.id)', count($request['params']['features']));
+    }
+
+
+
     // WHERE
     if(isset($request['select']['where']) && !empty($request['select']['where'])){
       $this->db->where($request['select']['where']);
@@ -170,6 +200,8 @@ class Properties_model extends CI_Model {
         break;
       }
     }
+
+    $this->db->group_by('imoveis.id');
 
     // GET ROWS COUNT
     $return['total_rows'] = $this->get_rows_count($this->db->_compile_select());
@@ -198,6 +230,7 @@ class Properties_model extends CI_Model {
     }
 
     $sql = $this->db->_compile_select();
+    //$return['sql'] = $sql;
 
     $query = $this->db->get();
 
@@ -207,7 +240,7 @@ class Properties_model extends CI_Model {
         $return_ids = $return['imovel_id'];
       }else{
         $return['results'] = array();
-        $return['sql'] = $sql;
+
         $return_ids = array();
         $return_count = 0;
         foreach($query->result_array() as $result){
@@ -218,10 +251,50 @@ class Properties_model extends CI_Model {
         }
       }
 
-      return $this->get_properties_images($return_ids, $return);
+      $return = $this->get_properties_features($return_ids, false, $return);
+      $return = $this->get_properties_images($return_ids, $return);
+
+      return $return;
     }else{
       return false;
     }
+  }
+
+  public function get_properties_features($properties_ids = array(), $filters = false, $return = false) {
+    $this->db->select("caracteristicas.id, caracteristicas.nome");
+    $this->db->from('caracteristicas');
+
+
+    if(!empty($properties_ids)){
+      $this->db->select("imoveis_caracteristicas.imovel");
+      $this->db->join("imoveis_caracteristicas", "imoveis_caracteristicas.caracteristica = caracteristicas.id", "inner");
+      $this->db->where_in('imoveis_caracteristicas.imovel', $properties_ids);
+    }
+
+    if($filters){
+      $this->db->where('caracteristicas.filtro', 1);
+    }
+
+    $this->db->order_by('caracteristicas.nome ASC');
+
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      if($return){
+        foreach ($query->result_array() as $imovel_feature) {
+          $property_key = array_search ($imovel_feature['imovel'], $properties_ids);
+          $return['results'][$property_key]['features'][] = $imovel_feature['id'];
+        }
+        return $return;
+      }
+      return $query->result_array();
+    }else{
+      if($return) return $return;
+    }
+
+    return false;
+
+    return $return;
   }
 
   public function get_properties_images($properties_ids, $return = null) {
