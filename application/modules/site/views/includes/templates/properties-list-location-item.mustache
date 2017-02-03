@@ -1,0 +1,13 @@
+{{#location}}
+  <tr class="property-location-item">
+    <td class="property-location-item-label">
+      {{label}}
+    </td>
+    <td>
+      <input type="hidden" class="location-item-state" name="location['state'][]" value="{{state}}" />
+      <input type="hidden" class="location-item-city" name="location['city'][]" value="{{city}}" />
+      <input type="hidden" class="location-item-district" name="location['district'][]" value="{{district}}" />
+      <a href="javascript:void(0);" class="property-location-item-remove pull-right"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+    </td>
+  </tr>
+{{/location}}

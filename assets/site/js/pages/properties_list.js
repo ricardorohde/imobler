@@ -1,15 +1,18 @@
 var properties_list = app['properties_list'] = {};
 var swiper_images_status = false;
-var templates = {'properties-list-item': '', 'properties-list-location-item': ''};
+var templates = {'properties-list-item': '', 'properties-list-location-item': '', 'properties-list-location-item': ''};
 
 $(function(){
   var search_property_type = $('#search-property_type');
+  var search_orderby = $('#search-orderby');
 
   // Atualiza registros
   properties_list.update = function(){
     var properties_list_url_filters = {};
     var properties_list_url = '';
     var params = {};
+
+    console.info('vai atualizar');
 
     $('.property-items').addClass('processing');
 
@@ -69,10 +72,12 @@ $(function(){
 
 
     // PAGE
-    var $page = params['page'] = $('#search-page').val();
+    var $page = $('#search-page').val();
+    properties_list_url_filters['page'] = $page;
     if($page > 1) {
       properties_list_url += '/' + $page;
     }
+
 
     //MIN-MAX PRICE
     var $min_price = $('#search-min_price');
@@ -119,67 +124,127 @@ $(function(){
       properties_list_url_filters['bathrooms'] = $bathrooms.attr('data-value');
     }
 
+    // ORDER BY
+    if(search_orderby.val()){
+      params['orderby'] = search_orderby.val();
+      properties_list_url_filters['orderby'] = search_orderby.val();
+    }
+
     var properties_list_url_filters_json = JSON.stringify(properties_list_url_filters);
+
+    params['base_url'] = properties_list_url;
+    params['url_suffix'] = properties_list_url_filters_json;
 
     window.history.pushState('page', 'OOOOPS', app.base_url(properties_list_url + '#' + properties_list_url_filters_json));
 
+    $.ajax({
+      url: app.base_url('api/get_properties/' + $page),
+      method: 'post',
+      dataType: 'json',
+      data: params
+    }).done(function(result) {
+      $('html, body').animate({scrollTop: $('#section-body').offset().top}, {duration: 600, easing: 'swing'});
+      $('.property-items').removeClass('processing');
 
-        // var get_properties_uri = 'api/get_properties';
-        // if(typeof $page !== 'undefined' && $page){
-        //   get_properties_uri += '/' + $page;
-        // }
+      if(result === false){
+        var template_properties_list_no_results = Mustache.render(templates['properties-list-no-results'], result);
+        $('.property-items').html(template_properties_list_no_results);
+        $('#total-results').html('Nenhum imóvel encontrado');
+        $('.pagination-content').empty();
+        return false;
+      }
 
-    console.log(properties_list_url);
-    console.log(properties_list_url);
-    console.log(params);
+      var template_properties_list_item = Mustache.render(templates['properties-list-item'], result);
+      $('.property-items').html(template_properties_list_item);
+
+      $('#total-results').html('Foram encontrados <strong>'+ result.total_rows +'</strong> imóveis');
+      $('.pagination-content').html(result.pagination);
+
+      properties_list.swiper.init();
+    });
 
     return true;
   };
 
 
   // Atualiza filtros
-  properties_list.set_filters = function($params, $update){
-    console.log('atualiza filtros');
-    console.log($params);
+  properties_list.set_filters = function($params, $update, $callback){
+    var update_process = true;
+
+//    var $page = $('#search-page').val($params['page'] || 1);
 
     if(typeof $params['page'] !== 'undefined'){
       $('#search-page').val($params['page']);
     }
 
+    // LOCATION
     if(typeof $params['location'] !== 'undefined' && $params['location'].length){
-      var add = true;
+      var $locations = {'location': []};
 
       for($location in $params['location']){
+        var add = true;
         var $location_item = $params['location'][$location];
 
         $.each($('.property-location-item-label'), function(i,item){
-          if($.trim($(item).html()) == $location_item.label){
+          var $item = $(item);
+
+          if($location_item.label == $.trim($item.html())){
             add = false;
+            $item.closest('.property-location-item').animate({'background-color':'#FAE7E7'}, 150).delay(200).queue( (next) => { $item.closest('.property-location-item').animate({'background-color':'transparent'}, 150); next(); } );
           }
         });
 
         if(add){
-          var template_properties_list_item = Mustache.render(templates['properties-list-location-item'], json);
-          $('.property-location-items').append(template_properties_list_item);
-          if(typeof refresh !== 'undefined' && refresh){
-            properties_list.properties.process(1, true);
-          }
+          $locations.location.push($location_item);
         }
       }
 
-
-
-
-
-      // setTimeout(function(){
-      //   $(".input-search-local").val('').focus();
-      // }, 150);
+      var template_properties_list_item = Mustache.render(templates['properties-list-location-item'], $locations);
+      $('.property-location-items').append(template_properties_list_item);
     }
 
+    // PROPERTY TYPES
+    if(typeof $params['property_types'] !== 'undefined' && $params['property_types'].length){
+      search_property_type.val($params['property_types']).trigger("change");
+    }
 
+    // FEATURES
+    var property_features = ['bedrooms','garages','bathrooms'];
+    for(item in property_features){
+      if(typeof $params[property_features[item]] !== 'undefined'){
+        var $feature = $('.properties-data-item.properties-'+ property_features[item] +'.active');
+        $('.properties-data-item.properties-' + property_features[item]).removeClass('active btn-info').addClass('btn-default').blur();
+        if(!$feature.length || ($feature.length && $feature.data('value') !== $params[property_features[item]])) {
+          $('.properties-data-item.properties-'+ property_features[item] +'[data-value='+ $params[property_features[item]] +']').removeClass('btn-default').addClass('active btn-info');
+        }
+      }
+    }
 
+    // PRICES
+    if(typeof $params['min_price'] !== 'undefined' && $params['min_price']){
+      $('#search-min_price').val($params['min_price']).unmask();
+    }
+    if(typeof $params['max_price'] !== 'undefined' && $params['max_price']){
+      $('#search-max_price').val($params['max_price']).unmask();
+    }
 
-    if(typeof $update !== 'undefined' && $update){
+    // AREAS
+    if(typeof $params['min_area'] !== 'undefined' && $params['min_area']){
+      $('#search-min_area').val($params['min_area']).unmask();
+    }
+    if(typeof $params['max_area'] !== 'undefined' && $params['max_area']){
+      $('#search-max_area').val($params['max_area']).unmask();
+    }
+
+    if(typeof $params['orderby'] !== 'undefined'){
+      search_orderby.selectpicker('val', $params['orderby']);
+    }
+
+    if($callback){
+      $callback();
+    }
+
+    if(typeof $update !== 'undefined' && $update && update_process){
       return properties_list.update();
     }
 
@@ -189,7 +254,18 @@ $(function(){
   properties_list.get_url_filters = function($update){
     console.log('pega url filtros');
 
-    var url_filters = jQuery.parseJSON(window.location.hash.substring(1));
+    var filter = window.location.hash.substring(1);
+
+    if(filter.substring(0,6) == 'filter'){
+      filter = app.base64.decode(filter.substring(6));
+    }
+
+    var url_filters = jQuery.parseJSON(filter);
+
+    if(typeof url_filters.page !== 'undefined'){
+      delete url_filters.page;
+    }
+
     return properties_list.set_filters(url_filters, $update || false);
   };
 
@@ -224,24 +300,39 @@ $(function(){
       console.log('swiper init');
 
       $('.swiper-container').each(function(i, item){
-        item.swiper.destroy(true, true);
+        //item.swiper.destroy(true, true);
       });
 
       return swiper_images_status = false;
     } //destroy
   }; //properties_list.swiper
 
-  properties_list.get_templates = function($template, $callback){
-    $.get(app.base_url('assets/site/templates/'+ $template + '.mustache'), function( html ) {
-      templates[$template] = html;
-      Mustache.parse($template);
+  properties_list.get_templates = function($templates, $callback){
+    for($item in $templates){
+      var $template = $templates[$item];
+      var $template_el = $('#template__' + $template);
 
-      if($callback) $callback();
-    });
+      if($template_el.length){
+        templates[$template] = $template_el.html();
+        Mustache.parse(templates[$template]);
+      }else{
+        console.error('template not found: ' + $template);
+      }
+    }
+
+    if($callback) $callback();
   };
 
   // Init
   properties_list.init = function(){
+
+    window.onpopstate = function (event) {
+      if (event.state) {
+        console.log('pushState/replaceState');
+      } else {
+        console.log('page load');
+      }
+    }
 
     // SEND FORM
     $('#properties-list-form').on('submit', function(event){
@@ -284,7 +375,11 @@ $(function(){
         var location_item = ui.item.location;
         location_item.label = ui.item.label;
         filter_item.location.push(location_item);
-        properties_list.set_filters(filter_item, true);
+        properties_list.set_filters(filter_item, true, function(){
+          setTimeout(function(){
+            $(".input-search-local").val('');
+          }, 150);
+        });
       }
     });
 
@@ -300,17 +395,83 @@ $(function(){
       properties_list.set_filters({"page":1}, true);
     });
 
-    properties_list.get_templates('properties-list-item');
-    properties_list.get_templates('properties-list-no-results');
-    properties_list.get_templates('properties-list-location-item');
+    // MASK
+    $('.price-mask, .area-mask').mask('000.000.000.000.000', {reverse: true});
 
-    if(window.location.hash) {
-      return properties_list.get_url_filters(true);
-    }
+    // DORMS, BANHEIROS e GARAGENS
+    $('.properties-data-item').on('click', function(){
+      var $this = $(this);
+      var item_json = {'page':1};
+      item_json[$this.data('item')] = $this.data('value');
+      properties_list.set_filters(item_json, true);
+    });
+
+    // PRICE/AREA
+    $('#search-min_price, #search-max_price, #search-min_area, #search-max_area').on('blur', function(){
+      properties_list.set_filters({"page":1}, true);
+    });
+
+    // REMOVER LOCALIZAÇÃO
+    $('.property-location-items').on('click', '.property-location-item-remove', function(){
+      if($('.property-location-item').length == 1){
+        alert('nao pode');
+      }else{
+        $(this).closest('.property-location-item').remove();
+        // setTimeout(function(){
+          properties_list.set_filters({"page":1}, true);
+        // }, 150);
+      }
+    });
+
+    // VIEW TYPE
+    var view_type_btn = $('.view-btn');
+    var view_type_area = $('.property-listing');
+    view_type_btn.on('click', function(){
+      var $this = $(this);
+      view_type_btn.removeClass('active');
+      $this.addClass('active');
+
+      if($this.hasClass('btn-list')) {
+        $.post(app.base_url('api/set_listview'), {listview: "list-view"});
+        view_type_area.removeClass('grid-view').addClass('list-view');
+      }
+      else if($this.hasClass('btn-grid')) {
+        $.post(app.base_url('api/set_listview'), {listview: "grid-view"});
+        view_type_area.removeClass('list-view').addClass('grid-view');
+      }
+
+      properties_list.swiper.init();
+    });
+
+    search_orderby.selectpicker({
+      liveSearchStyle: 'begins',
+      liveSearch: false,
+      size: 'auto'
+    });
+
+    search_orderby.on('hidden.bs.select', function (e) {
+      var filters = {};
+      filters['page'] = 1;
+      filters['orderby'] = $(this).val();
+      properties_list.set_filters(filters, true);
+    });
+
+
+    // PAGINAÇAO JS
+    $('.pagination-content').on('click', '.pagination-item', function(event){
+      event.preventDefault();
+      properties_list.set_filters({"page": $(this).attr('data-ci-pagination-page')}, true);
+    });
+
+    properties_list.get_templates(['properties-list-item','properties-list-no-results','properties-list-location-item']);
 
     $(window).on("popstate", function(e) {
       properties_list.get_url_filters(true);
     });
+
+    if(window.location.hash) {
+      return properties_list.get_url_filters(true);
+    }
 
     properties_list.swiper.init();
 
@@ -429,9 +590,7 @@ $(function(){
         }
       }
 
-      if(typeof params['property_types'] !== 'undefined' && params['property_types'].length){
-        search_property_type.val(params['property_types']).trigger("change");
-      }
+
 
       if(typeof params['min_price'] !== 'undefined' && params['min_price']){
         $('#search-min_price').val(params['min_price']).unmask();
@@ -486,21 +645,9 @@ $(function(){
     'init': function(){
 
 
-      // REMOVER LOCALIZAÇÃO
-      $('.property-location-items').on('click', '.property-location-item-remove', function(){
-        if($('.property-location-item').length == 1){
-          alert('nao pode');
-        }else{
-          $(this).closest('.property-location-item').remove();
-          setTimeout(function(){
-            properties_list.properties.process(1, true);
-          }, 200);
-        }
-      });
 
-      $('#search-min_price, #search-max_price, #search-min_area, #search-min_area').on('blur', function(){
-        properties_list.properties.process(1, true);
-      });
+
+
     }
   };
 
@@ -511,48 +658,13 @@ $(function(){
 
 
 
-    // MASK
-    $('.price-mask, .area-mask').mask('000.000.000.000.000', {reverse: true});
 
-    // DORMS, BANHEIROS e GARAGENS
-    $('.properties-data-item').on('click', function(){
-      var $this = $(this);
 
-      if($this.hasClass('active btn-info')){
-        $this.removeClass('active btn-info');
-      }else{
-        $(this).closest('.properties-data').find('.properties-data-item').removeClass('active btn-info');
-        $(this).addClass('active btn-info').blur();
-      }
 
-      properties_list.properties.process(1, true);
-    });
 
-    // PAGINAÇAO JS
-    $('.pagination-content').on('click', '.pagination-item', function(event){
-      event.preventDefault();
-      properties_list.properties.process($(this).attr('data-ci-pagination-page'), true);
-    });
 
-    // VIEW TYPE
-    var view_type_btn = $('.view-btn');
-    var view_type_area = $('.property-listing');
-    view_type_btn.on('click', function(){
-      var $this = $(this);
-      view_type_btn.removeClass('active');
-      $this.addClass('active');
 
-      if($this.hasClass('btn-list')) {
-        $.post(app.base_url('api/set_listview'), {listview: "list-view"});
-        view_type_area.removeClass('grid-view').addClass('list-view');
-      }
-      else if($this.hasClass('btn-grid')) {
-        $.post(app.base_url('api/set_listview'), {listview: "grid-view"});
-        view_type_area.removeClass('list-view').addClass('grid-view');
-      }
 
-      properties_list.swiper.init();
-    });
 
 
 

@@ -11,8 +11,6 @@ class Properties_model extends CI_Model {
   }
 
   public function get_properties($request = array(), $row = false){
-    //print_l($request);
-
     $return = array();
     $where = array();
 
@@ -156,8 +154,27 @@ class Properties_model extends CI_Model {
       $this->db->where($request['select']['where']);
     }
 
+    // ORDER BY
+    if(isset($request['params']['orderby']) && !empty($request['params']['orderby'])){
+      switch ($request['params']['orderby']) {
+        case 'lowest_price':
+          $this->db->order_by('imoveis_negociacoes.valor ASC');
+        break;
+
+        case 'biggest_price':
+          $this->db->order_by('imoveis_negociacoes.valor DESC');
+        break;
+
+        case 'most_recent':
+          $this->db->order_by('imoveis.id DESC');
+        break;
+      }
+    }
+
     // GET ROWS COUNT
     $return['total_rows'] = $this->get_rows_count($this->db->_compile_select());
+    $return['current_page'] = (isset($request['params']['pagination']['page']) ? $request['params']['pagination']['page'] : 1);
+
 
     // PAGINATION
     if(isset($request['params']['pagination']) && !empty($request['params']['pagination'])){

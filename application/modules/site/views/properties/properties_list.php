@@ -5,16 +5,15 @@
         <div class="col-sm-12">
           <ol class="breadcrumb"><li ><a href="/"><i class="fa fa-home"></i></a></li><li class="active">Simple Listing – List View</li></ol>
           <div class="page-title-left">
-            <h2>Simple Listing – List View</h2>
+            <h2 id="total-results">Foram encontrados <strong><?php echo $properties['total_rows']; ?></strong> imóveis</h2>
           </div>
           <div class="page-title-right">
             <div class="view hidden-xs">
               <div class="table-cell sort-tab">
-                Sort by:
-                <select class="selectpicker bs-select-hidden" title="Please select" data-live-search-style="begins" data-live-search="true">
-                  <option>Relevance</option>
-                  <option>Relevance</option>
-                  <option>Relevance</option>
+                <select id="search-orderby" name="orderby" class="selectpicker orderby">
+                  <option value="most_recent">Mais recentes</option>
+                  <option value="biggest_price">Preço maior</option>
+                  <option value="lowest_price">Preço menor</option>
                 </select>
               </div>
               <div class="table-cell">
@@ -51,8 +50,8 @@
           <div class="widget widget-range">
             <div class="widget-body">
               <form id="properties-list-form" method="post">
-                <input type="text" id="search-transaction" name="transaction" value="venda" />
-                <input type="text" id="search-page" name="page" value="<?php echo $paging; ?>" />
+                <input type="hidden" id="search-transaction" name="transaction" value="venda" />
+                <input type="hidden" id="search-page" name="page" value="<?php echo $paging; ?>" />
 
                 <dir class="row">
                   <div class="col-xs-12">
@@ -65,7 +64,9 @@
                       <tbody class="property-location-items">
                         <?php
                         if(isset($filters['property_location']) && !empty($filters['property_location'])){
-                          echo $this->site->mustache('properties-list-location-item.mustache', $filters['property_location']);
+                          echo $this->site->mustache('properties-list-location-item.mustache', array('location' => array(
+                            array_merge(array('label' => $filters['property_location']['label']), $filters['property_location']['location'])
+                          )));
                         }
                         ?>
                       </tbody>
@@ -125,7 +126,7 @@
                     <?php
                     for($bedrooms = 1 ; $bedrooms <= 5 ; $bedrooms++){
                       ?>
-                      <a href="javascript:void(0);" data-value="<?php echo $bedrooms; ?>" class="properties-data-item properties-bedrooms btn btn-rounded btn-default"><?php echo $bedrooms; ?>+</a>
+                      <a href="javascript:void(0);" data-item="bedrooms" data-value="<?php echo $bedrooms; ?>" class="properties-data-item properties-bedrooms btn btn-rounded btn-default"><?php echo $bedrooms; ?>+</a>
                       <?php
                     }
                     ?>
@@ -140,7 +141,7 @@
                     <?php
                     for($garages = 1 ; $garages <= 5 ; $garages++){
                       ?>
-                      <a href="javascript:void(0);" data-value="<?php echo $garages; ?>" class="properties-data-item properties-garages btn btn-rounded btn-default"><?php echo $garages; ?>+</a>
+                      <a href="javascript:void(0);" data-item="garages" data-value="<?php echo $garages; ?>" class="properties-data-item properties-garages btn btn-rounded btn-default"><?php echo $garages; ?>+</a>
                       <?php
                     }
                     ?>
@@ -155,7 +156,7 @@
                     <?php
                     for($bathrooms = 1 ; $bathrooms <= 5 ; $bathrooms++){
                       ?>
-                      <a href="javascript:void(0);" data-value="<?php echo $bathrooms; ?>" class="properties-data-item properties-bathrooms btn btn-rounded btn-default"><?php echo $bathrooms; ?>+</a>
+                      <a href="javascript:void(0);" data-item="bathrooms" data-value="<?php echo $bathrooms; ?>" class="properties-data-item properties-bathrooms btn btn-rounded btn-default"><?php echo $bathrooms; ?>+</a>
                       <?php
                     }
                     ?>
@@ -191,7 +192,7 @@
                       </div>
                     </div>
                     <div class="col-sm-12 col-xs-12">
-                      <button type="submit" class="btn btn-secondary btn-block"> Search</button>
+                      <button type="submit" class="btn btn-secondary btn-block"> Buscar</button>
                     </div>
                   </div>
                 </div>
@@ -203,3 +204,5 @@
     </div>
   </div>
 </section>
+
+<?php $this->site->get_templates(array('properties-list-item','properties-list-location-item','properties-list-no-results')); ?>
