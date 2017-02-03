@@ -42,7 +42,7 @@
             <input type="text" class="form-control input-search-local" placeholder="Bairro, cidade ou referência do imóvel" autocomplete="off" />
           </div>
           <div class="search-btn">
-            <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i> Buscar</button>
+            <button type="submit" class="btn btn-secondary btn-submit" disabled><i class="fa fa-search"></i> Buscar</button>
           </div>
         </div>
       </form>

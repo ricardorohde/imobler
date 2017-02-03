@@ -19,6 +19,21 @@ var app = app || {};
 			return $base_url;
 		},
 
+    user: {
+      'is_logged_callback': function(json){
+        return(json);
+      },
+      'is_logged': function(){
+        $.ajax({
+          url: app.base_url('api/is_logged'),
+          jsonp: "app.user.is_logged_callback",
+          dataType: "jsonp"
+        }).done(function(result) {
+          return result;
+        });
+      }
+    },
+
 		slug: function(str) {
 			str = str.replace(/^\s+|\s+$/g, ''); // trim
 			str = str.toLowerCase();

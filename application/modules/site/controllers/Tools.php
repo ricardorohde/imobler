@@ -46,6 +46,15 @@ class Tools extends Site_Controller {
     echo json_encode($properties);
   }
 
+  public function is_logged(){
+    echo 'app.user.is_logged_callback({
+"FirstName" : "xyz",
+"LastName" : "abc",
+"Grade" : "A"
+}
+);';
+  }
+
   public function set_listview() {
     if($this->input->post('listview')){
       $this->session->set_userdata('listview', $this->input->post('listview'));

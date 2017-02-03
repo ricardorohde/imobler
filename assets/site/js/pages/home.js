@@ -73,6 +73,8 @@ $( function() {
       $('#banner-search-main-city').val(ui.item.location.city);
       $('#banner-search-main-district').val(ui.item.location.district);
 
+      $('.btn-submit').removeAttr('disabled');
+
       //get_search_url_by_location();
     }
   });
