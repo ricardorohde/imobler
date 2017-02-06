@@ -177,8 +177,6 @@ class Properties_model extends CI_Model {
       $this->db->having('COUNT(imoveis.id)', count($request['params']['features']));
     }
 
-
-
     // WHERE
     if(isset($request['select']['where']) && !empty($request['select']['where'])){
       $this->db->where($request['select']['where']);
@@ -254,6 +252,11 @@ class Properties_model extends CI_Model {
       $return = $this->get_properties_features($return_ids, false, $return);
       $return = $this->get_properties_images($return_ids, $return);
 
+      // Favorites
+      if($this->site->user_logged()){
+        $return = $this->get_properties_favorites($return_ids, $return);
+      }
+
       return $return;
     }else{
       return false;
@@ -326,6 +329,40 @@ class Properties_model extends CI_Model {
     return false;
   }
 
+  public function get_properties_favorites($properties_ids, $return = null) {
+    if($this->site->user_logged()){
+      $user_id = $this->site->userinfo('id');
+
+      $this->db->select("imoveis_favoritos.imovel");
+
+      $this->db->from("imoveis_favoritos");
+
+      $this->db->where_in('imoveis_favoritos.imovel', $properties_ids);
+
+      $this->db->where('imoveis_favoritos.usuario', $user_id);
+
+      $sql = $this->db->_compile_select();
+      //echo $sql;
+
+      $query = $this->db->get();
+
+
+      if ($query->num_rows() > 0) {
+
+        if($return){
+          foreach ($query->result_array() as $imovel_favorito) {
+            $property_key = array_search($imovel_favorito['imovel'], $properties_ids);
+            $return['results'][$property_key]['imovel_favorito'] = true;
+          }
+          return $return;
+        }
+        return $query->result_array();
+      }else{
+        if($return) return $return;
+      }
+    }
+  }
+
   public function get_location($request = array()) {
     $this->db->from('estados');
 
@@ -367,6 +404,50 @@ class Properties_model extends CI_Model {
       );
 
       return $result;
+    }
+
+    return false;
+  }
+
+  public function get_favorite($user_id, $property_id) {
+    $this->db->select("*");
+
+    $this->db->where(array(
+      'imoveis_favoritos.usuario' => $user_id,
+      'imoveis_favoritos.imovel' => $property_id
+    ));
+
+    $query = $this->db->get("imoveis_favoritos");
+
+    if ($query->num_rows() > 0) {
+      return $query->row_array();
+    }
+
+    return false;
+  }
+
+  public function favorite($params) {
+    if($this->site->user_logged() && isset($params['property_id']) && $params['property_id'] && isset($params['action']) && $params['action']){
+      $user_id = $this->site->userinfo('id');
+      $return = array('property_id' => $params['property_id']);
+
+      if($favorite = $this->get_favorite($user_id, $params['property_id'])){
+        if($params['action'] == 'unlike'){
+          $return['action'] = 'unliked';
+          $this->db->delete('imoveis_favoritos', array('imovel' => $params['property_id'], 'usuario' => $user_id));
+        }else if($params['action'] == 'like'){
+          $return['action'] = 'liked';
+        }
+      }else{
+        if($params['action'] == 'unlike'){
+          $return['action'] = 'unliked';
+        }else if($params['action'] == 'like'){
+          $return['action'] = 'liked';
+          $this->db->insert('imoveis_favoritos', array('imovel' => $params['property_id'], 'usuario' => $user_id));
+        }
+      }
+
+      return $return;
     }
 
     return false;

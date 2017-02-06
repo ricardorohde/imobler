@@ -17,7 +17,7 @@
 
             <ul class="actions">
               <li>
-                <span title="Adicionar aos favoritos" data-property_id="{{imovel_id}}" class="btn-like" data-placement="top" data-toggle="tooltip" data-original-title="Adicionar aos favoritos">
+                <span title="Adicionar aos favoritos" data-property_id="{{imovel_id}}" data-action="{{#imovel_favorito}}unlike{{/imovel_favorito}}{{^imovel_favorito}}like{{/imovel_favorito}}" class="btn-like{{#imovel_favorito}} active{{/imovel_favorito}}" data-placement="top" data-toggle="tooltip" data-original-title="Adicionar aos favoritos">
                   <i class="fa fa-heart"></i>
                 </span>
               </li>

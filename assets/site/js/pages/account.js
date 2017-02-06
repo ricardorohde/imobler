@@ -1,7 +1,13 @@
 var account = app['account'] = {};
 
 $(function(){
+  var modal_login = $('#pop-login');
+
   account.login = {
+    toggle: function(){
+      modal_login.modal('toggle');
+    },
+
     header: function(response){
       console.log(response);
       $.ajax({
@@ -9,9 +15,20 @@ $(function(){
         data: response,
         method: 'post',
         dataType: "html"
-      }).done(function(result) {
-        $('#pop-login').modal('toggle');
-        $('#header-account').html(result);
+      }).done(function(html) {
+        // Seta variavel com ID logado
+        account_user_logged = response.id;
+
+        // Se existir like em andamento
+        if(properties_like_property_id){
+          app.properties.like(properties_like_property_id, 'like');
+        }
+
+        //Atualiza Header
+        $('#header-account').html(html);
+
+        //Fecha login
+        app.account.login.toggle();
       });
     }
   };
@@ -54,6 +71,12 @@ $(function(){
       });
     }
   }
+
+  modal_login.on('hide.bs.modal', function (e) {
+    if(properties_like_property_id){
+      properties_like_property_id = 0;
+    }
+  });
 
   // user: {
   //   'is_logged': function(){

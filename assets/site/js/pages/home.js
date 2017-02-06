@@ -75,7 +75,7 @@ $( function() {
 
       $('.btn-submit').removeAttr('disabled');
 
-      //get_search_url_by_location();
+      get_search_url_by_location();
     }
   });
 

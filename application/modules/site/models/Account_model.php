@@ -6,7 +6,7 @@ class Account_model extends CI_Model {
   }
 
   public function get_login($params) {
-    $this->db->select("nome,sobrenome,email,facebook_id,imagem,status");
+    $this->db->select("id,nome,sobrenome,email,facebook_id,imagem,status");
 
     if(isset($params['facebook_id']) && !empty($params['facebook_id'])){
       $this->db->where('usuarios.facebook_id', $params['facebook_id']);
@@ -60,13 +60,11 @@ class Account_model extends CI_Model {
     return $this->login_process($usuario);
   }
 
-  public function login() {
-    $post = $this->input->post();
-
-    if($post && $usuario = $this->get_login($post)) {
+  public function login($params) {
+    if($params && $usuario = $this->get_login($params)) {
 
       // Lembrar senha
-      if(isset($post['lembrar']) && $post['lembrar'] == 1){
+      if(isset($params['lembrar']) && $params['lembrar'] == 1){
         $usuario = array_merge(array('lembrar' => 1), $usuario);
       }
 

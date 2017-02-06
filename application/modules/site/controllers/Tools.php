@@ -61,10 +61,10 @@ class Tools extends Site_Controller {
     echo json_encode($this->account_model->login());
   }
 
-  public function add_favorite() {
-    $result = $this->input->post();
-    $result['action'] = 'like';
-    echo json_encode($result);
+  public function property_favorite() {
+    $this->load->model('properties_model');
+    $params = $this->input->post();
+    echo json_encode($this->properties_model->favorite($params));
   }
 
   public function set_listview() {

@@ -11,13 +11,15 @@ class Site {
   }
 
   public function autologin(){
-    if($this->usuario_logado(FALSE)){
+    if($this->user_logged(FALSE)){
       $this->ci->load->model('account_model');
 
       $get_cookie = get_cookie($this->ci->config->item('login_cookie_name'));
       if($get_cookie){
-        if($usuario = $this->ci->account_model->get_login(array('login_cookie' => $get_cookie))){
-          $this->ci->account_model->login(array('id' => $usuario["id"]));
+        if($usuario = $this->ci->account_model->login(array('login_cookie' => $get_cookie))){
+          $this->ci->account_model->login_process($usuario);
+        }else{
+          $this->ci->session->set_userdata('tentativa_autologin', true);
         }
       }else{
         $this->ci->session->set_userdata('tentativa_autologin', true);
@@ -156,6 +158,7 @@ class Site {
         return $usuario[$slug];
       }
     }
+    return false;
   }
 
 }
