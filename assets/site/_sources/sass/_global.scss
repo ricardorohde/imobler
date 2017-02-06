@@ -950,6 +950,11 @@ table{
         background-color: $anchor;
         @include opacity(0.8);
       }
+
+      &.active {
+        background: $red;
+        @include opacity(0.8);
+      }
     }
   }
 

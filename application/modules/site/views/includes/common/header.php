@@ -50,11 +50,27 @@
       </nav>
     </div>
     <div class="header-right">
-      <div class="user">
-        <a href="#" data-toggle="modal" data-target="#pop-login">Entre / Cadastre-se</a>
-        <a href="add-new-property.html" class="btn btn-default">Anunciar imóveis</a>
-      </div>
+
+      <ul class="account-action">
+        <li>
+          <a href="add-new-property.html" class="btn btn-default">Anunciar imóveis</a>
+        </li>
+
+        <li id="header-account">
+          <?php
+          if($this->site->user_logged(FALSE)){
+            ?>
+            <a href="#" data-toggle="modal" data-target="#pop-login">Entrar / Cadastrar</a>
+            <?php
+          }else{
+            echo $this->site->mustache('header-account.mustache', $this->session->userdata('usuario_logado'));
+          }
+          ?>
+        </li>
+
+      </ul>
     </div>
+
   </div>
 </header>
 <div class="header-mobile visible-sm visible-xs">

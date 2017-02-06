@@ -74,6 +74,8 @@
         .script("<?php echo base_url('assets/site/js/isotope.pkgd.min.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/jquery.nicescroll.js'); ?>").wait()
         .script("<?php echo base_url('assets/site/js/jquery.parallax-1.1.3.js'); ?>").wait()
+        .script("<?php echo base_url('assets/site/js/jquery.form.js'); ?>")
+        .script("<?php echo base_url('assets/site/js/pages/account.js'); ?>").wait()
           <?php
           if(isset($assets["scripts"]) && !empty($assets["scripts"])){
             foreach($assets["scripts"] as $index => $script){
@@ -82,7 +84,25 @@
             }
           }
           ?>
-        .script("<?php echo base_url('assets/site/js/custom.js'); ?>").wait()
+        .script("<?php echo base_url('assets/site/js/custom.js'); ?>").wait();
+
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1830187297238353',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.8'
+          });
+        };
+
+        // Load the SDK asynchronously
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 </body>
 </html>

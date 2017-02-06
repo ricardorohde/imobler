@@ -3,6 +3,26 @@
 class Site {
   function __construct(){
     $this->ci =& get_instance();
+
+    // Tentar Autologin
+    if(!$this->ci->session->userdata('tentativa_autologin')){
+      $this->autologin();
+    }
+  }
+
+  public function autologin(){
+    if($this->usuario_logado(FALSE)){
+      $this->ci->load->model('account_model');
+
+      $get_cookie = get_cookie($this->ci->config->item('login_cookie_name'));
+      if($get_cookie){
+        if($usuario = $this->ci->account_model->get_login(array('login_cookie' => $get_cookie))){
+          $this->ci->account_model->login(array('id' => $usuario["id"]));
+        }
+      }else{
+        $this->ci->session->set_userdata('tentativa_autologin', true);
+      }
+    }
   }
 
   public function mustache($template, $data){
@@ -14,6 +34,8 @@ class Site {
 
     $this->ci->load->helper('file');
     $template = read_file("application/modules/site/views/includes/templates/" . $template);
+
+    $data['base_url'] = base_url();
 
     $rendered = $entry->render($template, $data);
 
@@ -108,6 +130,32 @@ class Site {
     $this->ci->pagination->initialize($config);
 
     return $this->ci->pagination->create_links();
+  }
+
+  public function user_logged($condition = TRUE, $redirect = NULL, $section = 'usuario_logado'){
+    $login_check = $this->ci->session->userdata($section);
+    $is_logged = $login_check ? TRUE : FALSE;
+
+    if($is_logged == $condition){
+      if($redirect){
+        if($redirect === TRUE){
+          $redirect = base_url('minha-conta/login');
+        }
+        $this->ci->session->set_tempdata('redirect', base_url($this->ci->uri->uri_string()), 180);
+        redirect(base_url($redirect), 'location');
+      }
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  public function userinfo($slug, $section = 'usuario_logado'){
+    if($this->user_logged(TRUE, NULL, $section)){
+      $usuario = $this->ci->session->userdata($section);
+      if(isset($usuario[$slug])){
+        return $usuario[$slug];
+      }
+    }
   }
 
 }

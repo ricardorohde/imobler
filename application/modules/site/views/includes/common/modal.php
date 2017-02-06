@@ -12,38 +12,37 @@
         <div class="tab-content">
           <div class="tab-pane fade in active">
             <div class="message">
-              <p class="error text-danger"><i class="fa fa-close"></i> You are not Logedin</p>
-              <p class="success text-success"><i class="fa fa-check"></i> You are not Logedin</p>
+              <p id="login-message"></p>
+              <!-- <p class="error text-danger"><i class="fa fa-close"></i> You are not Logedin</p>
+              <p class="success text-success"><i class="fa fa-check"></i> You are not Logedin</p> -->
             </div>
-            <form>
+            <form id="login-form" method="post" action="<?php echo base_url('/api/login'); ?>">
               <div class="form-group field-group">
                 <div class="input-user input-icon">
-                  <input type="text" placeholder="Username">
+                  <input type="text" name="email" placeholder="E-mail">
                 </div>
                 <div class="input-pass input-icon">
-                  <input type="password" placeholder="Password">
+                  <input type="password" name="senha" placeholder="Senha">
                 </div>
               </div>
               <div class="forget-block clearfix">
                 <div class="form-group pull-left">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox">
-                      Remember me
+                      <input type="checkbox" name="lembrar" value="1">
+                      Lembrar senha
                     </label>
                   </div>
                 </div>
                 <div class="form-group pull-right">
-                  <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#pop-reset-pass">I forgot username and password</a>
+                  <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#pop-reset-pass">Esqueci minha senha</a>
                 </div>
               </div>
 
               <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
             <hr>
-            <a href="#" class="btn btn-social btn-bg-facebook btn-block"><i class="fa fa-facebook"></i> login with facebook</a>
-            <a href="#" class="btn btn-social btn-bg-linkedin btn-block"><i class="fa fa-linkedin"></i> login with linkedin</a>
-            <a href="#" class="btn btn-social btn-bg-google-plus btn-block"><i class="fa fa-google-plus"></i> login with Google</a>
+            <a href="javascript:void(0);" class="btn btn-facebook-login btn-social btn-bg-facebook btn-block"><i class="fa fa-facebook"></i> Entrar com Facebook</a>
           </div>
           <div class="tab-pane fade">
             <form>
@@ -82,7 +81,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <ul class="login-tabs">
-          <li class="active">Reset Password</li>
+          <li class="active">Esqueci minha senha</li>
         </ul>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
       </div>

@@ -10,6 +10,11 @@ class Tools extends Site_Controller {
     $this->load->view('site/configjs');
   }
 
+  function mustache($template){
+    $post = $this->input->post();
+    echo $this->site->mustache($template, $post);
+  }
+
   function images($property_id, $dimensions, $quality, $file) {
     header('Content-type: image/jpeg');
 
@@ -46,13 +51,20 @@ class Tools extends Site_Controller {
     echo json_encode($properties);
   }
 
-  public function is_logged(){
-    echo 'app.user.is_logged_callback({
-"FirstName" : "xyz",
-"LastName" : "abc",
-"Grade" : "A"
-}
-);';
+  public function login_facebook(){
+    $this->load->model('account_model');
+    echo json_encode($this->account_model->login_facebook());
+  }
+
+  public function login(){
+    $this->load->model('account_model');
+    echo json_encode($this->account_model->login());
+  }
+
+  public function add_favorite() {
+    $result = $this->input->post();
+    $result['action'] = 'like';
+    echo json_encode($result);
   }
 
   public function set_listview() {

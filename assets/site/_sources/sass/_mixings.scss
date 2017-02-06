@@ -96,7 +96,7 @@
 @mixin thumb_content_padding($pad) {
   padding-top: $pad;
   padding-bottom: $pad;
-    
+
 }
 @mixin list-col($cols) {
   columns: $cols;
@@ -209,7 +209,8 @@
 
 @mixin social_media_bg($social_media_color) {
   background-color: $social_media_color;
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: darken($social_media_color, 10%);
     //border: 1px solid $social_media_color;
     color: $white;

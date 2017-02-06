@@ -1,6 +1,9 @@
 <?php header('Content-type: application/javascript'); ?>
 var app = app || {};
 
+var user_is_logged = false;
+var like_property_id = 0;
+
 (function (window, document, $, undefined) {
 	'use strict';
 
@@ -19,19 +22,26 @@ var app = app || {};
 			return $base_url;
 		},
 
-    user: {
-      'is_logged_callback': function(json){
-        return(json);
-      },
-      'is_logged': function(){
+    property_like: function($property_id){
+      if(user_is_logged){
         $.ajax({
-          url: app.base_url('api/is_logged'),
-          jsonp: "app.user.is_logged_callback",
-          dataType: "jsonp"
+          url: app.base_url('api/add_favorite'),
+          data: {
+            property_id: $property_id
+          },
+          method: 'post',
+          dataType: "json"
         }).done(function(result) {
-          return result;
+
+          if(result.action == 'like'){
+            $('.btn-like[data-property_id='+ result.property_id +']').addClass('active');
+          }else if(result.action == 'unlike'){
+            $('.btn-like[data-property_id='+ result.property_id +']').removeClass('active');
+          }
+
         });
       }
+      user_is_logged = true;
     },
 
 		slug: function(str) {
@@ -52,5 +62,10 @@ var app = app || {};
 			return str;
 		}
 	};
+
+  $('.property-items').on('click', '.btn-like', function(){
+    var $like = $(this);
+    app.property_like($like.attr('data-property_id'));
+  });
 
 }(this, document, jQuery));

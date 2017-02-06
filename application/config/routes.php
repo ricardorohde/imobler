@@ -6,6 +6,7 @@ $route['default_controller'] = 'site/home'; //Home
 // == TOOLS  == \\
 $route['configjs'] = 'site/tools/configjs';
 $route['api/(:any)'] = 'site/tools/$1';
+$route['api/mustache/(:any)'] = 'site/tools/mustache/$1';
 $route['api/(:any)/(:num)'] = 'site/tools/$1/$2';
 $route['tools/images/(:num)/(:any)/(:num)/(:any)'] = 'site/tools/images/$1/$2/$3/$4';
 
@@ -27,6 +28,7 @@ $route['trabalhe-conosco'] = 'site/contacts/work_with_us'; //Trabalhe conosco
 
 // == MINHA CONTA == \\
 $route['minha-conta/login'] = 'site/account/login'; //Login
+$route['minha-conta/logout'] = 'site/account/logout'; //Logout
 $route['minha-conta/cadastro'] = 'site/account/register'; //Cadastro
 $route['minha-conta/esqueci-minha-senha'] = 'site/account/forget_password'; //Esqueci minha senha
 $route['minha-conta/favoritos'] = 'site/account/favorites'; //Imóveis favoritos

@@ -67,6 +67,17 @@ class Account extends Site_Controller {
     $this->template->view('site/master', 'site/account/login', $data);
   }
 
+  public function logout() {
+    $login_cookie_name = $this->config->item('login_cookie_name');
+    if(get_cookie($login_cookie_name)){
+      delete_cookie($login_cookie_name);
+    }
+
+    $this->session->sess_destroy();
+
+    redirect(base_url('minha-conta/login'), 'location');
+  }
+
   public function forget_password() {
     $data = array(
       'page' => array(
