@@ -16,17 +16,32 @@ class Tools extends Site_Controller {
   }
 
   function images($property_id, $dimensions, $quality, $file) {
-    header('Content-type: image/jpeg');
+    //header('Content-type: image/jpeg');
 
-    include APPPATH . 'third_party/ImageResize.php';
+    // $dimensions = explode('x', $dimensions);
 
-    $image = new \Eventviva\ImageResize(FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file);
+    // $mthumb_config = array(
+    //   'src' => '/Users/amadre/Projetos/imobler/assets/uploads/imoveis/3/110579637506.jpg',//FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file,
+    //   'w' => 800,
+    //   'h' => 600,
+    //   'q' => 50
+    // );
 
-    $dimensions = explode('x', $dimensions);
-    $image->quality_jpg = $quality;
-    $image->crop($dimensions[0], $dimensions[1]);
+    // print_l($mthumb_config);
 
-    echo (string) $image;
+    require_once (APPPATH . 'third_party/mthumb.php');
+
+    // header('Content-type: image/jpeg');
+
+    // include APPPATH . 'third_party/ImageResize.php';
+
+    // $image = new \Eventviva\ImageResize(FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file);
+
+    // $dimensions = explode('x', $dimensions);
+    // $image->quality_jpg = $quality;
+    // $image->crop($dimensions[0], $dimensions[1]);
+
+    // echo (string) $image;
   }
 
 	public function get_locations(){
