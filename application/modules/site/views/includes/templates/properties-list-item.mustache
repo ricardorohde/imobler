@@ -17,23 +17,17 @@
 
             <ul class="actions">
               <li>
-                <span title="Adicionar aos favoritos" data-property_id="{{imovel_id}}" data-action="{{#imovel_favorito}}unlike{{/imovel_favorito}}{{^imovel_favorito}}like{{/imovel_favorito}}" class="btn-like{{#imovel_favorito}} active{{/imovel_favorito}}" data-placement="top" data-toggle="tooltip" data-original-title="Adicionar aos favoritos">
+                <span title="Adicionar aos favoritos" data-property_id="{{imovel_id}}" data-action="{{#imovel_favorito}}unlike{{/imovel_favorito}}{{^imovel_favorito}}like{{/imovel_favorito}}" class="btn-like{{#imovel_favorito}} active{{/imovel_favorito}}" data-placement="top" data-toggle="property-tooltip" data-original-title="Adicionar aos favoritos">
                   <i class="fa fa-heart"></i>
                 </span>
               </li>
-              <li class="share-btn">
+              <li class="share-items">
                 <div class="share_tooltip fade">
-                  <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
-                  <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
-                  <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
-                  <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                  <a class="share-item" href="http://www.facebook.com/share.php?u={{imovel_permalink}}&title={{tipo_nome}} à venda em {{bairro_nome}}+{{imovel_permalink}}"><i class="fa fa-facebook"></i></a>
+                  <a class="share-item" href="http://twitter.com/intent/tweet?status={{tipo_nome}} à venda em {{bairro_nome}}+{{imovel_permalink}}"><i class="fa fa-twitter"></i></a>
+                  <a class="share-item" href="https://plus.google.com/share?url={{imovel_permalink}}"><i class="fa fa-google-plus"></i></a>
                 </div>
-                <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
-              </li>
-              <li>
-                <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
-                  <i class="fa fa-camera"></i>
-                </span>
+                <span class="share-btn" title="Compartilhar" data-placement="top" data-toggle="property-tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
               </li>
             </ul>
             <div class="property-images">

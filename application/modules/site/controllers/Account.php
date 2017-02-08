@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Account extends Site_Controller {
   public function index() {
+    $this->site->user_logged(FALSE, TRUE);
+
     $data = array(
       'page' => array(
         'one' => 'minha-conta'
@@ -101,6 +103,8 @@ class Account extends Site_Controller {
   }
 
   public function favorites() {
+    $this->site->user_logged(FALSE, TRUE);
+
     $data = array(
       'page' => array(
         'one' => 'minha-conta',
@@ -123,6 +127,8 @@ class Account extends Site_Controller {
   }
 
   public function my_searches() {
+    $this->site->user_logged(FALSE, TRUE);
+
     $data = array(
       'page' => array(
         'one' => 'minha-conta',

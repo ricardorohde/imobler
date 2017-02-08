@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+$transactions = 'venda|aluguel';
+
 // == HOME  == \\
 $route['default_controller'] = 'site/home'; //Home
 
@@ -49,15 +51,10 @@ $route['anunciar-imoveis'] = 'site/properties/add_properties'; //Anunciar um im�
 // Lista para comparação de até quatro (4) imóveis selecionados pelo usuário
 $route['comparar-imoveis'] = 'site/properties/compare_properties';
 
-// Ficha do imóvel - Slug - Ex: /imovel/apartamento-a-venda-no-portal-dos-bandeirantes-id-2349
-$route['imovel/(:any)'] = function ($slug){
-  return 'site/properties/property_details/' . json_encode(array('slug'=>$slug));
-};
-
 // Ficha do imóvel - Estruturado - Ex: /imovel/sp/sao-paulo/vila-pereira-barreto-pirituba/sobrado/6140/
-$route['imovel/(:any)/(:any)/(:any)/(:any)/(:num)'] = function ($state, $city, $district, $property_type, $property_id){
-  $params = array();
-
+$route['imovel/('. $transactions .')/(:any)/(:any)/(:any)/(:any)/(:num)'] = function ($transaction, $state, $city, $district, $property_type, $property_id){
+  $params = array('route_type' => 'structure');
+  if($transaction) $params['transaction'] = strtolower($transaction);
   if($state) $params['location'][0]['state'] = strtolower($state);
   if($city) $params['location'][0]['city'] = strtolower($city);
   if($district) $params['location'][0]['district'] = strtolower($district);
@@ -65,6 +62,11 @@ $route['imovel/(:any)/(:any)/(:any)/(:any)/(:num)'] = function ($state, $city, $
   if($property_id) $params['property_id'] = $property_id;
 
   return 'site/properties/property_details/' . json_encode($params);
+};
+
+// Ficha do imóvel - Slug - Ex: /imovel/apartamento-a-venda-no-portal-dos-bandeirantes-id-2349
+$route['imovel/(:any)'] = function ($slug){
+  return 'site/properties/property_details/' . json_encode(array('route_type'=>'permalink','slug'=>$slug));
 };
 
 // Atalho para ficha do imóvel - Ex: /3456 -- Redireciona para URL da Ficha do imóvel (Slug ou Estruturado)
@@ -78,7 +80,7 @@ foreach($db->get('imoveis_tipos')->result_array() as $property_type){
   $property_types[] = $property_type['slug'];
 }
 
-$transactions = 'venda|aluguel';
+
 
 //Lista imóveis de tipo específico em estado/cidade/bairro/tipo - Ex: /venda/sp/sao-paulo/pirituba/apartamento/
 $route['('. $transactions .')/(:any)/(:any)/(:any)/('. implode('|', $property_types) .')/(:num)'] = function ($transaction, $state, $city, $district, $property_type, $page){

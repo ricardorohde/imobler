@@ -141,9 +141,9 @@ class Site {
     if($is_logged == $condition){
       if($redirect){
         if($redirect === TRUE){
-          $redirect = base_url('minha-conta/login');
+          $redirect = 'minha-conta/login';
         }
-        $this->ci->session->set_tempdata('redirect', base_url($this->ci->uri->uri_string()), 180);
+        $this->ci->session->set_flashdata('redirect', base_url($this->ci->uri->uri_string()));
         redirect(base_url($redirect), 'location');
       }
       return TRUE;

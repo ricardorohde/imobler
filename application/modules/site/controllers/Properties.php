@@ -50,7 +50,20 @@ class Properties extends Site_Controller {
   }
 
   public function property_details($route_params = null) {
-    //echo 'Ficha do imóvel: ' . print_r($route_params, true);
+    $route_params = json_decode($route_params, true);
+
+    $property = $this->properties_model->get_properties(array(
+      'params' => array_merge(array(
+        'visibility' => true
+      ), $route_params)
+    ), TRUE);
+
+    // print_l($property);
+
+    if(isset($route_params['route_type']) && $route_params['route_type'] == 'structure' && isset($property['negociacao_permalink']) && !empty($property['negociacao_permalink'])){
+      redirect($this->properties_model->get_property_permalink($property), 'location', 301);
+      exit;
+    }
 
     $data = array(
       'page' => array(
@@ -68,9 +81,10 @@ class Properties extends Site_Controller {
           array('assets/site/js/slick.min.js', true),
           array('assets/site/js/jquery.prettyPhoto.js', true),
           array('assets/site/js/pages/property_details.js', true),
-          array('https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMOF9dMlKAtS7un_C8yrd9i3ppeOuE3Y&libraries=places&callback=initMapa', true)
+          array('https://maps.googleapis.com/maps/api/js?key=AIzaSyANK5keJe6la_A-bWPQg4IP8mEv5WywRHY&libraries=places&callback=app.property_detail.mapa', true)
         )
-      )
+      ),
+      'property' => $property
     );
 
     $this->template->view('site/master', 'site/properties/property_details', $data);

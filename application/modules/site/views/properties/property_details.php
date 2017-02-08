@@ -1,104 +1,108 @@
-<section id="section-body">
+<section class="detail-top detail-top-full">
+  <div class="detail-media">
+    <div class="tab-content">
+      <div id="gallery" class="tab-pane fade in active" style="background-image: url('http://placehold.it/1423x600')">
+        <a href="#" class="popup-trigger popup-trigger-v2"></a>
+        <div class="media-tabs-up">
+          <div class="container">
+            <span class="label-wrap">
+              <span class="label label-primary">For Rent</span>
+              <span class="label label-danger">Sold</span>
+            </span>
+          </div>
+        </div>
+        <div class="media-detail-down">
+          <div class="container">
+            <div class="header-detail table-list">
+              <div class="header-left table-cell">
 
-  <div class="detail-top detail-top-grid no-margin">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-xs-12">
-          <div class="header-detail table-list">
-            <div class="header-left">
-              <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-home"></i></a></li>
-                <li><a href="#">Library</a></li>
-                <li class="active">Data</li>
-              </ol>
-              <h1>
-                Oceanfront Villa With Pool
-                <span class="label-wrap hidden-sm hidden-xs">
-                  <span class="label label-primary">For Sale</span>
-                  <span class="label label-danger">Sold</span>
-                </span>
-              </h1>
-              <address class="property-address">7601 East Treasure Drive, Miami Beach, FL 33141</address>
-            </div>
-            <div class="header-right">
-              <ul class="actions">
-                <li class="share-btn">
-                  <div class="share_tooltip tooltip_left fade">
-                    <a href="#" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;"><i class="fa fa-facebook"></i></a>
-                    <a href="#" onclick="if(!document.getElementById('td_social_networks_buttons')){window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;}"><i class="fa fa-twitter"></i></a>
-                    <a href="#" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;"><i class="fa fa-pinterest"></i></a>
-                    <a href="#" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;"><i class="fa fa-linkedin"></i></a>
-                    <a href="#" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;"><i class="fa fa-google-plus"></i></a>
-                    <a href="#"><i class="fa fa-envelope"></i></a>
-                  </div>
-                  <span data-placement="right" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
-                </li>
-                <li>
-                  <span><i class="fa fa-heart-o"></i></span>
-                </li>
-              </ul>
-              <span class="item-price">$575,000</span>
-              <span class="item-sub-price">$21,000/mo</span>
+                <ol class="breadcrumb">
+                  <li><a href="#"><i class="fa fa-home"></i></a></li>
+                  <li><a href="#">Library</a></li>
+                  <li class="active">Data</li>
+                </ol>
+                <div class="table-cell"><h1>Family home</h1></div>
+
+                <div class="table-cell">
+                  <ul class="actions">
+                    <li class="share-items">
+                      <div class="share_tooltip fade">
+                        <a class="share-item" href="http://www.facebook.com/share.php?u={{imovel_permalink}}&title={{tipo_nome}} à venda em {{bairro_nome}}+{{imovel_permalink}}"><i class="fa fa-facebook"></i></a>
+                        <a class="share-item" href="http://twitter.com/intent/tweet?status={{tipo_nome}} à venda em {{bairro_nome}}+{{imovel_permalink}}"><i class="fa fa-twitter"></i></a>
+                        <a class="share-item" href="https://plus.google.com/share?url={{imovel_permalink}}"><i class="fa fa-google-plus"></i></a>
+                      </div>
+                      <span class="share-btn" title="Compartilhar" data-placement="top" data-toggle="property-tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
+                    </li>
+
+                    <li>
+                      <span title="Adicionar aos favoritos" data-property_id="<?php echo $property['imovel_id']; ?>" data-action="<?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? 'unlike' : 'like'; ?>" class="btn-like <?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? 'active' : ''; ?>" data-placement="top" data-toggle="property-tooltip" data-original-title="Adicionar aos favoritos">
+                        <i class="fa fa-heart"></i>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <address class="property-address">S Crandon Ave</address>
+              </div>
+              <div class="header-right table-cell">
+                <h1>$11,500/mo</h1>
+                <h4>$21,000/mo</h4>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div><!--/.detail-top-->
 
+      <div id="map" class="tab-pane fade"></div>
+      <div id="street-map" class="tab-pane fade"></div>
+    </div>
+    <div class="media-tabs-up">
+      <div class="container">
+        <div class="media-tabs">
+          <ul class="media-tabs-list">
+            <li class="popup-trigger" data-placement="bottom" data-toggle="tooltip" data-original-title="View Photos">
+              <a href="#gallery" data-toggle="tab">
+                <i class="fa fa-camera"></i>
+              </a>
+            </li>
+            <li data-placement="bottom" data-toggle="tooltip" data-original-title="Map View">
+              <a href="#map" data-toggle="tab">
+                <i class="fa fa-map"></i>
+              </a>
+            </li>
+            <li data-placement="bottom" data-toggle="tooltip" data-original-title="Street View">
+              <a href="#street-map" data-toggle="tab">
+                <i class="fa fa-street-view"></i>
+              </a>
+            </li>
+          </ul>
+          <ul class="actions">
+            <li class="share-items">
+              <div class="share_tooltip fade">
+                <a class="share-item" href="http://www.facebook.com/share.php?u={{imovel_permalink}}&title={{tipo_nome}} à venda em {{bairro_nome}}+{{imovel_permalink}}"><i class="fa fa-facebook"></i></a>
+                <a class="share-item" href="http://twitter.com/intent/tweet?status={{tipo_nome}} à venda em {{bairro_nome}}+{{imovel_permalink}}"><i class="fa fa-twitter"></i></a>
+                <a class="share-item" href="https://plus.google.com/share?url={{imovel_permalink}}"><i class="fa fa-google-plus"></i></a>
+              </div>
+              <span class="share-btn" title="Compartilhar" data-placement="top" data-toggle="property-tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
+            </li>
+
+            <li>
+              <span title="Adicionar aos favoritos" data-property_id="<?php echo $property['imovel_id']; ?>" data-action="<?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? 'unlike' : 'like'; ?>" class="btn-like <?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? 'active' : ''; ?>" data-placement="top" data-toggle="property-tooltip" data-original-title="Adicionar aos favoritos">
+                <i class="fa fa-heart"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!--/detail-top-->
+
+<section id="section-body">
   <section class="section-detail-content">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 container-contentbar">
           <div class="detail-bar">
-            <div class="detail-media detail-top-slideshow">
-              <div class="tab-content">
-
-                <div id="gallery" class="tab-pane fade in active">
-                  <span class="label-wrap visible-sm visible-xs">
-                    <span class="label label-primary">For Sale</span>
-                    <span class="label label-danger">Sold</span>
-                  </span>
-                  <div class="slideshow">
-                    <div class="slideshow-main">
-                      <div class="slide">
-                        <div>
-                          <img src="https://unsplash.it/810/430/?image=<?php echo rand(1,500); ?>" width="810" height="430" alt="Slide show">
-                        </div>
-                        <div>
-                          <img src="https://unsplash.it/810/430/?image=<?php echo rand(1,500); ?>" width="810" height="430" alt="Slide show">
-                        </div>
-                        <div>
-                          <img src="https://unsplash.it/810/430/?image=<?php echo rand(1,500); ?>" width="810" height="430" alt="Slide show">
-                        </div>
-                        <div>
-                          <img src="https://unsplash.it/810/430/?image=<?php echo rand(1,500); ?>" width="810" height="430" alt="Slide show">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="slideshow-nav-main">
-                      <div class="slideshow-nav">
-                        <div>
-                          <img src="http://placehold.it/100x70" width="100" height="70" alt="Slide show thumb">
-                        </div>
-                        <div>
-                          <img src="http://placehold.it/100x70" width="100" height="70" alt="Slide show thumb">
-                        </div>
-                        <div>
-                          <img src="http://placehold.it/100x70" width="100" height="70" alt="Slide show thumb">
-                        </div>
-                        <div>
-                          <img src="http://placehold.it/100x70" width="100" height="70" alt="Slide show thumb">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="map" class="tab-pane fade"></div>
-                <div id="street-map" class="tab-pane fade"></div>
-              </div>
-            </div>
-
             <div class="property-description detail-block">
               <div class="detail-title">
                 <h2 class="title-left">Description</h2>
@@ -116,7 +120,6 @@
                   <a href="#">Open on Google Maps <i class="fa fa-map-marker"></i></a>
                 </div>
               </div>
-              <div id="map" style="width:100%; height: 200px; background: #cc0000;"></div>
               <ul class="list-three-col">
                 <li><strong>Address:</strong> 7601 East Treasure Drive</li>
                 <li><strong>City:</strong> Miami Beach</li>
@@ -251,10 +254,12 @@
                 <h2 class="title-left">Video</h2>
               </div>
               <div class="video-block">
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/z9Ul9ccDOqE" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
+                <a href="https://www.youtube.com/watch?v=QK66RK7ogKU" data-fancy="property_video" title="YouTube demo">
+                  <span class="play-icon"><img src="<?php echo base_url('assets/site/images/icons/video-play-icon.png'); ?>" alt="YouTube demo" width="70" height="50"></span>
+                  <img src="http://placehold.it/750x388" alt="thumb" class="video-thumb">
+                </a>
               </div>
             </div>
-
             <div class="detail-contact detail-block">
               <div class="detail-title">
                 <h2 class="title-left">Contact info</h2>
@@ -347,7 +352,7 @@
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-3 container-sidebar">
-          <aside id="sidebar" class="sidebar-white">
+          <aside id="sidebar">
             <div class="widget widget-download">
               <div class="widget-top">
                 <h3 class="widget-title">Documents</h3>
@@ -378,29 +383,57 @@
                 <h3 class="widget-title">We recommend</h3>
               </div>
               <div class="widget-body">
-                <?php
-                for($loop = 1 ; $loop <= 3 ; $loop++){
-                  ?>
-                  <div class="media">
-                    <div class="media-left">
-                      <figure class="item-thumb">
-                        <a class="hover-effect" href="<?php echo $this->site->get_property_url(0); ?>">
-                          <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
-                        </a>
-                      </figure>
-                    </div>
-                    <div class="media-body">
-                      <h3 class="media-heading"><a href="<?php echo $this->site->get_property_url(0); ?>">Apartment Oceanview</a></h3>
-                      <h4>$350,000</h4>
-                      <div class="amenities">
-                        <p>3 beds • 2 baths • 1,238 sqft</p>
-                        <p>Single Family Home</p>
-                      </div>
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="item-thumb">
+                      <a class="hover-effect" href="#">
+                        <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      </a>
+                    </figure>
+                  </div>
+                  <div class="media-body">
+                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                    <h4>$350,000</h4>
+                    <div class="amenities">
+                      <p>3 beds • 2 baths • 1,238 sqft</p>
+                      <p>Single Family Home</p>
                     </div>
                   </div>
-                  <?php
-                }
-                ?>
+                </div>
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="item-thumb">
+                      <a class="hover-effect" href="#">
+                        <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      </a>
+                    </figure>
+                  </div>
+                  <div class="media-body">
+                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                    <h4>$350,000</h4>
+                    <div class="amenities">
+                      <p>3 beds • 2 baths • 1,238 sqft</p>
+                      <p>Single Family Home</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="item-thumb">
+                      <a class="hover-effect" href="#">
+                        <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
+                      </a>
+                    </figure>
+                  </div>
+                  <div class="media-body">
+                    <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
+                    <h4>$350,000</h4>
+                    <div class="amenities">
+                      <p>3 beds • 2 baths • 1,238 sqft</p>
+                      <p>Single Family Home</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="widget widget-rated">
@@ -527,14 +560,19 @@
                 <div class="widget-body">
                   <div class="media">
                     <div class="media-left">
-                      <a href="#"><img class="media-object img-circle" src="http://placehold.it/50x50" alt="Thumb" width="50" height="50"></a>
+                      <a href="#">
+                        <img class="media-object img-circle" src="http://placehold.it/50x50" alt="Thumb" width="50" height="50">
+                      </a>
                     </div>
                     <div class="media-body">
                       <h3 class="media-heading"><a href="#">Property title</a></h3>
                       <div class="rating">
                         <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
                       </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam risus tortor, accumsan at nisi et,</p>
+                      <p>Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit. Etiam
+                        risus tortor, accumsan at nisi et,
+                      </p>
                     </div>
                   </div>
                   <div class="media">
@@ -548,7 +586,10 @@
                       <div class="rating">
                         <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
                       </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam risus tortor, accumsan at nisi et,</p>
+                      <p>Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit. Etiam
+                        risus tortor, accumsan at nisi et,
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -558,5 +599,126 @@
         </div>
       </div>
     </section><!--/.section-detail-content-->
+  </section><!--/#section-body-->
 
-</section><!--/#section-body-->
+  <div id="lightbox-popup-main" class="fade">
+    <div class="lightbox-popup">
+      <div class="popup-inner">
+        <div class="lightbox-left">
+          <div class="lightbox-header">
+            <div class="header-title">
+              <p>
+                <span>
+                  <img src="<?php echo base_url('assets/site/images/logo-houzez-white.png'); ?>" width="86" height="13" alt="logo">
+                </span>
+                <span class="hidden-xs">
+                  Oceanfront Villa With Pool - 7601 East Treasure Drive, Miami Beach, FL 33141
+                </span>
+              </p>
+            </div>
+            <div class="header-actions">
+              <ul class="actions">
+                <li>
+                  <span title="Adicionar aos favoritos" data-property_id="<?php echo $property['imovel_id']; ?>" data-action="<?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? 'unlike' : 'like'; ?>" class="btn-like <?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? 'active' : ''; ?>" data-placement="top" data-toggle="property-tooltip" data-original-title="Adicionar aos favoritos">
+                    <i class="fa fa-heart-o"></i>
+                  </span>
+                </li>
+                <li class="lightbox-expand visible-xs compress">
+                  <span><i class="fa fa-envelope-o"></i></span>
+                </li>
+                <li class="lightbox-close">
+                  <span><i class="fa fa-close"></i></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="gallery-area">
+            <div class="slider-placeholder">
+              <div class="loader-inner">
+                <span class="fa fa-spin fa-spinner"></span> Loading Slider...
+              </div>
+            </div>
+            <div class="expand-icon lightbox-expand hidden-xs"></div>
+            <div class="gallery-inner">
+              <div class="lightbox-slide slide-animated">
+                <?php
+                if(isset($property['imagens']) && !empty($property['imagens'])){
+                  foreach($property['imagens'] as $imagem){
+                    ?>
+                    <div>
+                      <img src="<?php echo base_url('tools/images/'. $property['imovel_id'] .'/1044x525/100/' . $imagem['arquivo']); ?>" alt="Lightbox Slider" width="1044" height="525">
+                    </div>
+                    <?php
+                  }
+                }
+                ?>
+              </div>
+            </div>
+            <div class="lightbox-slide-nav visible-xs">
+              <button class="lightbox-arrow-left lightbox-arrow"><i class="fa fa-angle-left"></i></button>
+              <p class="lightbox-nav-title">Luxury apartment bay view</p>
+              <button class="lightbox-arrow-right lightbox-arrow"><i class="fa fa-angle-right"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="lightbox-right fade in">
+          <div class="lightbox-header hidden-xs">
+            <div class="header-title">
+              <p>$575,000 or $21,000/mo</p>
+            </div>
+            <div class="header-actions">
+              <ul class="actions">
+                <li class="lightbox-close">
+                  <span><i class="fa fa-close"></i></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="agent-area">
+            <div class="form-small">
+              <div class="agent-media-head">
+                <h4 class="head-left">Contact info</h4>
+                <a href="" class="head-right">View my listing</a>
+              </div>
+              <div class="media agent-media">
+                <div class="media-left">
+                  <a href="#">
+                    <img width="100" height="100" alt="image" class="media-object" src="http://placehold.it/100x100">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <dl>
+                    <dt>CONTACT AGENT</dt>
+                    <dd><i class="fa fa-user"></i> Brittany Watkins</dd>
+                    <dd><i class="fa fa-phone"></i> 321 456 9874</dd>
+                  </dl>
+                  <ul class="profile-social">
+                    <li><a class="btn-facebook" href="#" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+                    <li><a class="btn-twitter" href="#" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+                    <li><a class="btn-linkedin" href="#" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+                    <li><a class="btn-google-plus" href="#" target="_blank"><i class="fa fa-google-plus-square"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <h4 class="form-small-title"> Inquire about this property </h4>
+              <form>
+                <div class="form-group">
+                  <input type="text" placeholder="Your Name" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="text" placeholder="Phone" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="email" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <textarea placeholder="Location" rows="2" class="form-control"></textarea>
+                </div>
+                <button class="btn btn-secondary btn-block">Request info</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div><!--/#lightbox-popup-main-->

@@ -1,5 +1,7 @@
 <?php
-
+/*
+** https://github.com/eventviva/php-image-resize
+*/
 namespace Eventviva;
 
 use \Exception;

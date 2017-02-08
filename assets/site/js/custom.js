@@ -64,7 +64,9 @@ var nice = false;
     /*  BOOTSTRAP TOOLTIP
      /* ------------------------------------------------------------------------ */
 
-    $('[data-toggle="tooltip"]').tooltip();
+    $('body').tooltip({
+        selector: '[data-toggle="tooltip"]'
+    });
 
     /* ------------------------------------------------------------------------ */
     /*  CHECK USER AGENTS
@@ -830,27 +832,42 @@ var nice = false;
 
     /* ------------------------------------------------------------------------ */
     /*  SHARE TOOLTIP
-     /* ------------------------------------------------------------------------ */
-    var tip_action = $('.actions li');
-    tip_action.on('click',function(){
-        var tip_this = $(this);
-        if(tip_this.children('.share_tooltip').hasClass('in')){
-            tip_this.children('.share_tooltip').removeClass('in');
+    /* ------------------------------------------------------------------------ */
+    app.body.on('click', '.share-btn', function(){
+        var $this = $(this);
+        var $share = $this.closest('.share-items');
+
+        if($share.children('.share_tooltip').hasClass('in')){
+            $share.children('.share_tooltip').removeClass('in');
         }else{
-            tip_action.children('.share_tooltip').removeClass('in');
-            tip_this.children('.share_tooltip').addClass('in');
+            $share.children('.share_tooltip').addClass('in');
         }
     });
 
-    $(document).on('mouseup',function (e)
-    {
-        var tip = $(".share-btn");
-        if (!tip.is(e.target) // if the target of the click isn't the container...
-            && tip.has(e.target).length === 0) // ... nor a descendant of the container
-        {
-            $('.share_tooltip').removeClass('in');
-        }
+    app.body.on('click', '.share-item', function(e){
+      e.preventDefault();
+      var width = 500;
+      var height = 400;
+      var left = (screen.width/2)-(width/2);
+      var top = (screen.height/2)-(height/2);
+      return window.open($(this).attr('href'), 'Compartilhar', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+ width +', height='+ height +', top='+top+', left='+left).focus();
     });
+
+// $.fn.customerPopup = function (e, intWidth, intHeight, blnResize) {
+
+// // Prevent default anchor event
+// e.preventDefault();
+
+// // Set values for window
+// intWidth = intWidth || '500';
+// intHeight = intHeight || '400';
+// strResize = (blnResize ? 'yes' : 'no');
+
+// // Set title and open popup with focus on it
+// var strTitle = ((typeof this.attr('title') !== 'undefined') ? this.attr('title') : 'Social Share'),
+//     strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,
+//     objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
+// }
 
     /* ------------------------------------------------------------------------ */
     /*  SET COLUMNS HEIGHT

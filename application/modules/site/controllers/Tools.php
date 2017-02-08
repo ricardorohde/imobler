@@ -24,7 +24,7 @@ class Tools extends Site_Controller {
 
     $dimensions = explode('x', $dimensions);
     $image->quality_jpg = $quality;
-    $image->resize($dimensions[0], $dimensions[1]);
+    $image->crop($dimensions[0], $dimensions[1]);
 
     echo (string) $image;
   }
@@ -58,7 +58,8 @@ class Tools extends Site_Controller {
 
   public function login(){
     $this->load->model('account_model');
-    echo json_encode($this->account_model->login());
+    $post = $this->input->post();
+    echo json_encode($this->account_model->login($post));
   }
 
   public function property_favorite() {

@@ -14,8 +14,14 @@ class Properties_model extends CI_Model {
     $return = array();
     $where = array();
 
+    // ID
     if(isset($request['params']['property_id'])){
       $this->db->where('imoveis.id', $request['params']['property_id']);
+    }
+
+    // Slug
+    if(isset($request['params']['slug']) && !empty($request['params']['slug'])){
+      $this->db->where('imoveis_negociacoes.permalink', $request['params']['slug']);
     }
 
     // SELECT
@@ -25,6 +31,7 @@ class Properties_model extends CI_Model {
       imoveis.banheiros as imovel_banheiros,
       imoveis.garagens as imovel_garagens,
       imoveis.status as imovel_status,
+      imoveis.descricao,
       imoveis_tipos.nome as tipo_nome,
       imoveis_tipos.slug as tipo_slug,
       format(sum(imoveis_negociacoes.valor), 2, 'de_DE') as negociacao_valor,
@@ -68,7 +75,7 @@ class Properties_model extends CI_Model {
     }
 
 
-
+    // Localização
     if(isset($request['params']['location']) && !empty($request['params']['location'])){
       $this->db->group_start();
 
@@ -145,9 +152,8 @@ class Properties_model extends CI_Model {
     }
 
     // Visibilidade no site
-    if(isset($request['params']['visibility']) && !empty($request['params']['visibility'])){
-      $this->db->where('imoveis.status', $request['params']['visibility']);
-    }
+    $visibility = (isset($request['params']['visibility']) ? $request['params']['visibility'] : 1);
+    $this->db->where('imoveis.status', $visibility);
 
     // Características
     if(isset($request['params']['features']) && !empty($request['params']['features'])){
@@ -235,7 +241,7 @@ class Properties_model extends CI_Model {
     if($query->num_rows()){
       if($row){
         $return = $query->row_array();
-        $return_ids = $return['imovel_id'];
+        $return_ids = array($return['imovel_id']);
       }else{
         $return['results'] = array();
 
@@ -285,8 +291,12 @@ class Properties_model extends CI_Model {
     if ($query->num_rows() > 0) {
       if($return){
         foreach ($query->result_array() as $imovel_feature) {
-          $property_key = array_search ($imovel_feature['imovel'], $properties_ids);
-          $return['results'][$property_key]['features'][] = $imovel_feature['id'];
+          if(isset($return['results'])){
+            $property_key = array_search ($imovel_feature['imovel'], $properties_ids);
+            $return['results'][$property_key]['features'][] = $imovel_feature['id'];
+          }else{
+            $return['features'][] = $imovel_feature['id'];
+          }
         }
         return $return;
       }
@@ -312,11 +322,18 @@ class Properties_model extends CI_Model {
     if ($query->num_rows() > 0) {
       if($return){
         foreach ($query->result_array() as $imovel_imagem) {
-          $property_key = array_search ($imovel_imagem['imovel'], $properties_ids);
-          $return['results'][$property_key]['imagens'][] = array(
-            'arquivo' => $imovel_imagem['arquivo'],
-            'legenda' => $imovel_imagem['legenda']
-          );
+          if(isset($return['results'])){
+            $property_key = array_search ($imovel_imagem['imovel'], $properties_ids);
+            $return['results'][$property_key]['imagens'][] = array(
+              'arquivo' => $imovel_imagem['arquivo'],
+              'legenda' => $imovel_imagem['legenda']
+            );
+          }else{
+            $return['imagens'][] = array(
+              'arquivo' => $imovel_imagem['arquivo'],
+              'legenda' => $imovel_imagem['legenda']
+            );
+          }
         }
         return $return;
       }
@@ -351,8 +368,12 @@ class Properties_model extends CI_Model {
 
         if($return){
           foreach ($query->result_array() as $imovel_favorito) {
-            $property_key = array_search($imovel_favorito['imovel'], $properties_ids);
-            $return['results'][$property_key]['imovel_favorito'] = true;
+            if(isset($return['results'])){
+              $property_key = array_search($imovel_favorito['imovel'], $properties_ids);
+              $return['results'][$property_key]['imovel_favorito'] = true;
+            }else{
+              $return['imovel_favorito'] = true;
+            }
           }
           return $return;
         }
@@ -470,7 +491,7 @@ class Properties_model extends CI_Model {
     }
 
     $url = array($this->config->item('property_detail_url_prefix'));
-    $url_parts = array('estado_slug', 'cidade_slug', 'bairro_slug', 'tipo_slug', 'imovel_id');
+    $url_parts = array('transacao_slug', 'estado_slug', 'cidade_slug', 'bairro_slug', 'tipo_slug', 'imovel_id');
     foreach($url_parts as $part){
       $url[] = $property[$part];
     }
