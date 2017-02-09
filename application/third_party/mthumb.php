@@ -1395,14 +1395,9 @@ if (!class_exists('mthumb')) : /**
 		 * @return string
 		 */
 		protected function param($property, $default = '') {
-      $mthumb_config = array(
-        'src' => '/Users/amadre/Projetos/imobler/assets/uploads/imoveis/3/110579637506.jpg',//FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file,
-        'w' => 800,
-        'h' => 300,
-        'q' => 50
-      );
-
-      if(isset($mthumb_config)){
+      if(isset($GLOBALS['mthumb_config'])){
+      	$mthumb_config = $GLOBALS['mthumb_config'];
+      	//print_l($mthumb_config);
         if(isset($mthumb_config[$property])) {
           return $mthumb_config[$property];
         }

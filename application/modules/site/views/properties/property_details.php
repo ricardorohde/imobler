@@ -138,50 +138,75 @@
               </div>
               <div class="alert alert-info">
                 <ul class="list-three-col">
-                  <li><strong>Property ID:</strong> HZ33</li>
-                  <li><strong>Price:</strong> $670,000</li>
-                  <li><strong>Property Size:</strong> 1200 Sq Ft</li>
-                  <li><strong>Bedrooms:</strong> 4</li>
-                  <li><strong>Bathrooms:</strong> 2</li>
-                  <li><strong>Garage:</strong> 1</li>
-                  <li><strong>Garage Size:</strong> 200 SqFt</li>
-                  <li><strong>Year Built:</strong> 2016-01-09</li>
+                  <?php
+                  $detalhes = array('imovel_id' => 'ID do Imóvel', 'imovel_dormitorios' => 'Dormitórios', 'imovel_banheiros' => 'Banheiros');
+                  foreach ($detalhes as $detalhe_slug => $detalhe_nome) {
+                    if(isset($property[$detalhe_slug]) && $property[$detalhe_slug]){
+                      ?>
+                      <li><strong><?php echo $detalhe_nome; ?>:</strong> <?php echo $property[$detalhe_slug]; ?></li>
+                      <?php
+                    }
+                  }
+                  ?>
                 </ul>
               </div>
               <div class="detail-title-inner">
                 <h4 class="title-inner">Additional details</h4>
               </div>
-              <ul class="list-three-col">
-                <li><strong>Deposit:</strong> 20%</li>
-                <li><strong>Pool Size:</strong> 300 Sqft</li>
-                <li><strong>Last remodel year:</strong> 1987</li>
-                <li><strong>Amenities:</strong> Clubhouse</li>
-                <li><strong>Additional Rooms::</strong> Guest Bath</li>
-                <li><strong>Equipment:</strong> Grill - Gas</li>
+              <ul class="detail-amenities-list">
+                  <li class="media">
+                      <div class="media-left media-middle"><img src="<?php echo base_url('assets/site/images/icons/icon-1.png'); ?>" width="37" height="50" alt="Icon"></div>
+                      <div class="media-body"> Property ID<br> HZ01 </div>
+                  </li>
+                  <li class="media">
+                      <div class="media-left media-middle"><img src="<?php echo base_url('assets/site/images/icons/icon-2.png'); ?>" width="50" height="30" alt="Icon"></div>
+                      <div class="media-body">  8 Full<br> Bedrooms  </div>
+                  </li>
+                  <li class="media">
+                      <div class="media-left media-middle"><img src="<?php echo base_url('assets/site/images/icons/icon-3.png'); ?>" width="50" height="34" alt="Icon"></div>
+                      <div class="media-body"> 4 Full<br> Bathrooms </div>
+                  </li>
+                  <li class="media">
+                      <div class="media-left media-middle"><img src="<?php echo base_url('assets/site/images/icons/icon-4.png'); ?>" width="50" height="46" alt="Icon"></div>
+                      <div class="media-body"> Property Size<br> 2100 Sq Ft </div>
+                  </li>
+                  <li class="media">
+                      <div class="media-left media-middle"><img src="<?php echo base_url('assets/site/images/icons/icon-5.png'); ?>" width="48" height="48" alt="Icon"></div>
+                      <div class="media-body"> Garage Size<br> 200 SqFt </div>
+                  </li>
+                  <li class="media">
+                      <div class="media-left media-middle"><img src="<?php echo base_url('assets/site/images/icons/icon-6.png'); ?>" width="50" height="34" alt="Icon"></div>
+                      <div class="media-body"> 4 Garage<br> Spaces </div>
+                  </li>
+                  <li class="media">
+                      <div class="media-left media-middle"><img src="<?php echo base_url('assets/site/images/icons/icon-7.png'); ?>" width="50" height="50" alt="Icon"></div>
+                      <div class="media-body"> Year Built<br> 2016-01-09 </div>
+                  </li>
               </ul>
             </div>
-            <div class="detail-features detail-block">
-              <div class="detail-title">
-                <h2 class="title-left">Features</h2>
+
+
+            <?php
+            if(isset($property['features']) && !empty($property['features'])){
+              ?>
+              <div class="detail-features detail-block">
+                <div class="detail-title">
+                  <h2 class="title-left">Características</h2>
+                </div>
+                <ul class="list-three-col list-features">
+                  <?php
+                  foreach($property['features'] as $feature){
+                    ?>
+                    <li><i class="fa fa-check"></i><?php echo $feature['nome']; ?></li>
+                    <?php
+                  }
+                  ?>
+                </ul>
               </div>
-              <ul class="list-three-col list-features">
-                <li><a href="#"><i class="fa fa-check"></i>Air Conditioning</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Barbeque</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Dryer</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Gym</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Laundry</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Lawn</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Microwave</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Outdoor Shower</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Refrigerator</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Sauna</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Swimming Pool</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>TV Cable</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Washer</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>WiFi</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Window Coverings</a></li>
-              </ul>
-            </div>
+              <?php
+            }
+            ?>
+
             <div class="property-plans detail-block">
               <div class="detail-title">
                 <h2 class="title-left">Floor plans</h2>
@@ -646,7 +671,7 @@
                   foreach($property['imagens'] as $imagem){
                     ?>
                     <div>
-                      <img src="<?php echo base_url('tools/images/'. $property['imovel_id'] .'/1044x525/100/' . $imagem['arquivo']); ?>" alt="Lightbox Slider" width="1044" height="525">
+                      <img src="<?php echo base_url('assets/uploads/imoveis/'. $property['imovel_id'] .'/1044x525-' . $imagem['arquivo']); ?>" alt="Lightbox Slider" width="1044" height="525">
                     </div>
                     <?php
                   }

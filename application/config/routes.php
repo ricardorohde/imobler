@@ -10,7 +10,8 @@ $route['configjs'] = 'site/tools/configjs';
 $route['api/(:any)'] = 'site/tools/$1';
 $route['api/mustache/(:any)'] = 'site/tools/mustache/$1';
 $route['api/(:any)/(:num)'] = 'site/tools/$1/$2';
-$route['tools/images/(:num)/(:any)/(:num)/(:any)'] = 'site/tools/images/$1/$2/$3/$4';
+$route['images/imoveis/(:num)/(:any)/(:num)/(:any)'] = 'site/tools/images/$1/$2/$3/$4';
+
 
 
 // == PÁGINAS ESTÁTICAS  == \\

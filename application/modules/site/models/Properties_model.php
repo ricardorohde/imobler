@@ -295,7 +295,10 @@ class Properties_model extends CI_Model {
             $property_key = array_search ($imovel_feature['imovel'], $properties_ids);
             $return['results'][$property_key]['features'][] = $imovel_feature['id'];
           }else{
-            $return['features'][] = $imovel_feature['id'];
+            $return['features'][] = array(
+              'id' => $imovel_feature['id'],
+              'nome' => $imovel_feature['nome']
+            );
           }
         }
         return $return;
@@ -344,6 +347,33 @@ class Properties_model extends CI_Model {
     }
 
     return false;
+  }
+
+  public function set_properties_images_sizes($property_id){
+    ini_set('memory_limit', '1024M');
+
+    if($images = $this->get_properties_images(array($property_id))){
+
+      require_once (APPPATH . 'third_party/ImageResize.php');
+
+      $dimensions = array(
+        array('width' => 430, 'height' => 300, 'quality' => 80),
+        array('width' => 1045, 'height' => 525, 'quality' => 100)
+      );
+
+      foreach ($images as $image) {
+        foreach ($dimensions as $dimension) {
+          $path = FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $dimension['width'] . 'x' . $dimension['height'] . '-' . $image['arquivo'];
+
+          if(!file_exists($path)){
+            $image_create = new \Eventviva\ImageResize(FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $image['arquivo']);
+            $image_create->quality_jpg = $dimension['quality'];
+            $image_create->crop($dimension['width'], $dimension['height']);
+            $image_create->save($path);
+          }
+        }
+      }
+    }
   }
 
   public function get_properties_favorites($properties_ids, $return = null) {

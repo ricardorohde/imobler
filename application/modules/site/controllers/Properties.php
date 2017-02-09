@@ -46,6 +46,8 @@ class Properties extends Site_Controller {
       'route_params' => $route_params
     );
 
+    $this->properties_model->set_properties_images_sizes(2);
+
     $this->template->view('site/master', 'site/properties/properties_list', $data);
   }
 
@@ -58,7 +60,7 @@ class Properties extends Site_Controller {
       ), $route_params)
     ), TRUE);
 
-    // print_l($property);
+    //print_l($property);
 
     if(isset($route_params['route_type']) && $route_params['route_type'] == 'structure' && isset($property['negociacao_permalink']) && !empty($property['negociacao_permalink'])){
       redirect($this->properties_model->get_property_permalink($property), 'location', 301);
