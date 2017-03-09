@@ -234,7 +234,7 @@ class Properties_model extends CI_Model {
     }
 
     $sql = $this->db->_compile_select();
-    //$return['sql'] = $sql;
+    $return['sql'] = $sql;
 
     $query = $this->db->get();
 

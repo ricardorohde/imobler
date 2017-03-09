@@ -288,9 +288,9 @@ $(function(){
 
     var url_filters = jQuery.parseJSON(filter);
 
-    if(typeof url_filters.page !== 'undefined'){
-      delete url_filters.page;
-    }
+//    if(typeof url_filters.page !== 'undefined'){
+//      delete url_filters.page;
+//    }
 
     return properties_list.set_filters(url_filters, $update || false);
   };
