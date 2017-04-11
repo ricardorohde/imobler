@@ -16,6 +16,7 @@ class Properties extends Site_Controller {
           'limit' => $this->config->item('property_list_limit'),
           'page' => $page
         ),
+        'orderby' => 'most_recent',
         'visibility' => true
       ), $route_params)
     ));
