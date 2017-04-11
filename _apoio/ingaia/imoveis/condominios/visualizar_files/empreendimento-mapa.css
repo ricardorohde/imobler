@@ -1,0 +1,190 @@
+﻿.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.step-1 {
+	position: absolute;
+	top: 30%;
+	width: 70%;
+	margin-left: 5%;
+}
+.step-1 h2 {
+	margin-left: 20px;
+}
+.step-2 .navbar {
+	background-color: #00008B;
+	color: #fff;
+	height: 80px;
+	padding-left: 20px;
+}
+.step-2 .navbar {
+	background-color: #00008B;
+	color: #fff;
+	height: 70px;
+	padding-left: 20px;
+}
+.step-2 h1 {
+	font-size: 26px;
+	text-align: left;
+}
+.step-2 .btn-primary {
+	margin-top: 18px;
+	font-weight: bold;
+}
+.step-2 .btn-success {
+	margin-top: 18px;
+	font-weight: bold;
+}
+.map-editor{
+	margin-top: 70px;
+	display:inline-block;
+}
+#map {
+	cursor: crosshair;
+	position: relative;
+}
+.marker {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	cursor: move;
+	text-align: center;
+	padding-top: 7px;
+	padding-right: 1px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #fff;
+	background-color: #ccc;
+	border-radius: 50%;
+	border: 4px solid #fff;
+}
+#mapa-vendas .marker {
+    cursor: pointer;
+}
+.edit-box {
+	position: absolute;
+	background: #fff;
+	height: 200px;
+	width: 350px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	cursor: default;
+	text-align: left;
+	z-index: 9999;
+}
+
+.edit-box header {
+	height: 70px;
+	width: 100%;
+	background: #F1F1F1;
+	-webkit-border-radius: 8px 8px 0 0;
+	-moz-border-radius: 8px 8px 0 0;
+	border-radius: 8px 8px 0 0;
+	border-bottom: 1px solid #DDD;
+	padding: 1px 0 0 20px;
+}
+
+.map-editor .popover-title {
+	font-size: 20px;
+	line-height: 45px;
+}
+
+.map-editor .popover-title button {
+	position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.map-editor .popover-title input {
+	width: 50%;
+}
+
+.map-editor .popover {
+	z-index: 9999;
+	cursor: default;
+    min-width: 350px;
+}
+
+.map-editor .popover-content {
+	min-height: 175px;
+}
+
+.status-circle {
+    width: 12px;
+	height: 12px;
+	background-color: #ccc;
+	border-radius: 50%;
+    float: left;
+    margin-right: 4px;
+    margin-top: 2px;
+}
+
+.popover-content .property-details {
+    padding: 10px 2px;
+    font-size: 13px;
+}
+
+.popover-content .property-details img {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+/* Ativo */
+.status-1 {
+    background-color: #239a02;
+}
+/* Ativo com proposta */
+.status-1-proposta {
+    background-color: #ffb41d;
+}
+/* Suspenso */
+.status-2 {
+    background-color: #b50002;
+}
+/* Vendido */
+.status-3 {
+    background-color: #ff4c0a;
+}
+/* Ficha */
+.status-5 {
+    background-color: #ffb41d;
+}
+/* Cancelado */
+.status-7 {
+    background-color: #b50002;
+}
+/* Locado */
+.status-8 {
+    background-color: #ff4c0a;
+}
+/* Provisório */
+.status-9 {
+    background-color: #ffb41d;
+}
+/* Vencido */
+.status-10 {
+    background-color: #239a02;
+}
+
+.popover
+{
+    min-width: 480px!important;
+}
+
+.excluir 
+{
+    margin-bottom: 12px;
+}
