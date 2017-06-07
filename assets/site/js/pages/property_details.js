@@ -7,12 +7,16 @@ var property_detail_panorama_options = {};
 
 
 $(function(){
+  var section_body = $('#section-body');
+  var property_latitude = section_body.data('property_latitude');
+  var property_longitude = section_body.data('property_longitude');
+
   property_detail.mapa = function(){
-    property_detail_coordinates = new google.maps.LatLng(-23.487584, -46.738088);
+    property_detail_coordinates = new google.maps.LatLng(property_latitude, property_longitude);
 
     property_detail_map_options = {
       center: property_detail_coordinates,
-      zoom: 12
+      zoom: 18
     };
 
     property_detail_panorama_options = {

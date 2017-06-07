@@ -48,6 +48,8 @@ License URI: LICENSE
  * Version of this script *
  */
 define('VERSION', '3.0.1');
+define('DEBUG_ON', TRUE);
+
 
 //Load a config file if it exists. Otherwise, use the values below
 if (file_exists(dirname(__FILE__) . '/mthumb-config.php')) {

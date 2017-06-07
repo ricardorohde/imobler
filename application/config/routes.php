@@ -10,7 +10,7 @@ $route['configjs'] = 'site/tools/configjs';
 $route['api/(:any)'] = 'site/tools/$1';
 $route['api/mustache/(:any)'] = 'site/tools/mustache/$1';
 $route['api/(:any)/(:num)'] = 'site/tools/$1/$2';
-$route['images/imoveis/(:num)/(:any)/(:num)/(:any)'] = 'site/tools/images/$1/$2/$3/$4';
+//$route['imagens/imoveis/(:num)/(:any)/(:num)/(:any)'] = 'site/tools/images/$1/$2/$3/$4';
 
 
 
@@ -163,9 +163,14 @@ $route['('. $transactions .')/(:any)/(:any)'] = function ($transaction, $state, 
   return 'site/properties/list/' . json_encode($params);
 };
 
+// ADMIN
 
-// $route['mapa'] = '' //Busca por mapa
-// $route['nome-da-campanha-definido-pelo-admin'] = '' //Campanhas
+
+$route['admin'] = 'admin/home';
+
+$route['admin/imoveis'] = 'admin/imoveis__lista';
+$route['admin/imoveis/adicionar'] = 'admin/imoveis__editar';
+$route['admin/imoveis/(:num)/editar'] = 'admin/imoveis__editar/index/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -16,23 +16,36 @@ class Tools extends Site_Controller {
   }
 
   function images($property_id, $dimensions, $quality, $file) {
+    $dimensions = explode('x', $dimensions);
+
+    $GLOBALS['mthumb_config'] = array(
+      'src' => FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file,
+      'w' => $dimensions[0],
+      'h' => $dimensions[1],
+      'q' => $quality
+    );
+
+    require_once (APPPATH . 'third_party/mthumb.php');
+  }
+
+  function images_old($property_id, $dimensions, $quality, $file) {
     //header('Content-type: image/jpeg');
 
-    $path = FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $dimensions . '-' . $file;
+    // $path = FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $dimensions . '-' . $file;
 
-    if(!file_exists($path)){
-      $dimensions = explode('x', $dimensions);
-      require_once (APPPATH . 'third_party/ImageResize.php');
-      $image = new \Eventviva\ImageResize(FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file);
-      $image->quality_jpg = $quality;
-      $image->crop($dimensions[0], $dimensions[1]);
-      $image->save($path);
-    }
+    // if(!file_exists($path)){
+    //   $dimensions = explode('x', $dimensions);
+    //   require_once (APPPATH . 'third_party/ImageResize.php');
+    //   $image = new \Eventviva\ImageResize(FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file);
+    //   $image->quality_jpg = $quality;
+    //   $image->crop($dimensions[0], $dimensions[1]);
+    //   $image->save($path);
+    // }
 
-    $myImage = imagecreatefromjpeg($path);
-    header("Content-type: image/jpeg");
-    imagejpeg($myImage);
-    imagedestroy($myImage);
+    // $myImage = imagecreatefromjpeg($path);
+    // header("Content-type: image/jpeg");
+    // imagejpeg($myImage);
+    // imagedestroy($myImage);
 
     //ob_end_clean();
 
@@ -48,14 +61,7 @@ class Tools extends Site_Controller {
 
     //
 
-    // $GLOBALS['mthumb_config'] = array(
-    //   'src' => FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $file,
-    //   'w' => $dimensions[0],
-    //   'h' => $dimensions[1],
-    //   'q' => $quality
-    // );
 
-    // require_once (APPPATH . 'third_party/mthumb.php');
   }
 
 	public function get_locations(){

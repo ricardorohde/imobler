@@ -1018,6 +1018,10 @@
   background-color: $white;
   .logo{
     line-height: 85px;
+
+    img {
+      max-height: 80px;
+    }
   }
   .header-left{
     float: left ;
@@ -1030,21 +1034,22 @@
       width: 70%;
     }
   }
+
   .header-right{
     float: right;
     width: 25%;
     a{
-      color: #004274;
+      color: #000;
       &:hover{
-        color: rgba(0,174,239,1);
+        color: #f73034;
       }
     }
     .btn{
       border-color: #004274;
       &:hover{
-        background-color: $anchor;
+        background-color: #f73034;
         color: $white;
-        border-color: $anchor;
+        border-color: #f73034;
       }
     }
     .user{

@@ -27,15 +27,22 @@ class Properties_model extends CI_Model {
     // SELECT
     $this->db->select((isset($request['select']) ? $request['select'] : "
       imoveis.id as imovel_id,
+
       imoveis.dormitorios as imovel_dormitorios,
+      imoveis.salas as imovel_salas,
       imoveis.banheiros as imovel_banheiros,
+      imoveis.suites as imovel_suites,
       imoveis.garagens as imovel_garagens,
+
       imoveis.status as imovel_status,
       imoveis.descricao,
+      imoveis.area_util,
+      imoveis.area_total,
       imoveis_tipos.nome as tipo_nome,
       imoveis_tipos.slug as tipo_slug,
       format(sum(imoveis_negociacoes.valor), 2, 'de_DE') as negociacao_valor,
       imoveis_negociacoes.permalink as negociacao_permalink,
+      imoveis_negociacoes.referencia as negociacao_referencia,
       enderecos.cep as endereco_cep,
       enderecos.logradouro as endereco_logradouro,
       enderecos.numero as endereco_numero,
@@ -257,6 +264,7 @@ class Properties_model extends CI_Model {
 
       $return = $this->get_properties_features($return_ids, false, $return);
       $return = $this->get_properties_images($return_ids, $return);
+      $return = $this->get_properties_expenses($return_ids, $return);
 
       // Favorites
       if($this->site->user_logged()){
@@ -349,6 +357,7 @@ class Properties_model extends CI_Model {
     return false;
   }
 
+
   public function set_properties_images_sizes($property_id){
     ini_set('memory_limit', '1024M');
 
@@ -374,6 +383,45 @@ class Properties_model extends CI_Model {
         }
       }
     }
+  }
+
+  public function get_properties_expenses($properties_ids, $return = null) {
+    $this->db->select("
+      despesas_tipos.nome as tipo,
+      despesas_tipos.slug as tipo_slug,
+      imoveis_despesas.valor,
+      periodos.nome as periodo,
+      periodos.nome_curto as periodo_curto,
+    ");
+
+    $this->db->where_in('imoveis_despesas.imovel', $properties_ids);
+
+    $this->db->join("despesas_tipos", "imoveis_despesas.tipo = despesas_tipos.id", "inner");
+    $this->db->join("periodos", "imoveis_despesas.periodo = periodos.id", "inner");
+
+    $this->db->order_by('despesas_tipos.ordem ASC');
+
+    $query = $this->db->get("imoveis_despesas");
+
+    if ($query->num_rows() > 0) {
+      if($return){
+        foreach ($query->result_array() as $imovel_despesa) {
+          if(isset($return['results'])){
+            $property_key = array_search ($imovel_despesa['imovel'], $properties_ids);
+            $return['results'][$property_key]['despesas'][$imovel_despesa['tipo_slug']] = $imovel_despesa;
+          }else{
+            $return['despesas'][$imovel_despesa['tipo_slug']] = $imovel_despesa;
+          }
+        }
+        return $return;
+      }
+
+      return $query->result_array();
+    }else{
+      if($return) return $return;
+    }
+
+    return false;
   }
 
   public function get_properties_favorites($properties_ids, $return = null) {

@@ -1395,14 +1395,6 @@ if (!class_exists('mthumb')) : /**
 		 * @return string
 		 */
 		protected function param($property, $default = '') {
-      if(isset($GLOBALS['mthumb_config'])){
-      	$mthumb_config = $GLOBALS['mthumb_config'];
-      	//print_l($mthumb_config);
-        if(isset($mthumb_config[$property])) {
-          return $mthumb_config[$property];
-        }
-      }
-
 			if (isset ($_GET[ $property ])) {
 				return $_GET[ $property ];
 			} else {

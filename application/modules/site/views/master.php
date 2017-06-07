@@ -27,7 +27,7 @@
 
     <?php $this->load->view('site/includes/common/header.php', $data); ?>
 
-    <?php $this->load->view('site/includes/common/header-search.php', $data); ?>
+    <?php //$this->load->view('site/includes/common/header-search.php', $data); ?>
     <?php $this->load->view('site/includes/common/sidebar-compare.php', $data); ?>
 
     <?php echo $content; ?>

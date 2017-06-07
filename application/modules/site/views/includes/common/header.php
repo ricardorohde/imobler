@@ -3,10 +3,10 @@
     <div class="header-left">
       <div class="logo">
         <a href="<?php echo base_url(); ?>">
-          <img src="<?php echo base_url('assets/site/images/houzez-logo-color.png'); ?>" alt="logo">
+          <img src="<?php echo base_url('assets/site/images/logo.png'); ?>" alt="logo">
         </a>
       </div>
-      <nav class="navi main-nav">
+      <nav class="navi main-nav hide">
         <ul>
           <li><a href="#">Home</a>
             <ul class="sub-menu">
@@ -52,7 +52,7 @@
     <div class="header-right">
 
       <ul class="account-action">
-        <li>
+        <li class="header-anunciar">
           <a href="add-new-property.html" class="btn btn-default">Anunciar imóveis</a>
         </li>
 
