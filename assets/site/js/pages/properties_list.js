@@ -459,11 +459,11 @@ $(function(){
 
       if($this.hasClass('btn-list')) {
         $.post(app.base_url('api/set_listview'), {listview: "list-view"});
-        view_type_area.removeClass('grid-view').addClass('list-view');
+        view_type_area.removeClass('grid-view grid-view-3-col').addClass('list-view');
       }
       else if($this.hasClass('btn-grid')) {
         $.post(app.base_url('api/set_listview'), {listview: "grid-view"});
-        view_type_area.removeClass('list-view').addClass('grid-view');
+        view_type_area.removeClass('list-view grid-view-3-col').addClass('grid-view');
       }
 
       properties_list.swiper.init();

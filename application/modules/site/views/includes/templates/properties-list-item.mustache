@@ -4,17 +4,15 @@
       <div class="table-cell">
         <div class="figure-block">
           <figure class="item-thumb">
-            <span class="label-featured label label-success">Luciano</span>
+            {{#destaque}}
+              <span class="label-featured label label-success">Destaque</span>
+            {{/destaque}}
             <div class="label-wrap label-right hide-on-list">
-              <span class="label label-default">For Sale</span>
-              <span class="label label-danger">Sold</span>
+              <span class="label label-default">Venda</span>
             </div>
             <div class="price hide-on-list">
-              <p class="price-start">Start from</p>
               <h3>R$ {{negociacao_valor}}</h3>
-              <p class="rant">$21,000/mo</p>
             </div>
-
             <ul class="actions">
               <li>
                 <span title="Adicionar aos favoritos" data-property_id="{{imovel_id}}" data-action="{{#imovel_favorito}}unlike{{/imovel_favorito}}{{^imovel_favorito}}like{{/imovel_favorito}}" class="btn-like{{#imovel_favorito}} active{{/imovel_favorito}}" data-placement="top" data-toggle="property-tooltip" data-original-title="Adicionar aos favoritos">
@@ -61,34 +59,25 @@
         <div class="body-left table-cell">
           <div class="info-row">
             <div class="label-wrap hide-on-grid">
-              <div class="label-status label label-default">For Sale</div>
-              <span class="label label-danger">Sold</span>
+              <div class="label-status label label-default">Venda</div>
             </div>
-            <h2 class="property-title"><a href="{{imovel_permalink}}">{{imovel_id}} - {{tipo_nome}} à venda em {{bairro_nome}}</a></h2>
-            <h4 class="property-location">ALTERAR{{negociacao_referencia}}</h4>
+            <h2 class="property-title"><a href="{{imovel_permalink}}">{{tipo_nome}} à venda em {{bairro_nome}}</a></h2>
+            <h4 class="property-location">{{negociacao_referencia}}</h4>
           </div>
           <div class="info-row amenities hide-on-grid">
             <p>
               <span>Dormitórios: {{imovel_dormitorios}}</span><br>
               <span>Banheiros: {{imovel_banheiros}}</span><br>
-              <!-- <span>Vagas de Garagens: {{imovel_garagens}}</span> -->
+              <span>Vagas de Garagens: {{imovel_garagens}}</span>
             </p>
-            <p>Single Family Home</p>
-          </div>
-          <div class="info-row date hide-on-grid">
-            <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
-            <p><i class="fa fa-calendar"></i> 12 Days ago </p>
           </div>
         </div>
         <div class="body-right table-cell hidden-gird-cell">
           <div class="info-row price">
-            <p class="price-start">Start from</p>
             <h3>R$ {{negociacao_valor}}</h3>
-            <p class="rant">$21,000/mo</p>
           </div>
           <div class="info-row phone text-right">
-            <a href="#" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
-            <p><a href="#">+1 (786) 225-0199</a></p>
+            <a href="{{imovel_permalink}}" class="btn btn-primary">Detalhes <i class="fa fa-angle-right fa-right"></i></a>
           </div>
         </div>
 
@@ -106,8 +95,7 @@
 
           <div class="cell">
             <div class="phone">
-              <a href="{{imovel_permalink}}" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
-              <p><a href="#">+1 (786) 225-0199</a></p>
+              <a href="{{imovel_permalink}}" class="btn btn-primary">Detalhes <i class="fa fa-angle-right fa-right"></i></a>
             </div>
           </div>
         </div>

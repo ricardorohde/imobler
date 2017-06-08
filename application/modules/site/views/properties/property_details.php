@@ -32,23 +32,6 @@
                                         </div>
                                         <span class="share-btn" title="Compartilhar" data-placement="bottom" data-toggle="property-tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
                                     </li>
-
-
-
-<!--                                     <li class="share-btn">
-                                        <div class="share_tooltip tooltip_left fade">
-                                            <a href="#" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;"><i class="fa fa-facebook"></i></a>
-                                            <a href="#" onclick="if(!document.getElementById('td_social_networks_buttons')){window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;}"><i class="fa fa-twitter"></i></a>
-
-                                            <a href="#" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;"><i class="fa fa-pinterest"></i></a>
-
-                                            <a href="#" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;"><i class="fa fa-linkedin"></i></a>
-
-                                            <a href="#" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;"><i class="fa fa-google-plus"></i></a>
-                                            <a href="#"><i class="fa fa-envelope"></i></a>
-                                        </div>
-                                        <span data-placement="right" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
-                                    </li> -->
                                     <li>
                                         <span title="Adicionar aos favoritos" data-property_id="<?php echo $property['imovel_id']; ?>" data-action="<?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? 'unlike' : 'like'; ?>" class="btn-like<?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? ' active' : ''; ?>" data-placement="top" data-toggle="property-tooltip" data-original-title="Adicionar aos favoritos">
                                           <i class="fa fa-heart"></i>
@@ -74,11 +57,6 @@
                                 <div class="tab-content">
 
                                     <div id="gallery" class="tab-pane fade in active">
-                                        <span class="label-wrap visible-sm visible-xs">
-                                          <span class="label label-primary">For Sale</span>
-                                          <span class="label label-danger">Sold</span>
-                                        </span>
-
                                         <div class="slideshow">
                                             <div class="slideshow-main">
                                                 <div class="slide">
@@ -95,21 +73,6 @@
                                                     ?>
                                                 </div>
                                             </div>
-               <!--                              <div class="slideshow-nav-main">
-                                                <div class="slideshow-nav">
-                                                    <?php
-                                                    if(isset($property['imagens'])){
-                                                      foreach ($property['imagens'] as $key => $image) {
-                                                        ?>
-                                                        <div>
-                                                            <img src="<?php echo base_url('imagens/imoveis/' . $property['imovel_id'] . '/100/70/80/' . $image['arquivo']); ?>" width="100" height="70" alt="<?php echo $image['legenda']; ?>" />
-                                                        </div>
-                                                        <?php
-                                                      }
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
 
@@ -118,23 +81,29 @@
 
                                 </div>
                                 <div class="media-tabs">
-                                    <ul class="media-tabs-list">
-                                        <li class="popup-trigger active" data-placement="bottom" data-toggle="tooltip" data-original-title="Fotos">
-                                            <a href="#gallery" data-toggle="tab">
-                                                <i class="fa fa-camera"></i>
-                                            </a>
-                                        </li>
-                                        <li data-placement="bottom" data-toggle="tooltip" data-original-title="Mapa">
-                                            <a href="#map" data-toggle="tab">
-                                                <i class="fa fa-map"></i>
-                                            </a>
-                                        </li>
-                                        <li data-placement="bottom" data-toggle="tooltip" data-original-title="Street View">
-                                            <a href="#street-map" data-toggle="tab">
-                                                <i class="fa fa-street-view"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <?php
+                                    if(isset($property['imagens'])){
+                                        ?>
+                                        <ul class="media-tabs-list">
+                                            <li class="popup-trigger active" data-placement="bottom" data-toggle="tooltip" data-original-title="Fotos">
+                                                <a href="#gallery" data-toggle="tab">
+                                                    <i class="fa fa-camera"></i>
+                                                </a>
+                                            </li>
+                                            <li data-placement="bottom" data-toggle="tooltip" data-original-title="Mapa">
+                                                <a href="#map" data-toggle="tab">
+                                                    <i class="fa fa-map"></i>
+                                                </a>
+                                            </li>
+                                            <li data-placement="bottom" data-toggle="tooltip" data-original-title="Street View">
+                                                <a href="#street-map" data-toggle="tab">
+                                                    <i class="fa fa-street-view"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <?php
+                                    }
+                                    ?>
                                     <ul class="actions">
                                         <li class="share-btn">
                                             <div class="share_tooltip tooltip_left fade">
@@ -182,8 +151,8 @@
                                             <?php echo $property['imovel_garagens']; ?> <?php echo $property['imovel_garagens'] == 1 ? 'vaga' : 'vagas'; ?>
                                         </li>
 
-                                        <li><strong>Área útil:</strong> <?php echo $property['area_util']; ?></li>
-                                        <li><strong>Área total:</strong> <?php echo $property['area_total']; ?></li>
+                                        <li>Área útil: <?php echo $property['area_util']; ?></li>
+                                        <li>Área total: <?php echo $property['area_total']; ?></li>
                                     </ul>
                             </div>
 
@@ -274,46 +243,20 @@
                                 </form>
                             </div>
 
-                            <div class="next-prev-block clearfix">
-                                <div class="prev-box pull-left">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <img src="http://placehold.it/99x99" class="media-object" alt="image" width="99" height="99">
-                                            </a>
-                                        </div>
-                                        <div class="media-body media-middle">
-                                            <h3 class="media-heading"><a href="#"><i class="fa fa-angle-left"></i> PREVIOUS PROPERTY</a></h3>
-                                            <h4>Villa For Sale</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="next-box pull-right">
-                                    <div class="media">
-                                        <div class="media-body media-middle text-right">
-                                            <h3 class="media-heading"><a href="#">PREVIOUS PROPERTY <i class="fa fa-angle-right"></i></a></h3>
-                                            <h4>Villa For Sale</h4>
-                                        </div>
-                                        <div class="media-right">
-                                            <a href="#">
-                                                <img src="http://placehold.it/99x99" class="media-object" alt="image" width="99" height="99">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-3 container-sidebar">
                         <aside id="sidebar">
-                            <div class="widget widget-download">
-                                <div class="widget-top">
-                                    <h3 class="widget-title">Demais despesas</h3>
-                                </div>
-                                <div class="widget-body">
-                                    <ul>
-                                        <?php
-                                        if(isset($property['despesas'])){
+                            <?php
+                            if(isset($property['despesas'])){
+                                ?>
+                                <div class="widget widget-download">
+                                    <div class="widget-top">
+                                        <h3 class="widget-title">Demais despesas</h3>
+                                    </div>
+                                    <div class="widget-body">
+                                        <ul>
+                                            <?php
                                             foreach ($property['despesas'] as $key => $despesa) {
                                                 ?>
                                                 <li>
@@ -326,133 +269,138 @@
                                                 </li>
                                                 <?php
                                             }
+                                            ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
+
+                            <?php
+                            if(isset($properties['recommend']['results']) && !empty($properties['recommend']['results'])){
+                                ?>
+                                <div class="widget widget-recommend">
+                                    <div class="widget-top">
+                                        <h3 class="widget-title">Você também pode gostar</h3>
+                                    </div>
+                                    <div class="widget-body">
+                                        <?php
+                                        foreach ($properties['recommend']['results'] as $key => $property) {
+                                            $property_url = $this->site->get_property_url($property['imovel_id']);
+                                            ?>
+                                            <div class="media">
+                                                <div class="media-left">
+                                                      <?php
+                                                      $property_image_id = 0;
+                                                      $property_image_arquivo = 'property-image.jpg';
+                                                      if(isset($property['imagens'][0])){
+                                                        $property_image_id = $property['imovel_id'];
+                                                        $property_image_arquivo = $property['imagens'][0]['arquivo'];
+                                                      }
+                                                      ?>
+                                                    <figure class="item-thumb">
+                                                      <a href="<?php echo $property_url; ?>" class="hover-effect">
+                                                        <img src="<?php echo base_url('imagens/imoveis/' . $property_image_id . '/100/75/100/' . $property_image_arquivo); ?>" width="100" height="75" alt="" />
+                                                      </a>
+                                                    </figure>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h3 class="media-heading"><a href="<?php echo $property_url; ?>"><?php echo $property['tipo_nome']; ?> em <?php echo $property['bairro_nome']; ?></a></h3>
+                                                    <h4>R$ <?php echo $property['negociacao_valor']; ?></h4>
+                                                    <div class="amenities">
+                                                        <p>
+                                                          <?php
+                                                          if(isset($property['imovel_dormitorios']) && $property['imovel_dormitorios']){
+                                                            ?><?php echo $property['imovel_dormitorios']; ?> <?php echo $property['imovel_dormitorios'] == 1 ? 'quarto' : 'quartos'; ?><?php
+                                                          }
+                                                          ?>
+                                                          <?php
+                                                          if(isset($property['imovel_suites']) && $property['imovel_suites']){
+                                                            ?> • <?php echo $property['imovel_suites']; ?> <?php echo $property['imovel_suites'] == 1 ? 'suíte' : 'suítes'; ?><?php
+                                                          }
+                                                          ?>
+                                                          <?php
+                                                          if(isset($property['imovel_garagens']) && $property['imovel_garagens']){
+                                                            ?> • <?php echo $property['imovel_garagens']; ?> <?php echo $property['imovel_garagens'] == 1 ? 'vaga' : 'vagas'; ?><?php
+                                                          }
+                                                          ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
                                         }
                                         ?>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="widget widget-recommend">
-                                <div class="widget-top">
-                                    <h3 class="widget-title">We recommend</h3>
-                                </div>
-                                <div class="widget-body">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <figure class="item-thumb">
-                                                <a class="hover-effect" href="#">
-                                                    <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
-                                            <h4>$350,000</h4>
-                                            <div class="amenities">
-                                                <p>3 beds • 2 baths • 1,238 sqft</p>
-                                                <p>Single Family Home</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <figure class="item-thumb">
-                                                <a class="hover-effect" href="#">
-                                                    <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
-                                            <h4>$350,000</h4>
-                                            <div class="amenities">
-                                                <p>3 beds • 2 baths • 1,238 sqft</p>
-                                                <p>Single Family Home</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <figure class="item-thumb">
-                                                <a class="hover-effect" href="#">
-                                                    <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
-                                            <h4>$350,000</h4>
-                                            <div class="amenities">
-                                                <p>3 beds • 2 baths • 1,238 sqft</p>
-                                                <p>Single Family Home</p>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
-                            <div class="widget widget-rated">
-                                <div class="widget-top">
-                                    <h3 class="widget-title">Most Rated Properties</h3>
+                                <?php
+                            }
+                            ?>
+
+                            <?php
+                            if(isset($properties['featured']['results']) && !empty($properties['featured']['results'])){
+                                ?>
+                                <div class="widget widget-rated">
+                                    <div class="widget-top">
+                                        <h3 class="widget-title">Imóveis em destaque</h3>
+                                    </div>
+                                    <div class="widget-body">
+                                        <?php
+                                        foreach ($properties['featured']['results'] as $key => $property) {
+                                            $property_url = $this->site->get_property_url($property['imovel_id']);
+                                            ?>
+                                            <div class="media">
+                                                <div class="media-left">
+                                                  <?php
+                                                  $property_image_id = 0;
+                                                  $property_image_arquivo = 'property-image.jpg';
+                                                  if(isset($property['imagens'][0])){
+                                                    $property_image_id = $property['imovel_id'];
+                                                    $property_image_arquivo = $property['imagens'][0]['arquivo'];
+                                                  }
+                                                  ?>
+                                                    <figure class="item-thumb">
+                                                      <a href="<?php echo $property_url; ?>" class="hover-effect">
+                                                        <img src="<?php echo base_url('imagens/imoveis/' . $property_image_id . '/100/75/100/' . $property_image_arquivo); ?>" width="100" height="75" alt="" />
+                                                      </a>
+                                                    </figure>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h3 class="media-heading"><a href="<?php echo $property_url; ?>"><?php echo $property['tipo_nome']; ?> em <?php echo $property['bairro_nome']; ?></a></h3>
+                                                    <div class="rating">
+                                                        <span class="star-text-left">R$ <?php echo $property['negociacao_valor']; ?></span>
+                                                    </div>
+                                                    <div class="amenities">
+                                                        <p>
+                                                          <?php
+                                                          if(isset($property['imovel_dormitorios']) && $property['imovel_dormitorios']){
+                                                            ?><?php echo $property['imovel_dormitorios']; ?> <?php echo $property['imovel_dormitorios'] == 1 ? 'quarto' : 'quartos'; ?><?php
+                                                          }
+                                                          ?>
+                                                          <?php
+                                                          if(isset($property['imovel_suites']) && $property['imovel_suites']){
+                                                            ?> • <?php echo $property['imovel_suites']; ?> <?php echo $property['imovel_suites'] == 1 ? 'suíte' : 'suítes'; ?><?php
+                                                          }
+                                                          ?>
+                                                          <?php
+                                                          if(isset($property['imovel_garagens']) && $property['imovel_garagens']){
+                                                            ?> • <?php echo $property['imovel_garagens']; ?> <?php echo $property['imovel_garagens'] == 1 ? 'vaga' : 'vagas'; ?><?php
+                                                          }
+                                                          ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
-                                <div class="widget-body">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <figure class="item-thumb">
-                                                <a class="hover-effect" href="#">
-                                                    <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
-                                            <div class="rating">
-                                                <span class="star-text-left">$350,000</span><span data-title="Average Rate: 4.67 / 5" class="bottom-ratings tip"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                                            </div>
-                                            <div class="amenities">
-                                                <p>3 beds • 2 baths • 1,238 sqft</p>
-                                                <p>Single Family Home</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <figure class="item-thumb">
-                                                <a class="hover-effect" href="#">
-                                                    <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
-                                            <div class="rating">
-                                                <span class="star-text-left">$350,000</span><span data-title="Average Rate: 4.67 / 5" class="bottom-ratings tip"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                                            </div>
-                                            <div class="amenities">
-                                                <p>3 beds • 2 baths • 1,238 sqft</p>
-                                                <p>Single Family Home</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <figure class="item-thumb">
-                                                <a class="hover-effect" href="#">
-                                                    <img alt="thumb" src="http://placehold.it/100x75" width="100" height="75">
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Apartment Oceanview</a></h3>
-                                            <div class="rating">
-                                                <span class="star-text-left">$350,000</span><span data-title="Average Rate: 4.67 / 5" class="bottom-ratings tip"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                                            </div>
-                                            <div class="amenities">
-                                                <p>3 beds • 2 baths • 1,238 sqft</p>
-                                                <p>Single Family Home</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <?php
+                            }
+                            ?>
                             <div class="widget widget-categories">
                                 <div class="widget-top">
                                     <h3 class="widget-title">Property Categories</h3>
@@ -465,86 +413,6 @@
                                         <li><a href="">Villa</a> <span class="cat-count">(30)</span></li>
                                         <li><a href="">Studio</a> <span class="cat-count">(30)</span></li>
                                     </ul>
-                                </div>
-                            </div>
-                            <div class="widget widget-pages">
-                                <div class="widget-top">
-                                    <h3 class="widget-title">Pages</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">Home</a>
-                                        <ul class="children">
-                                            <li><a href="#">Clearing Floats</a></li>
-                                            <li><a href="#">Page Image Alignment</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">About Houzez</a></li>
-                                    <li><a href="#">Our Agents</a></li>
-                                    <li><a href="#">Create Listing</a></li>
-                                    <li><a href="#">Faq</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                            </div>
-                            <div class="widget widget_archive">
-                                <div class="widget-top">
-                                    <h3 class="widget-title">Archives</h3></div>
-                                <ul>
-                                    <li><a href="#">March 2016</a>&nbsp;(10)</li>
-                                    <li><a href="#">January 2016</a>&nbsp;(1)</li>
-                                    <li><a href="#">January 2013</a>&nbsp;(5)</li>
-                                    <li><a href="#">March 2012</a>&nbsp;(5)</li>
-                                </ul>
-                            </div>
-                            <div class="widget widget_meta">
-                                <div class="widget-top">
-                                    <h3 class="widget-title">Meta</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">Site Admin</a></li>
-                                    <li><a href="#">Log out</a></li>
-                                    <li><a href="#">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-                                    <li><a href="#">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-                                </ul>
-                            </div>
-                            <div class="widget widget-reviews">
-                                <div class="widget-top">
-                                    <h3 class="widget-title">Latest Reviews</h3>
-                                </div>
-                                <div class="widget-body">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <img class="media-object img-circle" src="http://placehold.it/50x50" alt="Thumb" width="50" height="50">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Property title</a></h3>
-                                            <div class="rating">
-                                                <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit. Etiam
-                                                risus tortor, accumsan at nisi et,
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <img class="media-object img-circle" src="http://placehold.it/50x50" alt="Thumb" width="50" height="50">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h3 class="media-heading"><a href="#">Property title</a></h3>
-                                            <div class="rating">
-                                                <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit. Etiam
-                                                risus tortor, accumsan at nisi et,
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </aside>

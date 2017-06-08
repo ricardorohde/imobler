@@ -28,6 +28,20 @@ class Home extends Site_Controller {
       'property_types' => $this->site->get_filters('property_types')
     );
 
+    $data['properties']['featured'] = $this->properties_model->get_properties(array(
+      'params' => array_merge(array(
+        'pagination' => array(
+          'limit' => 9
+        ),
+        'orderby' => 'featured',
+        'visibility' => true
+      ))
+    ));
+
+    $data['campaigns'] = $this->registros_model->obter_registros('campanhas', array('where' => array('campanhas.status' => 1, 'campanhas_categorias.id' => 1)), false, 'campanhas.*, campanhas_categorias.nome as categoria', array(
+      array('campanhas_categorias', 'campanhas.categoria = campanhas_categorias.id', 'inner')
+    ));
+
     $this->template->view('site/master', 'site/home', $data);
   }
 }

@@ -46,6 +46,9 @@ class Registros_model extends CI_Model {
       }
     }
 
+    // $sql = $this->db->_compile_select();
+    // echo $sql;
+
     $query = $this->db->get();
 
     if ($query->num_rows() > 0) {

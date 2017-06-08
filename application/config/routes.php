@@ -1,5 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once( BASEPATH .'database/DB'. EXT );
+$db =& DB();
+
 $transactions = 'venda|aluguel';
 
 // == HOME  == \\
@@ -73,15 +76,10 @@ $route['imovel/(:any)'] = function ($slug){
 // Atalho para ficha do imóvel - Ex: /3456 -- Redireciona para URL da Ficha do imóvel (Slug ou Estruturado)
 $route['(:num)'] = 'site/properties/property_details_redirect/$1/id';
 
-require_once( BASEPATH .'database/DB'. EXT );
-$db =& DB();
-
 $property_types = array();
 foreach($db->get('imoveis_tipos')->result_array() as $property_type){
   $property_types[] = $property_type['slug'];
 }
-
-
 
 //Lista imóveis de tipo específico em estado/cidade/bairro/tipo - Ex: /venda/sp/sao-paulo/pirituba/apartamento/
 $route['('. $transactions .')/(:any)/(:any)/(:any)/('. implode('|', $property_types) .')/(:num)'] = function ($transaction, $state, $city, $district, $property_type, $page){
@@ -163,9 +161,16 @@ $route['('. $transactions .')/(:any)/(:any)'] = function ($transaction, $state, 
   return 'site/properties/list/' . json_encode($params);
 };
 
+// Campanhas - Ex: /url-da-campanha
+$campaigns = array();
+foreach($db->get_where('campanhas', array('status' => 1))->result_array() as $campaign){
+  $route[$campaign['permalink']] = 'site/properties/campaigns/' . $campaign['id'];
+  $route[$campaign['permalink'] . '/(:num)'] = 'site/properties/campaigns/' . $campaign['id'] . '/$1';
+}
+
+
+
 // ADMIN
-
-
 $route['admin'] = 'admin/home';
 
 $route['admin/imoveis'] = 'admin/imoveis__lista';

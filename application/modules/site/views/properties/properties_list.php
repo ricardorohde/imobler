@@ -1,3 +1,6 @@
+<?php
+$listview = trim(str_replace('grid-view-3-col', '', $this->session->userdata('listview_')));
+?>
 <section id="section-body">
   <div class="container">
     <div class="page-title breadcrumb-top">
@@ -17,8 +20,8 @@
                 </select>
               </div>
               <div class="table-cell">
-                <span title="Lista" class="view-btn btn-list <?php echo $this->session->userdata('listview') ? ($this->session->userdata('listview') == 'list-view' ? 'active' : '') : 'active'; ?>"><i class="fa fa-th-list"></i></span>
-                <span title="Grade" class="view-btn btn-grid <?php echo $this->session->userdata('listview') && $this->session->userdata('listview') == 'grid-view' ? 'active' : ''; ?>"><i class="fa fa-th-large"></i></span>
+                <span title="Lista" class="view-btn btn-list <?php echo $listview ? ($listview == 'list-view' ? 'active' : '') : 'active'; ?>"><i class="fa fa-th-list"></i></span>
+                <span title="Grade" class="view-btn btn-grid <?php echo $listview && $listview == 'grid-view' ? 'active' : ''; ?>"><i class="fa fa-th-large"></i></span>
               </div>
             </div>
           </div>
@@ -28,7 +31,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 list-grid-area container-contentbar">
         <div id="content-area">
-          <div class="property-listing <?php echo $this->session->userdata('listview') ? $this->session->userdata('listview') : 'list-view'; ?>">
+          <div class="property-listing <?php echo $listview ? $listview : 'list-view'; ?>">
             <div class="property-items row">
               <?php
               if(isset($properties['results']) && !empty($properties['results'])) {

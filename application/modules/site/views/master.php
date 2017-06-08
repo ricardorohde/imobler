@@ -6,8 +6,7 @@
     <!--Meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Houzez HTML5 Template">
-    <meta name="description" content="Houzez HTML5 Template">
+    <meta name="description" content="<?php echo isset($section["description"]) ? $section["description"] : $this->config->item('site_description'); ?>">
     <meta name="author" content="Favethemes">
 
     <link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url('assets/site/images/favicons/apple-touch-icon.png'); ?>">
@@ -28,11 +27,11 @@
     <?php $this->load->view('site/includes/common/header.php', $data); ?>
 
     <?php //$this->load->view('site/includes/common/header-search.php', $data); ?>
-    <?php $this->load->view('site/includes/common/sidebar-compare.php', $data); ?>
+    <?php //$this->load->view('site/includes/common/sidebar-compare.php', $data); ?>
 
     <?php echo $content; ?>
 
-    <?php echo $this->site->userinfo('id') ? $this->site->userinfo('id') : 'false'; ?>
+    <?php //echo $this->site->userinfo('id') ? $this->site->userinfo('id') : 'false'; ?>
 
     <?php $this->load->view('site/includes/common/footer.php', $data); ?>
 

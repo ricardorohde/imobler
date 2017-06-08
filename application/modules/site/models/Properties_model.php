@@ -10,7 +10,7 @@ class Properties_model extends CI_Model {
     return $query->num_rows();
   }
 
-  public function get_properties($request = array(), $row = false){
+  public function get_properties($request = array(), $row = false) {
     $return = array();
     $where = array();
 
@@ -35,12 +35,14 @@ class Properties_model extends CI_Model {
       imoveis.garagens as imovel_garagens,
 
       imoveis.status as imovel_status,
+      imoveis.breve_descricao,
       imoveis.descricao,
+      imoveis.destaque,
       imoveis.area_util,
       imoveis.area_total,
       imoveis_tipos.nome as tipo_nome,
       imoveis_tipos.slug as tipo_slug,
-      format(sum(imoveis_negociacoes.valor), 2, 'de_DE') as negociacao_valor,
+      format(sum(imoveis_negociacoes.valor), 0, 'de_DE') as negociacao_valor,
       imoveis_negociacoes.permalink as negociacao_permalink,
       imoveis_negociacoes.referencia as negociacao_referencia,
       enderecos.cep as endereco_cep,
@@ -79,6 +81,10 @@ class Properties_model extends CI_Model {
     // Tipo de imóvel
     if(isset($request['params']['property_type']) && !empty($request['params']['property_type'])){
       $this->db->where_in('imoveis_tipos.slug', $request['params']['property_type']);
+    }
+
+    if(isset($request['params']['property_types']) && !empty($request['params']['property_types'])){
+      $this->db->where_in('imoveis_tipos.slug', $request['params']['property_types']);
     }
 
 
@@ -195,6 +201,13 @@ class Properties_model extends CI_Model {
       $this->db->where($request['select']['where']);
     }
 
+    // NOT IN
+    if(isset($request['params']['not_in']) && !empty($request['params']['not_in'])){
+      foreach ($request['params']['not_in'] as $key => $value) {
+        $this->db->where_not_in($key, $value);
+      }
+    }
+
     // ORDER BY
     if(isset($request['params']['orderby']) && !empty($request['params']['orderby'])){
       switch ($request['params']['orderby']) {
@@ -209,6 +222,16 @@ class Properties_model extends CI_Model {
         case 'most_recent':
           $this->db->order_by('imoveis.id DESC');
         break;
+
+        case 'featured':
+          $this->db->where('destaque', 1);
+          $this->db->order_by('imoveis.id', 'RANDOM');
+        break;
+
+        case 'recommend':
+          $this->db->order_by('imoveis.id', 'RANDOM');
+        break;
+
       }
     }
 
@@ -248,6 +271,9 @@ class Properties_model extends CI_Model {
     if($query->num_rows()){
       if($row){
         $return = $query->row_array();
+        if(isset($return['destaque']) && $return['destaque'] == 0){
+          unset($return['destaque']);
+        }
         $return_ids = array($return['imovel_id']);
       }else{
         $return['results'] = array();
@@ -256,6 +282,11 @@ class Properties_model extends CI_Model {
         $return_count = 0;
         foreach($query->result_array() as $result){
           $return['results'][$return_count] = $result;
+
+          if(isset($return['results'][$return_count]['destaque']) && $return['results'][$return_count]['destaque'] == 0){
+            unset($return['results'][$return_count]['destaque']);
+          }
+
           $return['results'][$return_count]['imovel_permalink'] = $this->site->get_property_url($result);
           $return_ids[$return_count] = $result['imovel_id'];
           $return_count++;
@@ -387,9 +418,10 @@ class Properties_model extends CI_Model {
 
   public function get_properties_expenses($properties_ids, $return = null) {
     $this->db->select("
+      imoveis_despesas.imovel,
+      imoveis_despesas.valor,
       despesas_tipos.nome as tipo,
       despesas_tipos.slug as tipo_slug,
-      imoveis_despesas.valor,
       periodos.nome as periodo,
       periodos.nome_curto as periodo_curto,
     ");

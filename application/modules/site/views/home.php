@@ -50,122 +50,139 @@
   </div>
 </div><!--/banner-->
 
-<section id="section-body">
-  <div class="houzez-module-main">
-    <div class="houzez-module carousel-module">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="module-title-nav clearfix">
-              <div>
-                <h2>Imóveis em destaque</h2>
-              </div>
-              <div class="module-nav">
-                <button class="btn btn-sm btn-crl-pprt-1-prev">Anterior</button>
-                <button class="btn btn-sm btn-crl-pprt-1-next">Próximo</button>
-                <a href="#" class="btn btn-carousel btn-sm">Ver+</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="row grid-row">
-              <div class="carousel properties-carousel-grid-1 slide-animated">
+<section id="section-body" class="npb">
+
+  <?php
+  if(isset($properties['featured']['results']) && !empty($properties['featured']['results'])){
+    ?>
+    <div class="houzez-module-main">
+      <div class="houzez-module carousel-module">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="module-title-nav clearfix">
+                <div>
+                  <h2>Imóveis em destaque</h2>
+                </div>
                 <?php
-                for($loop = 1 ; $loop <= 6 ; $loop++){
+                if(isset($properties['featured']['total_rows']) && $properties['featured']['total_rows'] > 3){
                   ?>
-                  <div class="item">
-                    <div class="item-wrap">
-                      <div class="property-item item-grid">
-                        <div class="figure-block">
-                          <figure class="item-thumb">
-                            <div class="label-wrap hide-on-list">
-                              <div class="label-status label label-default">For Rent</div>
-                            </div>
-                            <span class="label-featured label label-success">Featured</span>
-                            <div class="price hide-on-list">
-                              <h3>$350,000</h3>
-                              <p class="rant">$21,000/mo</p>
-                            </div>
-                            <a href="<?php echo $this->site->get_property_url(0); ?>" class="hover-effect">
-                              <img src="/assets/site/images/bg-video-1.png?size=/385/260/" alt="thumb">
-                            </a>
-                            <ul class="actions">
-                              <li class="share-btn">
-                                <div class="share_tooltip fade">
-                                  <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                                  <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                                  <a href="#"  target="_blank"><i class="fa fa-google-plus"></i></a>
-                                  <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                                <span data-toggle="tooltip" data-placement="top" title="share"><i class="fa fa-share-alt"></i></span>
-                              </li>
-                              <li>
-                                <span data-toggle="tooltip" data-placement="top" title="Favorite">
-                                  <i class="fa fa-heart-o"></i>
-                                </span>
-                              </li>
-                              <li>
-                                <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
-                                  <i class="fa fa-camera"></i>
-                                </span>
-                              </li>
-                            </ul>
-                          </figure>
-                        </div>
-                        <div class="item-body">
-
-                          <div class="body-left">
-                            <div class="info-row">
-                              <div class="rating">
-                                <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                                <span class="star-text-right">15 Ratings</span>
-                              </div>
-                              <h2 class="property-title"><a href="<?php echo $this->site->get_property_url(0); ?>">Apartment Oceanview</a></h2>
-                              <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
-                            </div>
-                            <div class="table-list full-width info-row">
-                              <div class="cell">
-                                <div class="info-row amenities">
-                                  <p>
-                                    <span>Beds: 3</span>
-                                    <span>Baths: 2</span>
-                                    <span>Sqft: 1,965</span>
-                                  </p>
-                                  <p>Single Family Home</p>
-                                </div>
-                              </div>
-                              <div class="cell">
-                                <div class="phone">
-                                  <a href="<?php echo $this->site->get_property_url(0); ?>" class="btn btn-primary">Details <i class="fa fa-angle-right fa-right"></i></a>
-                                  <p><a href="#">+1 (786) 225-0199</a></p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                      <div class="item-foot date hide-on-list">
-                        <div class="item-foot-left">
-                          <p><i class="fa fa-user"></i> <a href="#">Elite Ocean View Realty LLC</a></p>
-                        </div>
-                        <div class="item-foot-right">
-                          <p><i class="fa fa-calendar"></i> 12 Days ago </p>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="module-nav">
+                    <button class="btn btn-sm btn-crl-pprt-1-prev">Anterior</button>
+                    <button class="btn btn-sm btn-crl-pprt-1-next">Próximo</button>
+                    <a href="#" class="btn btn-carousel btn-sm">Ver+</a>
                   </div>
                   <?php
                 }
                 ?>
               </div>
             </div>
+            <div class="col-sm-12">
+              <div class="row grid-row">
+                <div class="carousel properties-carousel-grid-1 slide-animated">
+                  <?php
+                  foreach ($properties['featured']['results'] as $key => $property) {
+                    $property_url = $this->site->get_property_url($property['imovel_id']);
+                    ?>
+                    <div class="item">
+                      <div class="item-wrap">
+                        <div class="property-item item-grid">
+                          <div class="figure-block">
+                            <figure class="item-thumb">
+                              <div class="label-wrap hide-on-list">
+                                <div class="label-status label label-default">Venda</div>
+                              </div>
+                              <span class="label-featured label label-success">DESTAQUE</span>
+                              <div class="price hide-on-list">
+                                <h3>R$ <?php echo $property['negociacao_valor']; ?></h3>
+                              </div>
+                              <?php
+                              $property_image_id = 0;
+                              $property_image_arquivo = 'property-image.jpg';
+                              if(isset($property['imagens'][0])){
+                                $property_image_id = $property['imovel_id'];
+                                $property_image_arquivo = $property['imagens'][0]['arquivo'];
+                              }
+                              ?>
+                              <a href="<?php echo $property_url; ?>" class="hover-effect">
+                                <img src="<?php echo base_url('imagens/imoveis/' . $property_image_id . '/385/260/100/' . $property_image_arquivo); ?>" width="385" height="260" alt="" />
+                              </a>
+                              <ul class="actions">
+                                <li class="share-items">
+                                    <div class="share_tooltip fade">
+                                        <a class="share-item" href="http://www.facebook.com/share.php?u=<?php echo isset($property_url) ? $property_url : base_url(); ?>&title=<?php echo $property['tipo_nome']; ?> à venda em <?php echo $property['bairro_nome']; ?>+<?php echo isset($property_url) ? $property_url : base_url(); ?>"><i class="fa fa-facebook"></i></a>
+                                        <a class="share-item" href="http://twitter.com/intent/tweet?status=<?php echo $property['tipo_nome']; ?> à venda em <?php echo $property['bairro_nome']; ?>+<?php echo isset($property_url) ? $property_url : base_url(); ?>"><i class="fa fa-twitter"></i></a>
+                                        <a class="share-item" href="https://plus.google.com/share?url=<?php echo isset($property_url) ? $property_url : base_url(); ?>"><i class="fa fa-google-plus"></i></a>
+                                    </div>
+                                    <span class="share-btn" data-placement="bottom" data-toggle="property-tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
+                                </li>
+                                <li>
+                                  <span data-property_id="<?php echo $property['imovel_id']; ?>" data-action="<?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? 'unlike' : 'like'; ?>" class="btn-like<?php echo isset($property['imovel_favorito']) && $property['imovel_favorito'] == 1 ? ' active' : ''; ?>" data-placement="top" data-toggle="property-tooltip" data-original-title="Adicionar aos favoritos">
+                                    <i class="fa fa-heart"></i>
+                                  </span>
+                                </li>
+                              </ul>
+                            </figure>
+                          </div>
+                          <div class="item-body">
+
+                            <div class="body-left">
+                              <div class="info-row">
+                                <h2 class="property-title"><a href="<?php echo $property_url; ?>"><?php echo $property['tipo_nome']; ?> à <?php echo $property['transacao_nome']; ?> em <?php echo $property['bairro_nome']; ?>, <?php echo $property['area_util']; ?>m²</a></h2>
+                                <h4 class="property-location"><?php echo $property['breve_descricao']; ?></h4>
+                              </div>
+                              <div class="table-list full-width info-row">
+                                <div class="cell">
+                                  <div class="info-row amenities">
+                                    <p>
+                                      <?php
+                                      if(isset($property['imovel_dormitorios']) && $property['imovel_dormitorios']){
+                                        ?><span><?php echo $property['imovel_dormitorios']; ?> <?php echo $property['imovel_dormitorios'] == 1 ? 'quarto' : 'quartos'; ?></span><?php
+                                      }
+                                      ?>
+                                      <?php
+                                      if(isset($property['imovel_suites']) && $property['imovel_suites']){
+                                        ?><span><?php echo $property['imovel_suites']; ?> <?php echo $property['imovel_suites'] == 1 ? 'suíte' : 'suítes'; ?></span><?php
+                                      }
+                                      ?>
+                                      <?php
+                                      if(isset($property['imovel_garagens']) && $property['imovel_garagens']){
+                                        ?><span><?php echo $property['imovel_garagens']; ?> <?php echo $property['imovel_garagens'] == 1 ? 'vaga' : 'vagas'; ?></span><?php
+                                      }
+                                      ?>
+                                    </p>
+                                    <p><?php echo $property['tipo_nome']; ?></p>
+                                  </div>
+                                </div>
+                                <div class="cell">
+                                  <div class="phone">
+                                    <a href="<?php echo $property_url; ?>" class="btn btn-primary">Detalhes <i class="fa fa-angle-right fa-right"></i></a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <?php
+                  }
+                  ?>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div><!--/.houzez-module-main-->
+  <?php
+}
+?>
 
+<?php
+if(isset($campaigns) && !empty($campaigns)){
+  ?>
   <div class="houzez-module-main module-white-bg">
     <div class="houzez-module module-title text-center">
       <div class="container">
@@ -180,188 +197,35 @@
     <div id="location-modul" class="houzez-module location-module grid">
       <div class="container">
         <div class="row">
-          <div class="col-sm-4">
-            <div class="location-block">
-              <figure>
-                <a href="#">
-                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Apartment">
-                </a>
-                <figcaption class="location-fig-caption">
-                  <h3 class="heading">Apartment</h3>
-                  <p class="sub-heading">30 Properties</p>
-                </figcaption>
-              </figure>
+          <?php
+          foreach ($campaigns as $key => $campaign) {
+            ?>
+            <div class="col-sm-4">
+              <div class="location-block">
+                <figure>
+                  <a href="<?php echo base_url($campaign['permalink']); ?>">
+
+                    <img src="<?php echo base_url('imagens/campanhas/' . $campaign['id'] . '/370/370/100/' . $campaign['imagem_arquivo']); ?>" width="370" height="370" alt="<?php echo $campaign['title']; ?>">
+                  </a>
+                  <figcaption class="location-fig-caption">
+                    <h3 class="heading"><?php echo $campaign['title']; ?></h3>
+                    <!-- <p class="sub-heading">30 Properties</p> -->
+                  </figcaption>
+                </figure>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="location-block">
-              <figure>
-                <a href="#">
-                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Loft">
-                </a>
-                <div class="location-fig-caption">
-                  <h3 class="heading">Loft</h3>
-                  <p class="sub-heading">1 Property</p>
-                </div>
-              </figure>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="location-block">
-              <figure>
-                <a href="#">
-                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Single Family Home">
-                </a>
-                <div class="location-fig-caption">
-                  <h3 class="heading">Single Family Home</h3>
-                  <p class="sub-heading">11 Properties</p>
-                </div>
-              </figure>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="location-block">
-              <figure>
-                <a href="#">
-                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Single Family Home">
-                </a>
-                <div class="location-fig-caption">
-                  <h3 class="heading">Single Family Home</h3>
-                  <p class="sub-heading">11 Properties</p>
-                </div>
-              </figure>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="location-block">
-              <figure>
-                <a href="#">
-                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Single Family Home">
-                </a>
-                <div class="location-fig-caption">
-                  <h3 class="heading">Single Family Home</h3>
-                  <p class="sub-heading">11 Properties</p>
-                </div>
-              </figure>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="location-block">
-              <figure>
-                <a href="#">
-                  <img src="/assets/site/images/bg-video-1.png?size=/370/370/" width="370" height="370" alt="Villa">
-                </a>
-                <div class="location-fig-caption">
-                  <h3 class="heading">Villa</h3>
-                  <p class="sub-heading">10 Properties</p>
-                </div>
-              </figure>
-            </div>
-          </div>
+            <?php
+          }
+          ?>
         </div>
       </div>
     </div>
-  </div><!--/.houzez-module-main-->
+  </div>
+  <?php
 
-  <div class="houzez-module-main module-gray-bg">
-    <div class="houzez-module module-title text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <h2>Best Property Value</h2>
-            <h3 class="sub-heading">Create Your Real Estate Website or Marketplace</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="property-item-module" class="houzez-module property-item-module">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="row grid-row">
-              <?php
-              for($loop = 1 ; $loop <= 2 ; $loop++){
-                ?>
-                <div class="col-sm-6">
-                  <div class="item-wrap">
-                    <div class="property-item item-grid">
-                      <div class="figure-block">
-                        <figure class="item-thumb">
-                          <div class="label-wrap hide-on-list">
-                            <div class="label-status label label-default">For Rent</div>
-                          </div>
-                          <span class="label-featured label label-success">Featured</span>
-                          <div class="price hide-on-list">
-                            <h3>$350,000</h3>
-                            <p class="rant">$21,000/mo</p>
-                          </div>
-                          <a href="<?php echo $this->site->get_property_url(0); ?>" class="hover-effect">
-                            <img src="/assets/site/images/bg-video-1.png?size=/434/290/" alt="thumb">
-                          </a>
-                          <ul class="actions">
-                            <li class="share-btn">
-                              <div class="share_tooltip fade">
-                                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                                <a href="#"  target="_blank"><i class="fa fa-google-plus"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                              </div>
-                              <span data-toggle="tooltip" data-placement="top" title="share"><i class="fa fa-share-alt"></i></span>
-                            </li>
-                            <li>
-                              <span data-toggle="tooltip" data-placement="top" title="Favorite">
-                                <i class="fa fa-heart-o"></i>
-                              </span>
-                            </li>
-                            <li>
-                              <span data-toggle="tooltip" data-placement="top" title="Photos (12)">
-                                <i class="fa fa-camera"></i>
-                              </span>
-                            </li>
-                          </ul>
-                        </figure>
-                      </div>
-                      <div class="item-body">
+}
+?>
 
-                        <div class="body-left">
-                          <div class="info-row">
-                            <div class="rating">
-                              <span class="bottom-ratings"><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span class="fa fa-star-o"></span><span style="width: 70%" class="top-ratings"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></span>
-                              <span class="star-text-right">15 Ratings</span>
-                            </div>
-                            <h2 class="property-title"><a href="<?php echo $this->site->get_property_url(0); ?>">Apartment Oceanview</a></h2>
-                            <h4 class="property-location">7601 East Treasure Dr. Miami Beach, FL 33141</h4>
-                          </div>
-                          <div class="table-list full-width info-row">
-                            <div class="cell">
-                              <div class="info-row amenities">
-                                <p>
-                                  <span>Beds: 3</span>
-                                  <span>Baths: 2</span>
-                                  <span>Sqft: 1,965</span>
-                                </p>
-                                <p>Single Family Home</p>
-                              </div>
-                            </div>
-                            <div class="cell">
-                              <div class="phone">
-                                <a href="<?php echo $this->site->get_property_url(0); ?>" class="btn btn-primary">Detalhes <i class="fa fa-angle-right fa-right"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
 
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <?php
-              }
-              ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!--/.houzez-module-main-->
+
 </section><!--/#section-body-->

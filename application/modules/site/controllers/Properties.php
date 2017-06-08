@@ -92,6 +92,39 @@ class Properties extends Site_Controller {
       'property_permalink' => $this->site->get_property_url($property['imovel_id'])
     );
 
+    $data['properties']['featured'] = $this->properties_model->get_properties(array(
+      'params' => array_merge(array(
+        'pagination' => array(
+          'limit' => 3
+        ),
+        'orderby' => 'featured',
+        'not_in' => array(
+          'imoveis.id' => array($property['imovel_id'])
+        ),
+        'visibility' => true
+      ))
+    ));
+
+    $location = array(array(
+      'state' => $property['estado_slug'],
+      'city' => $property['cidade_slug'],
+      'district' => $property['bairro_slug']
+    ));
+
+    $data['properties']['recommend'] = $this->properties_model->get_properties(array(
+      'params' => array_merge(array(
+        'pagination' => array(
+          'limit' => 3
+        ),
+        'orderby' => 'recommend',
+        'property_type' => $property['tipo_slug'],
+        'location' => $location,
+        'not_in' => array(
+          'imoveis.id' => array($property['imovel_id'])
+        ),
+        'visibility' => true
+      ))
+    ));
 
     $this->template->view('site/master', 'site/properties/property_details', $data);
     // print_l($data);
@@ -137,6 +170,44 @@ class Properties extends Site_Controller {
     );
 
     $this->template->view('site/master', 'site/properties/add_properties', $data);
+  }
+
+  public function campaigns($campaign_id, $page = 1) {
+    $campaign = $this->registros_model->obter_registros('campanhas', array('where' => array('campanhas.id' => $campaign_id)), true, 'campanhas.*, campanhas_categorias.nome as categoria', array(
+      array('campanhas_categorias', 'campanhas.categoria = campanhas_categorias.id', 'inner')
+    ));
+
+    $data = array(
+      'page' => array(
+        'one' => 'anunciar-imoveis'
+      ),
+      'section' => array(
+        'body_id' => 'anunciar-imoveis',
+        'body_class' => array(
+        ),
+        'title' => $campaign['title'],
+        'description' => $campaign['description']
+      ),
+      'assets' => array(
+        'styles' => array(
+        ),
+        'scripts' => array(
+            array('assets/site/js/pages/properties_list_campaign.js', true)
+        )
+      ),
+      'campaign' => $campaign,
+      'properties' => $this->properties_model->get_properties(array(
+        'params' => array_merge(array(
+          'pagination' => array(
+            'limit' => $this->config->item('property_list_campaign_limit'),
+            'page' => $page
+          ),
+          'visibility' => true
+        ), json_decode($campaign['parametros'], true))
+      ))
+    );
+
+    $this->template->view('site/master', 'site/properties/properties_list_campaign', $data);
   }
 
 
