@@ -9,14 +9,29 @@
     <meta name="description" content="<?php echo isset($section["description"]) ? $section["description"] : $this->config->item('site_description'); ?>">
     <meta name="author" content="Favethemes">
 
-    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url('assets/site/images/favicons/apple-touch-icon.png'); ?>">
-    <link rel="icon" type="image/png" href="<?php echo base_url('assets/site/images/favicons/favicon-32x32.png'); ?>" sizes="32x32">
-    <link rel="icon" type="image/png" href="<?php echo base_url('assets/site/images/favicons/favicon-16x16.png'); ?>" sizes="16x16">
-    <link rel="manifest" href="<?php echo base_url('assets/site/images/favicons/manifest.json'); ?>">
-    <link rel="mask-icon" href="<?php echo base_url('assets/site/images/favicons/safari-pinned-tab.svg'); ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="<?php echo get_asset('images/favicon/apple-touch-icon-57x57.png'); ?>" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_asset('images/favicon/apple-touch-icon-114x114.png'); ?>" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_asset('images/favicon/apple-touch-icon-72x72.png'); ?>" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo get_asset('images/favicon/apple-touch-icon-144x144.png'); ?>" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo get_asset('images/favicon/apple-touch-icon-120x120.png'); ?>" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo get_asset('images/favicon/apple-touch-icon-152x152.png'); ?>" />
+    <link rel="icon" type="image/png" href="<?php echo get_asset('images/favicon/favicon-32x32.png'); ?>" sizes="32x32" />
+    <link rel="icon" type="image/png" href="<?php echo get_asset('images/favicon/favicon-16x16.png'); ?>" sizes="16x16" />
+    <meta name="application-name" content="Mediz Imóveis"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="<?php echo get_asset('images/favicon/mstile-144x144.png'); ?>" />
+
     <meta name="theme-color" content="#ffffff">
 
     <link href="<?php echo base_url('assets/site/css/main.css'); ?>" rel="stylesheet" type="text/css" />
+    <?php
+    if(isset($assets["styles"]) && !empty($assets["styles"])){
+      foreach($assets["styles"] as $index => $style){
+        $style_src = strpos($style, '//') === false ? base_url($style) . '?v=' . $this->config->item('site_versao') : $style;
+        ?><link href="<?php echo $style_src; ?>" rel="stylesheet" type="text/css" media="screen" /><?php
+      }
+    }
+    ?>
 </head>
 <body>
 

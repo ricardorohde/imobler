@@ -20,9 +20,9 @@
             </div>
             <div class="widget-body">
               <ul class="list-unstyled">
-                <li><i class="fa fa-location-arrow"></i> 121 King Street, Melbourne VIC 3000</li>
-                <li><i class="fa fa-phone"></i> +1 (877) 987 3487</li>
-                <li><i class="fa fa-envelope-o"></i> <a href="#">info@housez.com</a></li>
+                <li><i class="fa fa-location-arrow"></i> Rua Durval Fernandes Chaves, 188<br>Jd. Santo Elias - Pirituba</li>
+                <li><i class="fa fa-phone"></i> (11) 3902-7180</li>
+                <li><i class="fa fa-envelope-o"></i> <a href="mailto:contato@medizimoveis.com.br">contato@medizimoveis.com.br</a></li>
               </ul>
               <p class="read"><a href="<?php echo base_url('fale-conosco'); ?>">Fale conosco <i class="fa fa-caret-right"></i></a></p>
             </div>
@@ -46,7 +46,7 @@
                   </div>
                 </div>
               </form>
-              <p>Houzez is a premium WordPress theme for real estate agents.<br>Don’t forget to fullow us on:</p>
+              <p>Pode ficar tranquilo! Nos responsabilizamos em não enviar nenhum SPAN e também em não divulgar seu e-mail à ninguém.</p>
               <ul class="social">
                 <li>
                   <a href="https://facebook.com/medizimoveis" class="btn-facebook"><i class="fa fa-facebook-square"></i></a>
@@ -77,7 +77,6 @@
             <div class="navi">
               <ul id="footer-menu" class="">
                 <li><a href="<?php echo base_url('politica-de-privacidade'); ?>">Política de privacidade</a></li>
-                <li><a href="<?php echo base_url('termos-de-uso'); ?>">Termos de uso</a></li>
               </ul>
             </div>
           </div>

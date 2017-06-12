@@ -440,7 +440,7 @@ $(function(){
     // REMOVER LOCALIZAÇÃO
     $('.property-location-items').on('click', '.property-location-item-remove', function(){
       if($('.property-location-item').length == 1){
-        alert('nao pode');
+        swal("Ooops!", "Você precisa selecionar pelo menos uma localização.")
       }else{
         $(this).closest('.property-location-item').remove();
         // setTimeout(function(){

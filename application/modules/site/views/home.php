@@ -70,7 +70,6 @@
                   <div class="module-nav">
                     <button class="btn btn-sm btn-crl-pprt-1-prev">Anterior</button>
                     <button class="btn btn-sm btn-crl-pprt-1-next">Próximo</button>
-                    <a href="#" class="btn btn-carousel btn-sm">Ver+</a>
                   </div>
                   <?php
                 }
@@ -188,8 +187,8 @@ if(isset($campaigns) && !empty($campaigns)){
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-xs-12">
-            <h2>Our Locations</h2>
-            <h3 class="sub-heading">Book space in amazing locations across the world</h3>
+            <h2>Sugestões de imóveis para você</h2>
+            <h3 class="sub-heading">Veja as listas de imóveis que separamos para você</h3>
           </div>
         </div>
       </div>
@@ -204,8 +203,13 @@ if(isset($campaigns) && !empty($campaigns)){
               <div class="location-block">
                 <figure>
                   <a href="<?php echo base_url($campaign['permalink']); ?>">
-
-                    <img src="<?php echo base_url('imagens/campanhas/' . $campaign['id'] . '/370/370/100/' . $campaign['imagem_arquivo']); ?>" width="370" height="370" alt="<?php echo $campaign['title']; ?>">
+                    <?php
+                    $imagem_arquivo = 'http://lorempixel.com/g/370/370/city/'. rand(1,10) .'/';
+                    if(!empty($campaign['imagem_arquivo'])){
+                      $imagem_arquivo = base_url('imagens/campanhas/' . $campaign['id'] . '/370/370/100/' . $campaign['imagem_arquivo']);
+                    }
+                    ?>
+                    <img src="<?php echo $imagem_arquivo; ?>" width="370" height="370" alt="<?php echo $campaign['title']; ?>">
                   </a>
                   <figcaption class="location-fig-caption">
                     <h3 class="heading"><?php echo $campaign['title']; ?></h3>

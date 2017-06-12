@@ -38,6 +38,11 @@ class Registros_model extends CI_Model {
       }
     }
 
+    // WHERE IN
+    if(isset($params['limit']) && !empty($params['limit'])){
+      $this->db->limit($params['limit']);
+    }
+
     //ORDER
     if($order){
       $orderby = array();

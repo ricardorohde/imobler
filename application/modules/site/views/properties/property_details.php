@@ -1,6 +1,6 @@
     <section id="section-body"
-        data-property_latitude="<?php echo $property['endereco_latitude_site']; ?>"
-        data-property_longitude="<?php echo $property['endereco_longitude_site']; ?>">
+        data-property_latitude="<?php echo $property['endereco_latitude']; ?>"
+        data-property_longitude="<?php echo $property['endereco_longitude']; ?>">
 
         <!--start detail top-->
         <div class="detail-top detail-top-grid no-margin">
@@ -401,20 +401,30 @@
                                 <?php
                             }
                             ?>
-                            <div class="widget widget-categories">
-                                <div class="widget-top">
-                                    <h3 class="widget-title">Property Categories</h3>
-                                </div>
-                                <div class="widget-body">
-                                    <ul>
-                                        <li><a href="">Apartment</a> <span class="cat-count">(30)</span></li>
-                                        <li><a href="">Condo</a> <span class="cat-count">(30)</span></li>
-                                        <li><a href="">Single Family Home</a> <span class="cat-count">(30)</span></li>
-                                        <li><a href="">Villa</a> <span class="cat-count">(30)</span></li>
-                                        <li><a href="">Studio</a> <span class="cat-count">(30)</span></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <?php
+                            if(isset($campaigns) && !empty($campaigns)){
+                              ?>
+                              <div class="widget widget-categories">
+                                  <div class="widget-top">
+                                      <h3 class="widget-title">Sugestões para você</h3>
+                                  </div>
+                                  <div class="widget-body">
+                                      <ul>
+                                        <?php
+                                        foreach ($campaigns as $key => $campaign) {
+                                          ?>
+                                          <li><a href="<?php echo base_url($campaign['permalink']); ?>"><?php echo $campaign['title']; ?></a></li>
+                                          <?php
+                                        }
+                                        ?>
+                                      </ul>
+                                  </div>
+                              </div>
+                              <?php
+
+                            }
+                            ?>
+
                         </aside>
                     </div>
                 </div>

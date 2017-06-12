@@ -29,3 +29,11 @@ $hook['pre_controller'] = array(
     'params'   => array(1)
   ),
 );
+
+$hook['post_system'] = array(
+  array(
+    'function' => 'get_asset',
+    'filename' => 'functions.php',
+    'filepath' => 'hooks'
+  ),
+);

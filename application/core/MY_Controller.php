@@ -29,7 +29,7 @@ class Site_Controller extends Default_Controller {
 class Admin_Controller extends Default_Controller {
   function __construct() {
     parent::__construct();
-//$this->load->add_package_path(APPPATH . 'modules/admin/');
-//$this->load->library(array('admin', 'gravatar'));
+  $this->load->add_package_path(APPPATH . 'modules/admin/');
+  $this->load->library(array('admin'));
   }
 }

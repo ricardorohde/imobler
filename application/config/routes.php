@@ -16,7 +16,6 @@ $route['api/(:any)/(:num)'] = 'site/tools/$1/$2';
 //$route['imagens/imoveis/(:num)/(:any)/(:num)/(:any)'] = 'site/tools/images/$1/$2/$3/$4';
 
 
-
 // == PÁGINAS ESTÁTICAS  == \\
 foreach(array(
   'quem-somos' => 'who_we_are',
@@ -46,11 +45,11 @@ $route['minha-conta'] = 'site/account/index'; //Minha conta
 
 //Lista todos os imóveis com a flag 'lançamento'
 $route['lancamentos'] = function (){
-  return 'site/properties/list/' . json_encode(array('property_status'=>'new'));
+  return 'site/properties/list/' . json_encode(array('filter' => 'property_types', 'property_status'=>'new'));
 };
 
 // Formulário para os usuários enviarem indformações de imóveis a venda
-$route['anunciar-imoveis'] = 'site/properties/add_properties'; //Anunciar um imóvel
+$route['anunciar-imovel'] = 'site/properties/add_properties'; //Anunciar um imóvel
 
 // Lista para comparação de até quatro (4) imóveis selecionados pelo usuário
 $route['comparar-imoveis'] = 'site/properties/compare_properties';
@@ -79,6 +78,7 @@ $route['(:num)'] = 'site/properties/property_details_redirect/$1/id';
 $property_types = array();
 foreach($db->get('imoveis_tipos')->result_array() as $property_type){
   $property_types[] = $property_type['slug'];
+  // $route[$property_type['slug']] = 'site/properties/list/' . json_encode(array('filter' => 'property_types', 'transaction' => 'venda', 'state' => 'sp', 'property_type' => $property_type['slug']));
 }
 
 //Lista imóveis de tipo específico em estado/cidade/bairro/tipo - Ex: /venda/sp/sao-paulo/pirituba/apartamento/
@@ -171,11 +171,15 @@ foreach($db->get_where('campanhas', array('status' => 1))->result_array() as $ca
 
 
 // ADMIN
-$route['admin'] = 'admin/home';
+$route['admin'] = 'admin/dashboard';
 
-$route['admin/imoveis'] = 'admin/imoveis__lista';
-$route['admin/imoveis/adicionar'] = 'admin/imoveis__editar';
-$route['admin/imoveis/(:num)/editar'] = 'admin/imoveis__editar/index/$1';
+$route['admin/login'] = 'admin/Account__login';
+$route['admin/logout'] = 'admin/Account__logout';
+$route['admin/esqueci-minha-senha'] = 'admin/Account__forgot_password';
+
+$route['admin/imoveis'] = 'admin/properties__list';
+$route['admin/imoveis/adicionar'] = 'admin/properties__edit';
+$route['admin/imoveis/(:num)/editar'] = 'admin/properties__list/index/$1';
 
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = TRUE;

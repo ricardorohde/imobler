@@ -283,6 +283,12 @@ class Properties_model extends CI_Model {
         foreach($query->result_array() as $result){
           $return['results'][$return_count] = $result;
 
+          $endereco_latitude = (!empty($result['endereco_latitude_site']) ? $result['endereco_latitude_site'] : $result['endereco_latitude']);
+          $endereco_longitude = (!empty($result['endereco_longitude_site']) ? $result['endereco_longitude_site'] : $result['endereco_longitude']);
+
+          $result['endereco_latitude'] = $endereco_latitude;
+          $result['endereco_longitude'] = $endereco_longitude;
+
           if(isset($return['results'][$return_count]['destaque']) && $return['results'][$return_count]['destaque'] == 0){
             unset($return['results'][$return_count]['destaque']);
           }
@@ -389,32 +395,32 @@ class Properties_model extends CI_Model {
   }
 
 
-  public function set_properties_images_sizes($property_id){
-    ini_set('memory_limit', '1024M');
+  // public function set_properties_images_sizes($property_id){
+  //   ini_set('memory_limit', '1024M');
 
-    if($images = $this->get_properties_images(array($property_id))){
+  //   if($images = $this->get_properties_images(array($property_id))){
 
-      require_once (APPPATH . 'third_party/ImageResize.php');
+  //     require_once (APPPATH . 'third_party/ImageResize.php');
 
-      $dimensions = array(
-        array('width' => 430, 'height' => 300, 'quality' => 80),
-        array('width' => 1045, 'height' => 525, 'quality' => 100)
-      );
+  //     $dimensions = array(
+  //       array('width' => 430, 'height' => 300, 'quality' => 80),
+  //       array('width' => 1045, 'height' => 525, 'quality' => 100)
+  //     );
 
-      foreach ($images as $image) {
-        foreach ($dimensions as $dimension) {
-          $path = FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $dimension['width'] . 'x' . $dimension['height'] . '-' . $image['arquivo'];
+  //     foreach ($images as $image) {
+  //       foreach ($dimensions as $dimension) {
+  //         $path = FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $dimension['width'] . 'x' . $dimension['height'] . '-' . $image['arquivo'];
 
-          if(!file_exists($path)){
-            $image_create = new \Eventviva\ImageResize(FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $image['arquivo']);
-            $image_create->quality_jpg = $dimension['quality'];
-            $image_create->crop($dimension['width'], $dimension['height']);
-            $image_create->save($path);
-          }
-        }
-      }
-    }
-  }
+  //         if(!file_exists($path)){
+  //           $image_create = new \Eventviva\ImageResize(FCPATH . 'assets/uploads/imoveis/' . $property_id . '/' . $image['arquivo']);
+  //           $image_create->quality_jpg = $dimension['quality'];
+  //           $image_create->crop($dimension['width'], $dimension['height']);
+  //           $image_create->save($path);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   public function get_properties_expenses($properties_ids, $return = null) {
     $this->db->select("
@@ -650,6 +656,42 @@ class Properties_model extends CI_Model {
     return false;
   }
 
+  public function get_cities_by_term($format = 'json') {
+    $return = false;
+
+    echo $this->input->get('term');
+
+    $this->db->select("
+      UCASE(estados.sigla) as estado_sigla,
+      estados.sigla as estado_slug,
+      cidades.nome as cidade_nome,
+      cidades.slug as cidade_slug,
+      'city' as category
+    ");
+
+    $this->db->from('estados');
+
+    $this->db->join("cidades", "cidades.estado = estados.id", "inner");
+
+    $this->db->like('cidades.nome', $this->input->get('term'));
+
+    $sql = $this->db->_compile_select();
+
+    // echo $sql;
+
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      if($format == 'json'){
+        $return = json_encode($query->result_array());
+      }else if($format == 'array'){
+        $return = $query->result_array();
+      }
+    }
+
+    return $return;
+  }
+
   public function get_locations_by_term() {
 
     $this->db->select("
@@ -666,6 +708,8 @@ class Properties_model extends CI_Model {
     $this->db->join("cidades", "cidades.estado = estados.id", "inner");
 
     $this->db->like('cidades.nome', $this->input->get('term'));
+
+    $this->db->limit(3);
 
     $query_city = $this->db->get_compiled_select();
 
@@ -685,9 +729,13 @@ class Properties_model extends CI_Model {
 
     $this->db->like('bairros.nome', $this->input->get('term'));
 
+    $this->db->limit(6);
+
     $query_district = $this->db->get_compiled_select();
 
     $query = $this->db->query($query_city ." UNION ". $query_district);
+
+    // echo $query_city ." UNION ". $query_district;
 
     if($query->num_rows() > 0) {
       $return = array();

@@ -32,22 +32,24 @@ class Properties extends Site_Controller {
       ),
       'assets' => array(
         'styles' => array(
+          'assets/site/plugins/sweetalert-master/dist/sweetalert.css'
         ),
         'scripts' => array(
           array('assets/site/js/jquery.mask.js', true),
           array('assets/site/js/select2.js', true),
           array('assets/site/js/mustache.js', true),
           array('assets/site/js/base64.js', true),
+          array('assets/site/plugins/sweetalert-master/dist/sweetalert.min.js', true),
           array('assets/site/js/pages/properties_list.js', true)
         )
       ),
       'paging' => $page,
-      'filters' => $this->site->get_filters('all', array('params' => $route_params)),
+      'filters' => $this->site->get_filters((isset($route_params['filter']) ? $route_params['filter'] : 'all'), array('params' => $route_params)),
       'properties' => $properties,
       'route_params' => $route_params
     );
 
-    $this->properties_model->set_properties_images_sizes(2);
+    // $this->properties_model->set_properties_images_sizes(2);
 
     $this->template->view('site/master', 'site/properties/properties_list', $data);
   }
@@ -85,7 +87,7 @@ class Properties extends Site_Controller {
           array('assets/site/js/slick.min.js', true),
           array('assets/site/js/jquery.prettyPhoto.js', true),
           array('assets/site/js/pages/property_details.js', true),
-          array('https://maps.googleapis.com/maps/api/js?key=AIzaSyANK5keJe6la_A-bWPQg4IP8mEv5WywRHY&libraries=places&callback=app.property_detail.mapa', true)
+          array('https://maps.googleapis.com/maps/api/js?key='. $this->config->item('google_api_key') .'&libraries=places&callback=app.property_detail.mapa', true)
         )
       ),
       'property' => $property,
@@ -124,6 +126,10 @@ class Properties extends Site_Controller {
         ),
         'visibility' => true
       ))
+    ));
+
+    $data['campaigns'] = $this->registros_model->obter_registros('campanhas', array('where' => array('campanhas.status' => 1, 'campanhas_categorias.id' => 1), 'limit' => 5) , false, 'campanhas.*, campanhas_categorias.nome as categoria', array(
+      array('campanhas_categorias', 'campanhas.categoria = campanhas_categorias.id', 'inner')
     ));
 
     $this->template->view('site/master', 'site/properties/property_details', $data);
